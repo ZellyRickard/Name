@@ -1,0 +1,16 @@
+HEADER As CanvasComponent:
+    Fill: =ColorValue(First(colorscheme).Färg3)
+    Height: =66
+    Width: =1366
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    Company_logo As image:
+        Height: =60
+        Image: ='Dipart-logo'
+        OnSelect: =
+        Width: =216
+        X: =16
+        ZIndex: =2
+

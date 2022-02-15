@@ -1,0 +1,36 @@
+<application xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:service="https://europe-002.azure-apim.net/apim/dipart-20offboard-5fa39e5e4fa5858c30-5f5891107f4c44c818" xmlns:siena="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11" siena:serviceId="FlowDipart" xmlns="http://wadl.dev.java.net/2009/02">
+  <doc title="Flow Dipart">Flow Dipart</doc>
+  <grammars>
+    <jsonTypes targetNamespace="https://europe-002.azure-apim.net/apim/dipart-20offboard-5fa39e5e4fa5858c30-5f5891107f4c44c818" xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+      <string name="Offboard_param_body_def_UserID_def" />
+      <object name="Offboard_param_body_def">
+        <property name="UserID" type="string" />
+      </object>
+    </jsonTypes>
+  </grammars>
+  <resources siena:authenticationProviderHref="#PowerAppAuth" base="https://europe-002.azure-apim.net/apim/dipart-20offboard-5fa39e5e4fa5858c30-5f5891107f4c44c818">
+    <resource path="/{connectionId}/workflows/0de4080878ed457e9f0627d08b3a2c02/triggers/manual/paths/invoke">
+      <param style="template" name="connectionId" type="xs:string" required="true" />
+      <method siena:requiresAuthentication="true" name="POST" id="Offboard" siena:isDeprecated="false">
+        <doc title="Offboard&#xA;Offboard" />
+        <request>
+          <param style="query" name="api-version" type="xs:string" required="true" default="2016-06-01" />
+          <param style="query" name="sp" type="xs:string" required="true" default="/triggers/manual/run" />
+          <param style="query" name="sv" type="xs:string" required="true" default="1.0" />
+          <param style="query" name="sig" type="xs:string" required="true" default="l6cVw7zcErto_c-ruaCwGbRK63uXI-MKoHboGxulrhc" />
+          <representation mediaType="application/json">
+            <param style="plain" name="UserID" path="/UserID" type="xs:string" />
+          </representation>
+        </request>
+      </method>
+    </resource>
+  </resources>
+  <authenticationProviders xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <connectionProvider id="PowerAppAuth" siena:connectionProviderId="shared_dipart-20offboard-5fa39e5e4fa5858c30-5f5891107f4c44c818" />
+  </authenticationProviders>
+  <template xmlns="http://schemas.microsoft.com/MicrosoftProjectSiena/WADL/2014/11">
+    <variable name="connectionId">
+      <modifyParams style="template" name="connectionId" attribute="fixed" />
+    </variable>
+  </template>
+</application>

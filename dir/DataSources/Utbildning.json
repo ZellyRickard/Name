@@ -1,0 +1,103 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "crf38_utbildnings",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "crf38_utbildning",
+    "MaxGetRowsCount": 1500,
+    "Name": "Utbildning",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Ägare",
+      "createdby": "Skapad av",
+      "createdon": "Skapad den",
+      "createdonbehalfby": "Skapat av (ombud)",
+      "crf38_beskrivning": "Beskrivning",
+      "crf38_giltighetstidar": "Giltighetstid (År)",
+      "crf38_id": "ID",
+      "crf38_Kravutbildningar_crf38_Utbildning_c": "Kravutbildningar",
+      "crf38_onskvardutbildning": "Önskvärd utbildning",
+      "crf38_utbildning_AsyncOperations": "Systemuppgifter",
+      "crf38_utbildning_BulkDeleteFailures": "Fel i massradering",
+      "crf38_utbildning_DuplicateBaseRecord": "Dubblettposter (crf38_utbildning_DuplicateBaseRecord)",
+      "crf38_utbildning_DuplicateMatchingRecord": "Dubblettposter (crf38_utbildning_DuplicateMatchingRecord)",
+      "crf38_utbildning_MailboxTrackingFolders": "Automatiskt spårade mappar i postlåda",
+      "crf38_utbildning_PrincipalObjectAttributeAccesses": "Fältdelning",
+      "crf38_utbildning_ProcessSession": "Bearbetningssessioner",
+      "crf38_utbildning_SyncErrors": "Synkroniseringsfel",
+      "crf38_utbildningid": "Utbildning",
+      "crf38_utbildningkurs": "Utbildning/Kurs",
+      "crf38_UtbildningUtford_UtbildningKurs_crf": "Utbildning Utförd",
+      "importsequencenumber": "Importsekvensnummer",
+      "modifiedby": "Ändrad av",
+      "modifiedon": "Ändrad den",
+      "modifiedonbehalfby": "Ändrat av (ombud)",
+      "overriddencreatedon": "Posten skapades den",
+      "owningbusinessunit": "Ägande affärsenhet",
+      "owningteam": "Ägande team",
+      "owninguser": "Ägande användare",
+      "statecode": "Status",
+      "statuscode": "Statusorsak",
+      "timezoneruleversionnumber": "Versionsnummer för tidszonsregel",
+      "utcconversiontimezonecode": "Tidszonskod för UTC-konvertering",
+      "versionnumber": "Versionsnummer"
+    },
+    "PreferredName": "Utbildning",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Utbildning (Vyer)",
+    "Name": "_crf38_utbildning_views",
+    "RelatedEntityName": "Utbildning",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "0cb479aa-3369-4a7f-945a-5037e50b7227": "Aktiva Utbildning",
+      "6318bab6-74da-4ef7-95df-b658019dc65b": "Uppslagsvy för Utbildning",
+      "c08e9262-726a-40e4-bfab-091efa8ee648": "Associerad vy för Utbildning",
+      "c6150346-320b-4a06-8116-eb50b4b2f9ea": "Avancerad sökvy för Utbildning",
+      "e799c951-fd6f-4286-8c23-c2bb95f1d096": "Inaktiva Utbildning"
+    }
+  },
+  {
+    "DisplayName": "Status (Utbildning)",
+    "Name": "crf38_utbildning_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Aktiv",
+      "1": "Inaktiv"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Utbildning"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Utbildning",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Statusorsak (Utbildning)",
+    "Name": "crf38_utbildning_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Aktiv",
+      "2": "Inaktiv"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Utbildning"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Utbildning",
+    "Type": "OptionSetInfo"
+  }
+]

@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "304df2c7-0909-46df-bf33-a5409c6e0077",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "HRApp-FollowSiteinSharePoint",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

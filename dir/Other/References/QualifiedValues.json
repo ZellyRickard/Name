@@ -1,0 +1,154 @@
+{
+  "QualifiedValues": [
+    {
+      "Kind": "default.cds_cr3a5_onboard_forms",
+      "Namespace": "Onboard (Forms)",
+      "Values": {
+        "Information": "5b53f994-40ac-4ee0-a679-d813b990ed94"
+      }
+    },
+    {
+      "Kind": "default.cds_cr3a5_offboard_forms",
+      "Namespace": "Offboard_1 (Forms)",
+      "Values": {
+        "Information": "165c204e-f764-4879-b4fc-efde339b4e98"
+      }
+    },
+    {
+      "Kind": "default.cds_systemuser_forms",
+      "Namespace": "Users (Forms)",
+      "Values": {
+        "Användare": "c2cd9e55-d4b4-4b55-9951-16ead79643e5",
+        "Användarformulär – företag": "c2413504-7eb2-4c59-a087-95d819866114",
+        "Formulär för användarhierarkipanel": "c68d6c09-d7a7-4959-8d0f-44b8cff9b452",
+        "Information": "094fb08a-77bb-49e0-b7ea-8dbddfd01294",
+        "Programanvändare": "d26924ef-4d80-46f7-ab1d-e6ae80a54ce8"
+      }
+    },
+    {
+      "Kind": "default.cds_cr3a5_onboardcomponents_forms",
+      "Namespace": "Onboard components (Forms)",
+      "Values": {
+        "Information": "9e13d280-17cd-40a6-b3ba-efad43aca536"
+      }
+    },
+    {
+      "Kind": "default.cds_cr3a5_switchboard_forms",
+      "Namespace": "Switchboard_1 (Forms)",
+      "Values": {
+        "Information": "0470cbee-e0c9-4ff6-a3f9-8ebe957794f2"
+      }
+    },
+    {
+      "Kind": "default.cds_crf38_utvecklingssamtal_forms",
+      "Namespace": "Utvecklingssamtals (Forms)",
+      "Values": {
+        "Information": "b56dd672-f3c9-45fd-b63a-b11a5a54a159",
+        "Information Utvecklingssamtal": "13ef280b-a8e6-455d-8fac-9d20b1b12bd5"
+      }
+    },
+    {
+      "Kind": "default.cds_crf38_utbildning_forms",
+      "Namespace": "Utbildning (Forms)",
+      "Values": {
+        "Information": "21e66022-cf3f-4465-9efb-ff839e75a6ae"
+      }
+    },
+    {
+      "Kind": "default.cds_crf38_utbildningutford_forms",
+      "Namespace": "Utbildning Utförd (Forms)",
+      "Values": {
+        "Information": "1aa5c975-0610-4a57-964a-e2fa7069af57"
+      }
+    },
+    {
+      "Kind": "default.cds_crf38_kravutbildningar_forms",
+      "Namespace": "Kravutbildningar (Forms)",
+      "Values": {
+        "Information": "ebb8ef2e-02d3-4190-b3db-fdb0c90272cc"
+      }
+    },
+    {
+      "Kind": "default.cds_crf38_summeringaktivitetutbildning_forms",
+      "Namespace": "Summering Aktivitet/Utbildnings (Forms)",
+      "Values": {
+        "Information": "62239843-5eed-416a-b8d4-ee03ee091a7b"
+      }
+    },
+    {
+      "Kind": "default.cds_cr3a5_onboard_forms",
+      "Namespace": "Onboard (Formulär)",
+      "Values": {
+        "Information": "5b53f994-40ac-4ee0-a679-d813b990ed94"
+      }
+    },
+    {
+      "Kind": "default.cds_cr3a5_offboard_forms",
+      "Namespace": "Offboard_1 (Formulär)",
+      "Values": {
+        "Information": "165c204e-f764-4879-b4fc-efde339b4e98"
+      }
+    },
+    {
+      "Kind": "default.cds_systemuser_forms",
+      "Namespace": "Users (Formulär)",
+      "Values": {
+        "Användare": "c2cd9e55-d4b4-4b55-9951-16ead79643e5",
+        "Användarformulär – företag": "c2413504-7eb2-4c59-a087-95d819866114",
+        "Formulär för användarhierarkipanel": "c68d6c09-d7a7-4959-8d0f-44b8cff9b452",
+        "Information": "094fb08a-77bb-49e0-b7ea-8dbddfd01294",
+        "Programanvändare": "d26924ef-4d80-46f7-ab1d-e6ae80a54ce8"
+      }
+    },
+    {
+      "Kind": "default.cds_cr3a5_onboardcomponents_forms",
+      "Namespace": "Onboard components (Formulär)",
+      "Values": {
+        "Information": "9e13d280-17cd-40a6-b3ba-efad43aca536"
+      }
+    },
+    {
+      "Kind": "default.cds_cr3a5_switchboard_forms",
+      "Namespace": "Switchboard_1 (Formulär)",
+      "Values": {
+        "Information": "0470cbee-e0c9-4ff6-a3f9-8ebe957794f2"
+      }
+    },
+    {
+      "Kind": "default.cds_crf38_utvecklingssamtal_forms",
+      "Namespace": "Utvecklingssamtals (Formulär)",
+      "Values": {
+        "Information": "b56dd672-f3c9-45fd-b63a-b11a5a54a159",
+        "Information Utvecklingssamtal": "13ef280b-a8e6-455d-8fac-9d20b1b12bd5"
+      }
+    },
+    {
+      "Kind": "default.cds_crf38_summeringaktivitetutbildning_forms",
+      "Namespace": "Summering Aktivitet/Utbildnings (Formulär)",
+      "Values": {
+        "Information": "62239843-5eed-416a-b8d4-ee03ee091a7b"
+      }
+    },
+    {
+      "Kind": "default.cds_crf38_utbildning_forms",
+      "Namespace": "Utbildning (Formulär)",
+      "Values": {
+        "Information": "21e66022-cf3f-4465-9efb-ff839e75a6ae"
+      }
+    },
+    {
+      "Kind": "default.cds_crf38_utbildningutford_forms",
+      "Namespace": "Utbildning Utförd (Formulär)",
+      "Values": {
+        "Information": "1aa5c975-0610-4a57-964a-e2fa7069af57"
+      }
+    },
+    {
+      "Kind": "default.cds_crf38_kravutbildningar_forms",
+      "Namespace": "Kravutbildningar (Formulär)",
+      "Values": {
+        "Information": "ebb8ef2e-02d3-4190-b3db-fdb0c90272cc"
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "b27cacad-8938-46c7-965c-c57e689b8114",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "OffboardFlowV2",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

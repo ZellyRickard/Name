@@ -1,0 +1,725 @@
+Admin As screen:
+    BackgroundImage: ='building-1080591'
+    Fill: =RGBA(0, 0, 0, 0)
+    ImagePosition: =ImagePosition.Fill
+    OnHidden: |-
+        =UpdateContext({Varusersettings: false})
+    OnVisible: |-
+        =Set(Vartypeofcomponent, Typeofcomponent.Selected.Value);Set(onboardscreenlayoutlabels, {
+            Fontsize: 12,
+            Fontweight: Normal
+        });
+        Set(onboardscreenlayoutbuttons, {
+            Fontsize: 10,
+            Fontweight: Normal,
+            Width: 110,
+            Height: 26
+        });
+        
+        Set(Gallerylayoutsettings, {
+            X: 75,
+            Y: 165,
+            Width: 1274,
+            Height: 558
+        })
+
+    Label27_2 As label:
+        Align: =Align.Center
+        Fill: =RGBA(255, 255, 255, 0.5)
+        Font: =First(fontscheme).Helvetica
+        FontWeight: =FontWeight.Lighter
+        Height: =67
+        Size: =30
+        Text: =//"Onboard"
+        Width: =1366
+        ZIndex: =1
+
+    "GalleryAdmintSettings As gallery.'BrowseLayout_Vertical_OneImageThreeColumnVariant_ver4.0'":
+        Fill: |-
+            =RGBA(255, 255, 255, 0.8
+            )
+        Height: =567
+        Items: =Sort(Filter('Onboard components', 'Component Type' = Typeofcomponent.Selected.Value), Name, Ascending)
+        Layout: =Layout.Vertical
+        TemplatePadding: =4
+        TemplateSize: =77
+        Transition: =Transition.Pop
+        Visible: |-
+            =true
+            //If(!IsBlank(Label4.Text); false; true)
+        Width: =1108
+        WrapCount: =4
+        X: =158
+        Y: =164
+        ZIndex: =2
+
+        Rectangle_Component As rectangle:
+            BorderColor: =ColorValue(First(colorscheme).Svart)
+            BorderThickness: =1
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =60
+            OnSelect: =Select(Parent)
+            Visible: |-
+                =If(!IsBlank(Component_Text.Text), true, false)
+                //If(IsBlank(Label4.Text); false; true)
+            Width: =235
+            X: =10
+            Y: =2
+            ZIndex: =1
+
+        Component_Text As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Height: =43
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: =ThisItem.Name
+            Visible: =!Varifremove
+            Width: =188
+            X: =5
+            Y: =12
+            ZIndex: =2
+
+        Remove_Icon As icon.Trash:
+            Color: =ColorValue(First(colorscheme).Röd)
+            Height: =25
+            Icon: =Icon.Trash
+            OnSelect: |-
+                =UpdateContext({Varifremove: true})
+            Visible: |
+                =If(!IsBlank(Component_Text.Text), true, false) And !Varifremove
+                //If(Label4.Text = "Default"; false; true)
+            Width: =25
+            X: =180
+            Y: =20
+            ZIndex: =3
+
+        Edit_Icon As icon.Edit:
+            Color: =ColorValue(First(colorscheme).Färg1)
+            Height: =25
+            Icon: =Icon.Edit
+            OnSelect: |-
+                =UpdateContext({Varpopupedit: true})
+            Visible: |
+                =If(!IsBlank(Component_Text.Text), true, false) And !Varifremove
+                //If(Label4.Text = "Default"; false; true)
+            Width: =25
+            X: =214
+            Y: =20
+            ZIndex: =4
+
+        Text_RemoveItem As label:
+            Align: =Align.Center
+            Height: =33
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: |-
+                =If(Varlanguage = "Swedish", "Ta bort komponent: " & ThisItem.Name, If(Varlanguage = "English", "Delete component: " & ThisItem.Name))
+            Visible: |-
+                =If(!IsBlank(Component_Text.Text), true, false) And Varifremove
+                //Varifremove And 
+            Width: =220
+            X: =20
+            Y: =5
+            ZIndex: =5
+
+        "'Remove=Yes' As button":
+            BorderThickness: =0
+            Fill: =ColorValue(First(colorscheme).Färg1)
+            FocusedBorderThickness: =1
+            Height: =15
+            HoverColor: =RGBA(99, 139, 44, 1)
+            HoverFill: =RGBA(255, 255, 255, 1)
+            OnSelect: =Remove('Onboard components', ThisItem)
+            Size: =8
+            Text: =If(Varlanguage = "Swedish", "Ja", If(Varlanguage = "English", "Yes"))
+            Visible: =If(!IsBlank(Component_Text.Text), true, false) And Varifremove
+            Width: =60
+            X: =155
+            Y: =40
+            ZIndex: =6
+
+        "'Remove=No' As button":
+            BorderThickness: =0
+            Fill: =ColorValue(First(colorscheme).Färg5)
+            FocusedBorderThickness: =1
+            Height: =15
+            HoverColor: =RGBA(118, 0, 0, 1)
+            HoverFill: =RGBA(255, 255, 255, 1)
+            OnSelect: |-
+                =UpdateContext({Varifremove: false})
+            Size: =8
+            Text: =If(Varlanguage = "Swedish", "Nej", If(Varlanguage = "English", "No"))
+            Visible: =If(!IsBlank(Component_Text.Text), true, false) And Varifremove
+            Width: =60
+            X: =33
+            Y: =40
+            ZIndex: =7
+
+    SMALLHEADER_7 As SMALLHEADER:
+        Fill: =RGBA(0, 0, 0, 0.2)
+        X: =60
+        Y: =67
+        ZIndex: =3
+
+    Typeofcomponent As dropdown:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderThickness: =1
+        ChevronBackground: =ColorValue(First(colorscheme).Röd)
+        ChevronHoverBackground: =ColorValue(First(colorscheme).Röd)
+        FocusedBorderThickness: =1
+        Height: =31
+        HoverFill: =RGBA(230, 230, 230, 1)
+        Items: =Choices('Onboard components'.'Component Type')
+        OnChange: |-
+            =Set(Vartypeofcomponent, Typeofcomponent.Selected.Value); UpdateContext({Varifremove: false})
+        OnSelect: =Set(Vartypeofcomponent, Typeofcomponent.Selected.Value)
+        PressedFill: =RGBA(230, 230, 230, 1)
+        SelectionFill: =RGBA(179, 179, 179, 1)
+        Size: =11
+        Width: =220
+        X: =975
+        Y: =80
+        ZIndex: =4
+
+    NAV_7 As NAV:
+        Height: =700
+        NavItems: |-
+            =Table(
+                {
+                    Title: "Hem",
+                    Screen: StartScreen,
+                    Icon: Home
+                },
+                {
+                    Title: "Onboard",
+                    Screen: OnboardScreen,
+                    Icon: EmojiSmile
+                },
+                {
+                    Title: "Offboard",
+                    Screen: Offboard,
+                    Icon: LikeDislike
+                },
+                
+                {
+                    Title: "Switchboard",
+                    Screen: Switchboard,
+                    Icon: Icon.Edit
+                },
+                
+                {    
+                    Title: "Admin",
+                    Screen: App.ActiveScreen,
+                    Icon: Icon.ToolsWrench
+                },
+                {    
+                    Title: "Personalkort",
+                    Screen: 'Employee Info',
+                    Icon: Icon.Person
+                },
+                {    
+                    Title: "Utvecklingssamtal",
+                    Screen: Utvecklingssamtal,
+                    Icon: Icon.People
+                },
+                {    
+                    Title: "Utbildningar",
+                    Screen: Education,
+                    Icon: Icon.Bookmark
+                }
+            )
+        Y: =68
+        ZIndex: =5
+
+    Button2_14 As button:
+        Fill: =ColorValue(First(colorscheme).Röd)
+        FocusedBorderThickness: =1
+        FontWeight: =FontWeight.Normal
+        Height: =onboardscreenlayoutbuttons.Height
+        HoverColor: =ColorValue(First(colorscheme).Röd)
+        HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -5%)
+        OnSelect: =Back()
+        RadiusBottomLeft: =2
+        RadiusBottomRight: =2
+        RadiusTopLeft: =2
+        RadiusTopRight: =2
+        Size: =10
+        Text: =If(Varlanguage = "Swedish", "Tillbaka", If(Varlanguage = "English", "Back"))
+        Width: =onboardscreenlayoutbuttons.Width
+        X: =76
+        Y: =83
+        ZIndex: =6
+
+    Button2_15 As button:
+        Fill: =ColorValue(First(colorscheme).Röd)
+        FocusedBorderThickness: =1
+        FontWeight: =FontWeight.Normal
+        Height: =onboardscreenlayoutbuttons.Height
+        HoverColor: =ColorValue(First(colorscheme).Röd)
+        HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -1%)
+        OnSelect: |-
+            =UpdateContext({Varpopupnew: true})
+        RadiusBottomLeft: =2
+        RadiusBottomRight: =2
+        RadiusTopLeft: =2
+        RadiusTopRight: =2
+        Size: =10
+        Text: =If(Varlanguage = "Swedish", "Lägg till", If(Varlanguage = "English", "Add"))
+        Width: =onboardscreenlayoutbuttons.Width
+        X: =1225
+        Y: =83
+        ZIndex: =7
+
+    Image5_4 As image:
+        Height: =55
+        Image: ='Dipart-logo'
+        OnSelect: =Navigate(StartScreen)
+        Width: =294
+        ZIndex: =8
+
+    "'ChooseComponent:Label' As label":
+        Color: =RGBA(255, 255, 255, 1)
+        FontWeight: =FontWeight.Semibold
+        Height: =31
+        Size: =12
+        Text: |-
+            =If(Varlanguage = "Swedish", "  Välj komponenttyp:", If(Varlanguage = "English", "Choose component type:"))
+        Width: =210
+        X: =772
+        Y: =80
+        ZIndex: =9
+
+    Blurrybackground_Onboard_3 As rectangle:
+        Fill: =RGBA(0, 0, 0, 0.7)
+        Height: =768
+        OnSelect: |-
+            =UpdateContext({Varpopupedit: false}); UpdateContext({varsavebutton: false});Reset(NewEditText)
+        Visible: =Varpopupedit Or Varpopupremove Or Varpopupnew
+        Width: =1366
+        ZIndex: =10
+
+    RemovePOPUPbground As rectangle:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =183
+        Visible: =Varpopupremove
+        Width: =514
+        X: =467
+        Y: =291
+        ZIndex: =11
+
+    RemovePOPUPBanner As rectangle:
+        Fill: =ColorValue(First(colorscheme).Primary)
+        Height: =31
+        Visible: =Varpopupremove
+        Width: =514
+        X: =467
+        Y: =260
+        ZIndex: =12
+
+    RemovePOPUPIcon As icon.Cancel:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =30
+        HoverColor: =RGBA(230, 230, 230, 1)
+        Icon: =Icon.Cancel
+        OnSelect: |-
+            =UpdateContext({Varpopupremove: false})
+        Visible: =Varpopupremove
+        Width: =27
+        X: =954
+        Y: =260
+        ZIndex: =13
+
+    Label7 As label:
+        Align: =Align.Center
+        Height: =63
+        Size: =16
+        Text: ="Är du säker att du vill ta bort denna komponent?"
+        Visible: =Varpopupremove
+        Width: =352
+        X: =548
+        Y: =291
+        ZIndex: =14
+
+    EditPOPUPbground As rectangle:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =183
+        Visible: =Varpopupedit
+        Width: =514
+        X: =487
+        Y: =311
+        ZIndex: =15
+
+    EditPOPUPBanner As rectangle:
+        Fill: =ColorValue(First(colorscheme).Svart)
+        Height: =31
+        Visible: =Varpopupedit
+        Width: =514
+        X: =487
+        Y: =280
+        ZIndex: =16
+
+    CreatenewPOPUP_bground As rectangle:
+        BorderColor: =ColorValue(First(colorscheme).Primary)
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =164
+        Visible: =Varpopupnew
+        Width: =514
+        X: =477
+        Y: =274
+        ZIndex: =17
+
+    Editcomponent As gallery.galleryVertical:
+        Height: =178
+        Items: =GalleryAdmintSettings.Selected
+        Layout: =Layout.Vertical
+        TemplateSize: =164
+        Visible: =Varpopupedit
+        Width: =522
+        X: =483
+        Y: =313
+        ZIndex: =18
+
+        Save_Button As button:
+            BorderColor: =RGBA(99, 139, 44, 1)
+            DisplayMode: =If(IsBlank(NewEditText), DisplayMode.Disabled, DisplayMode.Edit)
+            Fill: =RGBA(54, 176, 75, 1)
+            FocusedBorderThickness: =1
+            Height: =30
+            HoverColor: =RGBA(99, 139, 44, 1)
+            HoverFill: =RGBA(255, 255, 255, 1)
+            OnSelect: |-
+                =Patch('Onboard components',
+                    ThisItem,
+                    {Name: NewEditText.Text}
+                );
+                
+                Refresh('Onboard components');
+                UpdateContext({Varpopupedit: false});
+                UpdateContext({varsavebutton: false})
+            RadiusBottomLeft: =2
+            RadiusBottomRight: =2
+            RadiusTopLeft: =2
+            RadiusTopRight: =2
+            Text: =If(Varlanguage = "Swedish", "Spara", If(Varlanguage = "English", "Save"))
+            Width: =130
+            X: =294
+            Y: =125
+            ZIndex: =5
+
+        Cancel_Button As button:
+            BorderColor: =RGBA(118, 0, 0, 1)
+            Fill: =RGBA(255, 0, 0, 1)
+            FocusedBorderThickness: =1
+            Height: =30
+            HoverBorderColor: =RGBA(118, 0, 0, 1)
+            HoverColor: =RGBA(118, 0, 0, 1)
+            HoverFill: =RGBA(255, 255, 255, 1)
+            OnSelect: |-
+                =UpdateContext({Varpopupedit: false}); UpdateContext({varsavebutton: false});Reset(NewEditText)
+            RadiusBottomLeft: =2
+            RadiusBottomRight: =2
+            RadiusTopLeft: =2
+            RadiusTopRight: =2
+            Text: =If(Varlanguage = "Swedish", "Avbryt", If(Varlanguage = "English", "Cancel"))
+            Width: =130
+            X: =104
+            Y: =125
+            ZIndex: =6
+
+        NewEditText As text:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Default: =""
+            FocusedBorderThickness: =1
+            Height: =35
+            HintText: =If(Varlanguage = "Swedish", "Ändra namn", If(Varlanguage = "English", "Change name"))
+            HoverBorderColor: =RGBA(0, 0, 0, 1)
+            HoverFill: =RGBA(204, 204, 204, 1)
+            RadiusBottomLeft: =1
+            RadiusBottomRight: =1
+            RadiusTopLeft: =1
+            RadiusTopRight: =1
+            Reset: =varsavebutton
+            Size: =12
+            X: =104
+            Y: =66
+            ZIndex: =7
+
+        CurrentName As label:
+            Align: =Align.Center
+            Height: =43
+            OnSelect: =Select(Parent)
+            Text: |-
+                =If(Varlanguage = "Swedish", "Nuvarande: " & ThisItem.Name, If(Varlanguage = "English", "Current name: " & ThisItem.Name))
+            Width: =361
+            X: =75
+            Y: =9
+            ZIndex: =8
+
+    NewComponent As gallery.galleryVertical:
+        Height: =170
+        Items: =FirstN('Onboard components', 1)
+        Layout: =Layout.Vertical
+        TemplateSize: =159
+        Visible: =Varpopupnew
+        Width: =514
+        X: =481
+        Y: =275
+        ZIndex: =19
+
+        ComponentType_Label As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Height: =46
+            OnSelect: =Select(Parent)
+            Text: |-
+                ="Component type: " & Vartypeofcomponent
+            Width: =392
+            X: =50
+            Y: =14
+            ZIndex: =1
+
+        Input_newcomponent As text:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Default: =""
+            FocusedBorderThickness: =1
+            HintText: =If(Varlanguage = "Swedish", "Fyll i", If(Varlanguage = "English", "Fill in"))
+            HoverBorderColor: =RGBA(0, 0, 0, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            OnChange: |-
+                =UpdateContext({varblankcomponent: true})
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =1
+            RadiusBottomRight: =1
+            RadiusTopLeft: =1
+            RadiusTopRight: =1
+            Size: =12
+            Width: =260
+            X: =29
+            Y: =97
+            ZIndex: =2
+
+        Button_CreateNew As button:
+            DisplayMode: =If(varblankcomponent = true, DisplayMode.Edit, DisplayMode.Disabled)
+            Fill: =ColorValue(First(colorscheme).Röd)
+            FocusedBorderThickness: =1
+            HoverColor: =ColorValue(First(colorscheme).Röd)
+            HoverFill: =RGBA(255, 255, 255, 1)
+            OnSelect: |-
+                =Patch('Onboard components',
+                    Defaults('Onboard components'),
+                    {Name: Input_newcomponent.Text},
+                    {'Component Type': Vartypeofcomponent})
+                ;
+                
+                Reset(Input_newcomponent);
+                Refresh('Onboard components')
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =13
+            Text: =If(Varlanguage = "Swedish", "Skapa ny", If(Varlanguage = "English", "Create new"))
+            Width: =140
+            X: =344
+            Y: =97
+            ZIndex: =3
+
+    "'ChosenCompinent:Label' As label":
+        Align: =Align.Center
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =30
+        Size: =12
+        Text: |-
+            =If(Varlanguage = "Swedish", "Vald komponent: " & Vartypeofcomponent , If(Varlanguage = "English", "Chosen component: " & Vartypeofcomponent))
+        Visible: =Varpopupedit
+        Width: =427
+        X: =527
+        Y: =280
+        ZIndex: =20
+
+    Icon_Background_1 As button:
+        BorderThickness: =0
+        Fill: =ColorValue(First(colorscheme).Röd)
+        Height: =28
+        HoverFill: =ColorValue(First(colorscheme).Röd)
+        RadiusBottomLeft: =20
+        RadiusBottomRight: =20
+        RadiusTopLeft: =20
+        RadiusTopRight: =20
+        Text: =""
+        Visible: =Varpopupnew
+        Width: =28
+        X: =974
+        Y: =259
+        ZIndex: =21
+
+    Iconclosepopup_1 As icon.Cancel:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =24
+        HoverColor: =RGBA(204, 204, 204, 1)
+        Icon: =Icon.Cancel
+        OnSelect: |-
+            =UpdateContext({Varpopupnew: false})
+        Visible: =Varpopupnew
+        Width: =24
+        X: =976
+        Y: =261
+        ZIndex: =22
+
+    GroupMeAsset_1 As group:
+        Height: =5
+        Width: =5
+        X: =1
+        Y: =20
+        ZIndex: =61
+
+        IconOpenMenu_9 As icon.ChevronDown:
+            AccessibleLabel: ="PersonalSettings"
+            Color: =RGBA(0, 0, 0, 1)
+            DisplayMode: =DisplayMode.Disabled
+            Height: =25
+            Icon: =Icon.Settings
+            OnSelect: |-
+                =If(Varusersettings = true, UpdateContext({Varusersettings: false}), UpdateContext({Varusersettings: true}))
+            Width: =25
+            X: =1323
+            Y: =18
+            ZIndex: =23
+
+        Rectangle3_9 As rectangle:
+            BorderColor: =RGBA(0, 13, 75, 1)
+            Fill: |-
+                =RGBA(0,0,0,0.8
+                )
+            Height: =245
+            Visible: =Varusersettings
+            Width: =165
+            X: =1201
+            Y: =66
+            ZIndex: =24
+
+        IconCloseMenu_9 As icon.ChevronUp:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =35
+            Icon: =Icon.ChevronUp
+            OnSelect: |-
+                =UpdateContext({Varusersettings: false})
+            Visible: =false//Varusersettings
+            Width: =51
+            X: =1256
+            Y: =10
+            ZIndex: =25
+
+        Language_Title_9 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =28
+            Size: =10
+            Text: =If(Varlanguage = "Swedish", "Språk", If(Varlanguage = "English", "Language"))
+            Visible: =Varusersettings
+            Width: =93
+            X: =1228
+            Y: =234
+            ZIndex: =26
+
+        "'Choose language_19' As dropdown":
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            ChevronBackground: =Gray
+            ChevronHoverBackground: =RGBA(179, 179, 179, 1)
+            Default: ="Swedish"
+            DisabledColor: =RGBA(0, 0, 0, 1)
+            FocusedBorderThickness: =1
+            Height: =22
+            HoverFill: =RGBA(204, 204, 204, 1)
+            Items: =["English", "Swedish"]
+            OnChange: =Set(Varlanguage, 'Choose language_19'.Selected.Value)
+            OnSelect: =Set(Varlanguage, 'Choose language_19'.Selected.Value)
+            PressedFill: =RGBA(179, 179, 179, 1)
+            SelectionFill: =RGBA(204, 204, 204, 1)
+            Size: =8
+            Visible: =Varusersettings
+            Width: =97
+            X: =1230
+            Y: =262
+            ZIndex: =27
+
+        Theme_9 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =28
+            Size: =10
+            Text: =If(Varlanguage = "Swedish", "Tema", If(Varlanguage = "English", "Theme"))
+            Visible: =Varusersettings
+            Width: =93
+            X: =1228
+            Y: =164
+            ZIndex: =28
+
+        "'Choose language_18' As dropdown":
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            ChevronBackground: =Gray
+            ChevronHoverBackground: =RGBA(204, 204, 204, 1)
+            FocusedBorderThickness: =1
+            Height: =22
+            HoverFill: =RGBA(204, 204, 204, 1)
+            Items: =["Theme 1", "Theme 2"]
+            OnChange: =
+            OnSelect: =
+            PressedFill: =RGBA(204, 204, 204, 1)
+            SelectionFill: =RGBA(204, 204, 204, 1)
+            Size: =8
+            Visible: =Varusersettings
+            Width: =97
+            X: =1230
+            Y: =194
+            ZIndex: =29
+
+        "'SwedishFlag.Image_9' As image":
+            Height: =23
+            Image: ='Swedish flag'
+            Visible: =If(Varlanguage = "Swedish", true, false) And Varusersettings
+            Width: =19
+            X: =1331
+            Y: =264
+            ZIndex: =30
+
+        "'EnglishFlag.Image_9' As image":
+            Height: =20
+            Image: ='English flag'
+            Visible: =If(Varlanguage = "English", true, false) And Varusersettings
+            Width: =17
+            X: =1331
+            Y: =264
+            ZIndex: =31
+
+        UserImage_9 As image:
+            Height: =40
+            Image: =User().Image
+            RadiusBottomLeft: =70
+            RadiusBottomRight: =70
+            RadiusTopLeft: =70
+            RadiusTopRight: =70
+            Visible: =Varusersettings
+            Width: =40
+            X: =1266
+            Y: =83
+            ZIndex: =32
+
+        "'User.Name_9' As label":
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Size: =11
+            Text: =User().FullName
+            Visible: =Varusersettings
+            Width: =160
+            X: =1206
+            Y: =124
+            ZIndex: =33
+

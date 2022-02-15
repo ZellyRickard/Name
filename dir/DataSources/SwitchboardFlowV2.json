@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "bc543914-21a9-4f6f-b54f-a7e1e4cc9763",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "SwitchboardFlowV2",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

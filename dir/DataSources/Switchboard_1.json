@@ -1,0 +1,352 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr3a5_switchboards",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr3a5_switchboard",
+    "MaxGetRowsCount": 1500,
+    "Name": "Switchboard_1",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Ägare",
+      "cr3a5_Changeclosestmanager": "Change closest manager",
+      "cr3a5_comment": "Comment",
+      "cr3a5_NameSwitchboard": "Name (Switchboard)",
+      "cr3a5_namnswitchboard": "Namn Switchboard",
+      "cr3a5_newcomputer": "New computer",
+      "cr3a5_newdepartment": "New department",
+      "cr3a5_newjobtitle": "New job title",
+      "cr3a5_searchablenameswitchboard": "Searchable Name (Switchboard)",
+      "cr3a5_swichboardprocessstatus": "Swichboard process status",
+      "cr3a5_switchboard_AsyncOperations": "Systemuppgifter",
+      "cr3a5_switchboard_BulkDeleteFailures": "Fel i massradering",
+      "cr3a5_switchboard_DuplicateBaseRecord": "Dubblettposter (cr3a5_switchboard_DuplicateBaseRecord)",
+      "cr3a5_switchboard_DuplicateMatchingRecord": "Dubblettposter (cr3a5_switchboard_DuplicateMatchingRecord)",
+      "cr3a5_switchboard_MailboxTrackingFolders": "Automatiskt spårade mappar i postlåda",
+      "cr3a5_switchboard_PrincipalObjectAttributeAccesses": "Fältdelning",
+      "cr3a5_switchboard_ProcessSession": "Bearbetningssessioner",
+      "cr3a5_switchboard_SyncErrors": "Synkroniseringsfel",
+      "cr3a5_switchboardid": "Switchboard",
+      "cr3a5_switchboardstatus": "Switchboard Status",
+      "createdby": "Skapad av",
+      "createdon": "Skapad den",
+      "createdonbehalfby": "Skapat av (ombud)",
+      "crf38_andringenavser": "Ändringen avser",
+      "crf38_anstallningsform": "Anställningsform",
+      "crf38_changesapproved": "Changes approved",
+      "crf38_currentanstallningsform": "Current anställningsform",
+      "crf38_Currentclosestmanager": "Current closest manager",
+      "crf38_currentdepartment": "Current department",
+      "crf38_currentjobtitle": "Current jobtitle",
+      "crf38_datum": "Datum",
+      "crf38_datumandring": "Datum ändring",
+      "crf38_datumandringslutdatum": "Datum ändring slutdatum",
+      "crf38_emailgroup": "Email Notification",
+      "crf38_informationskickadtill": "Information skickad till",
+      "crf38_kommentar": "Kommentar",
+      "crf38_mbledamottjanstetillagg": "MB-ledamot (Tjänstetillägg)",
+      "crf38_oldtypavanstallning": "Old Typ av anställning",
+      "crf38_pcgrupperattlaggatill": "PC-Grupper",
+      "crf38_platsansvarigtjanstetillagg": "Platsansvarig (Tjänstetillägg)",
+      "crf38_platsbastjanstetillagg": "Platsbas (Tjänstetillägg)",
+      "crf38_skickamejlekonomi": "Skicka mejl Ekonomi",
+      "crf38_skyddsombudtjanstetillagg": "Skyddsombud (Tjänstetillägg)",
+      "crf38_slutdatumforanstallningstyp": "Slutdatum för anställningstyp?",
+      "crf38_switchboardcreated": "Switchboard created",
+      "crf38_switchboardsucceeded": "Switchboard succeeded",
+      "crf38_typavanstallning": "Typ av anställning",
+      "crf38_vattenbilartjanstetillagg": "Vattenbilar (Tjänstetillägg)",
+      "importsequencenumber": "Importsekvensnummer",
+      "modifiedby": "Ändrad av",
+      "modifiedon": "Ändrad den",
+      "modifiedonbehalfby": "Ändrat av (ombud)",
+      "overriddencreatedon": "Posten skapades den",
+      "owningbusinessunit": "Ägande affärsenhet",
+      "owningteam": "Ägande team",
+      "owninguser": "Ägande användare",
+      "statecode": "Status",
+      "statuscode": "Statusorsak",
+      "timezoneruleversionnumber": "Versionsnummer för tidszonsregel",
+      "utcconversiontimezonecode": "Tidszonskod för UTC-konvertering",
+      "versionnumber": "Versionsnummer"
+    },
+    "PreferredName": "Switchboard_1",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Switchboard_1 (Vyer)",
+    "Name": "_cr3a5_switchboard_views",
+    "RelatedEntityName": "Switchboard_1",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "0ac643e3-1e0e-4adb-8a8c-0b4a37ec7306": "Avancerad sökvy för Switchboard",
+      "147b9171-af00-4229-b69c-ead516377356": "Inaktiva Switchboard",
+      "3f62f617-6eca-4456-a24a-fcc322c35797": "Uppslagsvy för Switchboard",
+      "9fda9430-9662-4e4d-96fc-0ea35d19d76a": "Associerad vy för Switchboard",
+      "ee7b86c4-58ba-4726-b969-74075a089efe": "Aktiva Switchboard"
+    }
+  },
+  {
+    "DisplayName": "Swichboard process status",
+    "Name": "cr3a5_swichboardprocessstatus",
+    "OptionSetInfoNameMapping": {
+      "971880000": "Started",
+      "971880001": "Approved",
+      "971880002": "Succeeded"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "cr3a5_swichboardprocessstatus",
+        "OptionSetReferenceEntityName": "Switchboard_1"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "cr3a5_swichboardprocessstatus",
+    "RelatedEntityName": "Switchboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (Switchboard_1)",
+    "Name": "cr3a5_switchboard_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Aktiv",
+      "1": "Inaktiv"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Switchboard_1"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Switchboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Statusorsak (Switchboard_1)",
+    "Name": "cr3a5_switchboard_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Aktiv",
+      "2": "Inaktiv"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Switchboard_1"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Switchboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Changes approved (Switchboard_1)",
+    "Name": "crf38_cr3a5_switchboard_changesapproved",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_changesapproved",
+        "OptionSetReferenceEntityName": "Switchboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_changesapproved",
+    "RelatedEntityName": "Switchboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "MB-ledamot (Tjänstetillägg) (Switchboard_1)",
+    "Name": "crf38_cr3a5_switchboard_mbledamottjanstetillagg",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_mbledamottjanstetillagg",
+        "OptionSetReferenceEntityName": "Switchboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_mbledamottjanstetillagg",
+    "RelatedEntityName": "Switchboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Platsansvarig (Tjänstetillägg) (Switchboard_1)",
+    "Name": "crf38_cr3a5_switchboard_platsansvarigtjanstetillagg",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_platsansvarigtjanstetillagg",
+        "OptionSetReferenceEntityName": "Switchboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_platsansvarigtjanstetillagg",
+    "RelatedEntityName": "Switchboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Platsbas (Tjänstetillägg) (Switchboard_1)",
+    "Name": "crf38_cr3a5_switchboard_platsbastjanstetillagg",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_platsbastjanstetillagg",
+        "OptionSetReferenceEntityName": "Switchboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_platsbastjanstetillagg",
+    "RelatedEntityName": "Switchboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Skicka mejl Ekonomi (Switchboard_1)",
+    "Name": "crf38_cr3a5_switchboard_skickamejlekonomi",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_skickamejlekonomi",
+        "OptionSetReferenceEntityName": "Switchboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_skickamejlekonomi",
+    "RelatedEntityName": "Switchboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Skyddsombud (Tjänstetillägg) (Switchboard_1)",
+    "Name": "crf38_cr3a5_switchboard_skyddsombudtjanstetillagg",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_skyddsombudtjanstetillagg",
+        "OptionSetReferenceEntityName": "Switchboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_skyddsombudtjanstetillagg",
+    "RelatedEntityName": "Switchboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Slutdatum för anställningstyp? (Switchboard_1)",
+    "Name": "crf38_cr3a5_switchboard_slutdatumforanstallningstyp",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_slutdatumforanstallningstyp",
+        "OptionSetReferenceEntityName": "Switchboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_slutdatumforanstallningstyp",
+    "RelatedEntityName": "Switchboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Switchboard created (Switchboard_1)",
+    "Name": "crf38_cr3a5_switchboard_switchboardcreated",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_switchboardcreated",
+        "OptionSetReferenceEntityName": "Switchboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_switchboardcreated",
+    "RelatedEntityName": "Switchboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Switchboard succeeded (Switchboard_1)",
+    "Name": "crf38_cr3a5_switchboard_switchboardsucceeded",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_switchboardsucceeded",
+        "OptionSetReferenceEntityName": "Switchboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_switchboardsucceeded",
+    "RelatedEntityName": "Switchboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Vattenbilar (Tjänstetillägg) (Switchboard_1)",
+    "Name": "crf38_cr3a5_switchboard_vattenbilartjanstetillagg",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_vattenbilartjanstetillagg",
+        "OptionSetReferenceEntityName": "Switchboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_vattenbilartjanstetillagg",
+    "RelatedEntityName": "Switchboard_1",
+    "Type": "OptionSetInfo"
+  }
+]

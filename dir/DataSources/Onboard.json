@@ -1,0 +1,1063 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr3a5_onboards",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr3a5_onboard",
+    "MaxGetRowsCount": 1500,
+    "Name": "Onboard",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Ägare",
+      "cr3a5_approvedbymanager": "Approved by manager",
+      "cr3a5_azureadcreated": "Azure AD created",
+      "cr3a5_Closestmanager": "Closest Manager",
+      "cr3a5_computeronboard": "Computer Onboard",
+      "cr3a5_computerordered": "Computer ordered",
+      "cr3a5_department": "Department",
+      "cr3a5_firstname": "First Name",
+      "cr3a5_jobtitleonboard": "Job title Onboard",
+      "cr3a5_MentorBuddy": "Mentor/Buddy",
+      "cr3a5_name": "Name",
+      "cr3a5_namn": "Namn (Onboard)",
+      "cr3a5_onboard_AsyncOperations": "Systemuppgifter",
+      "cr3a5_onboard_BulkDeleteFailures": "Fel i massradering",
+      "cr3a5_onboard_DuplicateBaseRecord": "Dubblettposter (cr3a5_onboard_DuplicateBaseRecord)",
+      "cr3a5_onboard_DuplicateMatchingRecord": "Dubblettposter (cr3a5_onboard_DuplicateMatchingRecord)",
+      "cr3a5_onboard_MailboxTrackingFolders": "Automatiskt spårade mappar i postlåda",
+      "cr3a5_onboard_PrincipalObjectAttributeAccesses": "Fältdelning",
+      "cr3a5_onboard_ProcessSession": "Bearbetningssessioner",
+      "cr3a5_onboard_SyncErrors": "Synkroniseringsfel",
+      "cr3a5_onboardid": "Onboardin",
+      "cr3a5_onboardstarted": "Onboard started",
+      "cr3a5_onboardsucceeded": "Onboard succeeded",
+      "cr3a5_otherinfomation": "Other infomation",
+      "cr3a5_phonenumber": "Phone Number",
+      "cr3a5_statusonboard": "Status Onboard",
+      "cr3a5_surname": "Surname",
+      "cr3a5_timeline": "TimeLine",
+      "cr3a5_useremail": "User E-mail",
+      "cr3a5_userstartdate": "User Start Date",
+      "cr3a5_worktitle": "Job Title (Ta bort)",
+      "createdby": "Skapad av",
+      "createdon": "Skapad den",
+      "createdonbehalfby": "Skapat av (ombud)",
+      "crf38_aadlicense": "AAD-License",
+      "crf38_affarsomrade": "Affärsområde",
+      "crf38_anstallningsform": "Anställningsform",
+      "crf38_anstallningslut": "Anställning slut",
+      "crf38_bestalldator": "Beställ dator",
+      "crf38_bestalldatorkommentar": "Beställ dator kommentar",
+      "crf38_bestallevbil": "Beställ ev. bil",
+      "crf38_bestallevbilkommentar": "Beställ ev. bil kommentar",
+      "crf38_bestallid06": "Beställ ID06",
+      "crf38_checklistchef": "Checklista Chef",
+      "crf38_checklisthr": "Checklista HR",
+      "crf38_checklistit": "Checklista IT",
+      "crf38_dagartillanstallningsavslut": "30 dagar till anställningsavslut",
+      "crf38_distributionemailgroups": "Distribution/Email groups",
+      "crf38_foljuppprovanstallningenmednarmchef": "Följ upp provanställningen  med närm chef",
+      "crf38_forbereddenfysiskaarbetsplatsen": "Förbered den fysiska arbetsplatsen",
+      "crf38_forbereddenfysiskaarbetsplatsenkommentar": "Förbered den fysiska arbetsplatsen kommentar",
+      "crf38_fotografering": "Fotografering",
+      "crf38_hrkommentar": "HR Kommentar",
+      "crf38_informeragruppenomnyanstallningen": "Informera gruppen om nyanställningen",
+      "crf38_informeragruppenomnyanstallningenkom": "Informera gruppen om nyanställningen kom.",
+      "crf38_infotillitekorecepnarmchefaochef": "Info till IT, eko, recep, närm chef, AO-chef",
+      "crf38_itkommentar": "IT Kommentar",
+      "crf38_itseparatlista": "IT Separat lista",
+      "crf38_laddauppanstallningsavtaletihogia": "Ladda upp anställningsavtalet i Hogia",
+      "crf38_lagginmedarihogiamedinfofrananstall": "Lägg in medar. i Hogia med info från anställ",
+      "crf38_mailadress": "Mailadress",
+      "crf38_mailadresskommentar": "Mailadress kommentar",
+      "crf38_mailautstartinformation": "Maila ut startinformation",
+      "crf38_mailnicknamesurname": "Mail Nickname Surname",
+      "crf38_meddelabradgardar": "Meddela brädgårdar",
+      "crf38_mobilnummeranhorig": "Mobilnummer anhörig",
+      "crf38_nybefattning": "Ny befattning",
+      "crf38_onboardcompleted": "Onboard completed",
+      "crf38_ordnaevnycklarochverktyg": "Ordna ev. nycklar och verktyg",
+      "crf38_pcgrupper": "PC-Grupper",
+      "crf38_personnummer": "Personnummer",
+      "crf38_planeraintroduktionen": "Planera introduktionen",
+      "crf38_planeraintroduktionenkommentar": "Planera introduktionen kommentar",
+      "crf38_redigerabillistan": "Redigera Bil-listan",
+      "crf38_registreraabaxvidbehov": "Registrera Abax vid behov",
+      "crf38_registreraabaxvidbehovkommentar": "Registrera Abax vid behov kommentar",
+      "crf38_registrerapersoneninext": "Registrera personen i Next",
+      "crf38_registrerapersoneninextkommentar": "Registrera personen i Next kommentar",
+      "crf38_relationanhorig": "Relation anhörig",
+      "crf38_ringochbokaintidplatsforstadagen": "Ring och boka in tid, plats första dagen ",
+      "crf38_ringochbokaintidplatsforstadagenkommentar": "Ring och boka in tid, plats första dagen kommentar",
+      "crf38_skapainloggningiswedol": "Skapa inloggning i Swedol",
+      "crf38_skickainfotilljanneabax": "Skicka info till Janne: Abax",
+      "crf38_startdate": "Start Date",
+      "crf38_telefon": "Telefon",
+      "crf38_telefonkommentar": "Telefon kommentar",
+      "crf38_telefonnummer": "Telefonnummer",
+      "crf38_tjanstetillaggmbledamot": "Tjänstetillägg: MB-ledamot",
+      "crf38_tjanstetillaggplatsansvarig": "Tjänstetillägg: Platsansvarig",
+      "crf38_tjanstetillaggplatsbas": "Tjänstetillägg: Platsbas",
+      "crf38_tjanstetillaggskyddsombud": "Tjänstetillägg: Skyddsombud",
+      "crf38_tjanstetillaggvattenbilare": "Tjänstetillägg: Vattenbilare",
+      "crf38_typavanstallning": "Typ av anställning",
+      "crf38_uppdateraintranatet": "Uppdatera intranätet",
+      "crf38_utbildningsbevis": "Utbildningsbevis",
+      "importsequencenumber": "Importsekvensnummer",
+      "modifiedby": "Ändrad av",
+      "modifiedon": "Ändrad den",
+      "modifiedonbehalfby": "Ändrat av (ombud)",
+      "new_adress": "Adress",
+      "new_aktiverad": "Aktiverad",
+      "new_narmastanhorig": "Närmast anhörig",
+      "overriddencreatedon": "Posten skapades den",
+      "owningbusinessunit": "Ägande affärsenhet",
+      "owningteam": "Ägande team",
+      "owninguser": "Ägande användare",
+      "statecode": "Status",
+      "statuscode": "Statusorsak",
+      "timezoneruleversionnumber": "Versionsnummer för tidszonsregel",
+      "utcconversiontimezonecode": "Tidszonskod för UTC-konvertering",
+      "versionnumber": "Versionsnummer"
+    },
+    "PreferredName": "Onboard",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Onboard (Views)",
+    "Name": "_cr3a5_onboard_views",
+    "RelatedEntityName": "Onboard",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "23ad1a60-1533-4a58-9a1c-4c31e0ab30b2": "Aktiva Onboard",
+      "40b911d6-46f0-4fdd-a7e0-1c87d7bbdc61": "Associerad vy för Onboard",
+      "690b3b8f-c2a8-4926-a55c-2eb6742bed08": "Inaktiva Onboard",
+      "84a57609-a36b-eb11-a812-0022489ab35d": "All onboards",
+      "cc26d2f8-9a88-427e-a457-974629f2a95e": "Avancerad sökvy för Onboard",
+      "f270b05f-94da-4821-86be-dd54d668f19c": "Uppslagsvy för Onboard"
+    }
+  },
+  {
+    "DisplayName": "Approved by manager (Onboard)",
+    "Name": "cr3a5_cr3a5_onboard_approvedbymanager",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "cr3a5_approvedbymanager",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "cr3a5_approvedbymanager",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Azure AD created (Onboard)",
+    "Name": "cr3a5_cr3a5_onboard_azureadcreated",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "cr3a5_azureadcreated",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "cr3a5_azureadcreated",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Computer ordered (Onboard)",
+    "Name": "cr3a5_cr3a5_onboard_computerordered",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "cr3a5_computerordered",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "cr3a5_computerordered",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Onboard started (Onboard)",
+    "Name": "cr3a5_cr3a5_onboard_onboardstarted",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "cr3a5_onboardstarted",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "cr3a5_onboardstarted",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Onboard succeeded (Onboard)",
+    "Name": "cr3a5_cr3a5_onboard_onboardsucceeded",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "cr3a5_onboardsucceeded",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "cr3a5_onboardsucceeded",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (Onboard)",
+    "Name": "cr3a5_onboard_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Aktiv",
+      "1": "Inaktiv"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Statusorsak (Onboard)",
+    "Name": "cr3a5_onboard_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Aktiv",
+      "2": "Inaktiv"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "TimeLine",
+    "Name": "cr3a5_timeline",
+    "OptionSetInfoNameMapping": {
+      "971880000": "Onboard Started",
+      "971880001": "Approved By Manager",
+      "971880002": "Onboard Completed"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "cr3a5_timeline",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "cr3a5_timeline",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Work title",
+    "Name": "cr3a5_worktitle",
+    "OptionSetInfoNameMapping": {
+      "971880000": "Sales",
+      "971880001": "Operations",
+      "971880002": "Support"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "cr3a5_worktitle",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "cr3a5_worktitle",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Beställ dator",
+    "Name": "crf38_bestalldator",
+    "OptionSetInfoNameMapping": {
+      "651160000": "Surface Pro 3"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_bestalldator",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "crf38_bestalldator",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Beställ ev. bil (Onboard)",
+    "Name": "crf38_cr3a5_onboard_bestallevbil",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_bestallevbil",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_bestallevbil",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Beställ ID06 (Onboard)",
+    "Name": "crf38_cr3a5_onboard_bestallid06",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_bestallid06",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_bestallid06",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Checklista Chef (Onboard)",
+    "Name": "crf38_cr3a5_onboard_checklistchef",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_checklistchef",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_checklistchef",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Checklista HR (Onboard)",
+    "Name": "crf38_cr3a5_onboard_checklisthr",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_checklisthr",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_checklisthr",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Checklista IT (Onboard)",
+    "Name": "crf38_cr3a5_onboard_checklistit",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_checklistit",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_checklistit",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Följ upp provanställningen  med närm chef (Onboard)",
+    "Name": "crf38_cr3a5_onboard_foljuppprovanstallningenmednarmchef",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_foljuppprovanstallningenmednarmchef",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_foljuppprovanstallningenmednarmchef",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Förbered den fysiska arbetsplatsen (Onboard)",
+    "Name": "crf38_cr3a5_onboard_forbereddenfysiskaarbetsplatsen",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_forbereddenfysiskaarbetsplatsen",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_forbereddenfysiskaarbetsplatsen",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Fotografering (Onboard)",
+    "Name": "crf38_cr3a5_onboard_fotografering",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_fotografering",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_fotografering",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Informera gruppen om nyanställningen (Onboard)",
+    "Name": "crf38_cr3a5_onboard_informeragruppenomnyanstallningen",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_informeragruppenomnyanstallningen",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_informeragruppenomnyanstallningen",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Info till IT, eko, recep, närm chef, AO-chef (Onboard)",
+    "Name": "crf38_cr3a5_onboard_infotillitekorecepnarmchefaochef",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_infotillitekorecepnarmchefaochef",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_infotillitekorecepnarmchefaochef",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "IT Separat lista (Onboard)",
+    "Name": "crf38_cr3a5_onboard_itseparatlista",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_itseparatlista",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_itseparatlista",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Ladda upp anställningsavtalet i Hogia (Onboard)",
+    "Name": "crf38_cr3a5_onboard_laddauppanstallningsavtaletihogia",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_laddauppanstallningsavtaletihogia",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_laddauppanstallningsavtaletihogia",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Lägg in medar. i Hogia med info från anställ (Onboard)",
+    "Name": "crf38_cr3a5_onboard_lagginmedarihogiamedinfofrananstall",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_lagginmedarihogiamedinfofrananstall",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_lagginmedarihogiamedinfofrananstall",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Mailadress (Onboard)",
+    "Name": "crf38_cr3a5_onboard_mailadress",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_mailadress",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_mailadress",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Maila ut startinformation (Onboard)",
+    "Name": "crf38_cr3a5_onboard_mailautstartinformation",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_mailautstartinformation",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_mailautstartinformation",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Meddela brädgårdar (Onboard)",
+    "Name": "crf38_cr3a5_onboard_meddelabradgardar",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_meddelabradgardar",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_meddelabradgardar",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Onboard completed (Onboard)",
+    "Name": "crf38_cr3a5_onboard_onboardcompleted",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_onboardcompleted",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_onboardcompleted",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Ordna ev. nycklar och verktyg (Onboard)",
+    "Name": "crf38_cr3a5_onboard_ordnaevnycklarochverktyg",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_ordnaevnycklarochverktyg",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_ordnaevnycklarochverktyg",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Planera introduktionen (Onboard)",
+    "Name": "crf38_cr3a5_onboard_planeraintroduktionen",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_planeraintroduktionen",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_planeraintroduktionen",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Redigera Bil-listan (Onboard)",
+    "Name": "crf38_cr3a5_onboard_redigerabillistan",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_redigerabillistan",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_redigerabillistan",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Registrera Abax vid behov (Onboard)",
+    "Name": "crf38_cr3a5_onboard_registreraabaxvidbehov",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_registreraabaxvidbehov",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_registreraabaxvidbehov",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Registrera personen i Next (Onboard)",
+    "Name": "crf38_cr3a5_onboard_registrerapersoneninext",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_registrerapersoneninext",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_registrerapersoneninext",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Ring och boka in tid, plats första dagen  (Onboard)",
+    "Name": "crf38_cr3a5_onboard_ringochbokaintidplatsforstadagen",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_ringochbokaintidplatsforstadagen",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_ringochbokaintidplatsforstadagen",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Skapa inloggning i Swedol (Onboard)",
+    "Name": "crf38_cr3a5_onboard_skapainloggningiswedol",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_skapainloggningiswedol",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_skapainloggningiswedol",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Skicka info till Janne: Abax (Onboard)",
+    "Name": "crf38_cr3a5_onboard_skickainfotilljanneabax",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_skickainfotilljanneabax",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_skickainfotilljanneabax",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Telefon (Onboard)",
+    "Name": "crf38_cr3a5_onboard_telefon",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_telefon",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_telefon",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Telefonnummer (Onboard)",
+    "Name": "crf38_cr3a5_onboard_telefonnummer",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_telefonnummer",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_telefonnummer",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Tjänstetillägg: MB-ledamot (Onboard)",
+    "Name": "crf38_cr3a5_onboard_tjanstetillaggmbledamot",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_tjanstetillaggmbledamot",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_tjanstetillaggmbledamot",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Tjänstetillägg: Platsansvarig (Onboard)",
+    "Name": "crf38_cr3a5_onboard_tjanstetillaggplatsansvarig",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_tjanstetillaggplatsansvarig",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_tjanstetillaggplatsansvarig",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Tjänstetillägg: Platsbas (Onboard)",
+    "Name": "crf38_cr3a5_onboard_tjanstetillaggplatsbas",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_tjanstetillaggplatsbas",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_tjanstetillaggplatsbas",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Tjänstetillägg: Skyddsombud (Onboard)",
+    "Name": "crf38_cr3a5_onboard_tjanstetillaggskyddsombud",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_tjanstetillaggskyddsombud",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_tjanstetillaggskyddsombud",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Tjänstetillägg: Vattenbilare (Onboard)",
+    "Name": "crf38_cr3a5_onboard_tjanstetillaggvattenbilare",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_tjanstetillaggvattenbilare",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_tjanstetillaggvattenbilare",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Uppdatera intranätet (Onboard)",
+    "Name": "crf38_cr3a5_onboard_uppdateraintranatet",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_uppdateraintranatet",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_uppdateraintranatet",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Utbildningsbevis (Onboard)",
+    "Name": "crf38_cr3a5_onboard_utbildningsbevis",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_utbildningsbevis",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_utbildningsbevis",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Distribution/Email groups",
+    "Name": "crf38_distributionemailgroups",
+    "OptionSetInfoNameMapping": {
+      "651160000": "1",
+      "651160001": "2"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_distributionemailgroups",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "MultiSelectPicklistType",
+    "RelatedColumnInvariantName": "crf38_distributionemailgroups",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Aktiverad (Onboard)",
+    "Name": "new_cr3a5_onboard_aktiverad",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "new_aktiverad",
+        "OptionSetReferenceEntityName": "Onboard"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "new_aktiverad",
+    "RelatedEntityName": "Onboard",
+    "Type": "OptionSetInfo"
+  }
+]

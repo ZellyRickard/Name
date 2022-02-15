@@ -1,0 +1,99 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "crf38_kravutbildningars",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "crf38_kravutbildningar",
+    "MaxGetRowsCount": 1500,
+    "Name": "Kravutbildningar",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Ägare",
+      "createdby": "Skapad av",
+      "createdon": "Skapad den",
+      "createdonbehalfby": "Skapat av (ombud)",
+      "crf38_kravutbildningar_AsyncOperations": "Systemuppgifter",
+      "crf38_kravutbildningar_BulkDeleteFailures": "Fel i massradering",
+      "crf38_Kravutbildningar_crf38_Kravutbildni": "Användare",
+      "crf38_Kravutbildningar_crf38_Utbildning_c": "Utbildning",
+      "crf38_kravutbildningar_DuplicateBaseRecord": "Dubblettposter (crf38_kravutbildningar_DuplicateBaseRecord)",
+      "crf38_kravutbildningar_DuplicateMatchingRecord": "Dubblettposter (crf38_kravutbildningar_DuplicateMatchingRecord)",
+      "crf38_kravutbildningar_MailboxTrackingFolders": "Automatiskt spårade mappar i postlåda",
+      "crf38_kravutbildningar_PrincipalObjectAttributeAccesses": "Fältdelning",
+      "crf38_kravutbildningar_ProcessSession": "Bearbetningssessioner",
+      "crf38_kravutbildningar_SyncErrors": "Synkroniseringsfel",
+      "crf38_kravutbildningarid": "Krav utbildningar",
+      "crf38_yrkesroll": "Yrkesroll",
+      "importsequencenumber": "Importsekvensnummer",
+      "modifiedby": "Ändrad av",
+      "modifiedon": "Ändrad den",
+      "modifiedonbehalfby": "Ändrat av (ombud)",
+      "overriddencreatedon": "Posten skapades den",
+      "owningbusinessunit": "Ägande affärsenhet",
+      "owningteam": "Ägande team",
+      "owninguser": "Ägande användare",
+      "statecode": "Status",
+      "statuscode": "Statusorsak",
+      "timezoneruleversionnumber": "Versionsnummer för tidszonsregel",
+      "utcconversiontimezonecode": "Tidszonskod för UTC-konvertering",
+      "versionnumber": "Versionsnummer"
+    },
+    "PreferredName": "Kravutbildningar",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Kravutbildningar (Views)",
+    "Name": "_crf38_kravutbildningar_views",
+    "RelatedEntityName": "Kravutbildningar",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "02a4ea4e-7e5d-4750-9f86-8662f446a6a7": "Uppslagsvy för Krav utbildningar",
+      "2283970d-b989-4bd1-8358-0360e14fb6b7": "Associerad vy för Krav utbildningar",
+      "9ba171ef-182c-4c82-9f5f-6139c7103695": "Inaktiva Krav utbildningar",
+      "a5a0dd10-040c-4e2e-aa8a-47f1e8e56aa2": "Aktiva Krav utbildningar",
+      "bd74e68a-bee9-4770-b90f-39c07dafe320": "Avancerad sökvy för Krav utbildningar"
+    }
+  },
+  {
+    "DisplayName": "Status (Kravutbildningar)",
+    "Name": "crf38_kravutbildningar_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Aktiv",
+      "1": "Inaktiv"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Kravutbildningar"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Kravutbildningar",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Statusorsak (Kravutbildningar)",
+    "Name": "crf38_kravutbildningar_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Aktiv",
+      "2": "Inaktiv"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Kravutbildningar"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Kravutbildningar",
+    "Type": "OptionSetInfo"
+  }
+]

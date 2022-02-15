@@ -1,0 +1,8 @@
+SMALLHEADER As CanvasComponent:
+    Fill: =ColorValue(First(colorscheme).Färg4)
+    Height: =50
+    Width: =1306
+    X: =0
+    Y: =0
+    ZIndex: =1
+

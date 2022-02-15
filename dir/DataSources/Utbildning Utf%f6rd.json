@@ -1,0 +1,150 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "crf38_utbildningutfords",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "crf38_utbildningutford",
+    "MaxGetRowsCount": 1500,
+    "Name": "Utbildning Utförd",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Ägare",
+      "createdby": "Skapad av",
+      "createdon": "Skapad den",
+      "createdonbehalfby": "Skapat av (ombud)",
+      "crf38_Anstalld": "Anställd",
+      "crf38_anstalld_search": "Anställd_Search",
+      "crf38_anstalldupn": "Anställd UPN",
+      "crf38_anstallningavslutad": "Anställning avslutad",
+      "crf38_datumutforande": "Datum utförande",
+      "crf38_forfallodatum": "Förfallodatum",
+      "crf38_giltighetstid": "Giltighetstid",
+      "crf38_id": "ID",
+      "crf38_kommentar": "Kommentar",
+      "crf38_kravutbildning": "Kravutbildning",
+      "crf38_today": "Today",
+      "crf38_UtbildningKurs": "Utbildning/Kurs",
+      "crf38_utbildningsokbartext": "Utbildning sökbar text",
+      "crf38_utbildningutford_AsyncOperations": "Systemuppgifter",
+      "crf38_utbildningutford_BulkDeleteFailures": "Fel i massradering",
+      "crf38_utbildningutford_DuplicateBaseRecord": "Dubblettposter (crf38_utbildningutford_DuplicateBaseRecord)",
+      "crf38_utbildningutford_DuplicateMatchingRecord": "Dubblettposter (crf38_utbildningutford_DuplicateMatchingRecord)",
+      "crf38_utbildningutford_MailboxTrackingFolders": "Automatiskt spårade mappar i postlåda",
+      "crf38_utbildningutford_PrincipalObjectAttributeAccesses": "Fältdelning",
+      "crf38_utbildningutford_ProcessSession": "Bearbetningssessioner",
+      "crf38_utbildningutford_SyncErrors": "Synkroniseringsfel",
+      "crf38_utbildningutfordid": "Utbildning Utförd",
+      "crf38_utbildningutgatt": "Utbildning utgått",
+      "importsequencenumber": "Importsekvensnummer",
+      "modifiedby": "Ändrad av",
+      "modifiedon": "Ändrad den",
+      "modifiedonbehalfby": "Ändrat av (ombud)",
+      "overriddencreatedon": "Posten skapades den",
+      "owningbusinessunit": "Ägande affärsenhet",
+      "owningteam": "Ägande team",
+      "owninguser": "Ägande användare",
+      "statecode": "Status",
+      "statuscode": "Statusorsak",
+      "timezoneruleversionnumber": "Versionsnummer för tidszonsregel",
+      "utcconversiontimezonecode": "Tidszonskod för UTC-konvertering",
+      "versionnumber": "Versionsnummer"
+    },
+    "PreferredName": "Utbildning Utförd",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Utbildning Utförd (Vyer)",
+    "Name": "_crf38_utbildningutford_views",
+    "RelatedEntityName": "Utbildning Utförd",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "27a216d0-254a-42fb-8694-c06a6257f189": "Avancerad sökvy för Utbildning Utförd",
+      "5cc6528f-b761-45c5-914c-5d6652930415": "Associerad vy för Utbildning Utförd",
+      "74ddba5c-d58c-48c2-98f1-bd6d43d1b5b5": "Aktiva Utbildning Utförd",
+      "913f0862-9a3d-4b1f-a0e5-ddfaaf45900f": "Inaktiva Utbildning Utförd",
+      "f731f289-700e-49b1-9d77-6fcf2152d9a5": "Uppslagsvy för Utbildning Utförd"
+    }
+  },
+  {
+    "DisplayName": "Anställning avslutad (Utbildning Utförd)",
+    "Name": "crf38_crf38_utbildningutford_anstallningavslutad",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_anstallningavslutad",
+        "OptionSetReferenceEntityName": "Utbildning Utförd"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_anstallningavslutad",
+    "RelatedEntityName": "Utbildning Utförd",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Utbildning utgått (Utbildning Utförd)",
+    "Name": "crf38_crf38_utbildningutford_utbildningutgatt",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_utbildningutgatt",
+        "OptionSetReferenceEntityName": "Utbildning Utförd"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_utbildningutgatt",
+    "RelatedEntityName": "Utbildning Utförd",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (Utbildning Utförd)",
+    "Name": "crf38_utbildningutford_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Aktiv",
+      "1": "Inaktiv"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Utbildning Utförd"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Utbildning Utförd",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Statusorsak (Utbildning Utförd)",
+    "Name": "crf38_utbildningutford_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Aktiv",
+      "2": "Inaktiv"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Utbildning Utförd"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Utbildning Utförd",
+    "Type": "OptionSetInfo"
+  }
+]

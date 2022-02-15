@@ -1,0 +1,54 @@
+Tab_Menu_Utbildning As CanvasComponent:
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =50
+    MenuWith: =100
+    NavItems: |-
+        =Table(
+            {    
+                Title: "Utförda",
+                ID: 1
+            },
+            {    
+                Title: "Önskvärda",
+                ID: 2
+            }, 
+            {    
+                Title: "Kvarstående",
+                ID: 3
+            }
+        )
+    SelectedItem: =Gallery3_1.Selected.ID
+    Width: =335
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    Gallery3_1 As gallery.galleryHorizontal:
+        Height: =50
+        Items: =Tab_Menu_Utbildning.NavItems
+        OnSelect: =Tab_Menu_Utbildning.SelectedItem
+        ShowScrollbar: =false
+        TemplateSize: =107
+        Width: =335
+        ZIndex: =1
+
+        Label11_1 As label:
+            Align: =Align.Center
+            Height: =38
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: =ThisItem.Title
+            Width: =105
+            Y: =2
+            ZIndex: =1
+
+        Rectangle6_1 As rectangle:
+            Fill: =ColorValue(First(colorscheme).Röd)
+            Height: =3
+            OnSelect: =Select(Parent)
+            Visible: =ThisItem.IsSelected
+            Width: =95
+            X: =5
+            Y: =37
+            ZIndex: =2
+

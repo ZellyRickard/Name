@@ -1,0 +1,8 @@
+[
+  {
+    "ApiId": "/providers/microsoft.powerapps/apis/shared_dipart-20offboard-5fa39e5e4fa5858c30-5f5891107f4c44c818",
+    "Name": "FlowDipart",
+    "ServiceKind": "ConnectedWadl",
+    "Type": "ServiceInfo"
+  }
+]

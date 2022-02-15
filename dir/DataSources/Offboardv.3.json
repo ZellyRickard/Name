@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "263205ba-c7fd-4efc-8be6-91611f7117ea",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "Offboardv.3",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

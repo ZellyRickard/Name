@@ -1,0 +1,2256 @@
+Offboard As screen:
+    BackgroundImage: ='building-1080591'
+    Fill: =RGBA(0, 0, 0, 0)
+    ImagePosition: =ImagePosition.Fill
+    OnHidden: |-
+        =UpdateContext({Varusersettings: false})
+    OnVisible: |-
+        =If(IsBlank(varlinkOffboard),   UpdateContext({vartestar: true}),  UpdateContext({offboardgallery: true}));
+        If(IsBlank(varlinkOffboardIT),   UpdateContext({vartestar: true}),  UpdateContext({offboardgallery: true}), UpdateContext({vartimelinepopup: true}); Set(varchecklist, "Checklista IT") );
+        If(IsBlank(varlinkOffboardHR),   UpdateContext({vartestar: true}),  UpdateContext({offboardgallery: true}), UpdateContext({vartimelinepopup: true}); Set(varchecklist, "Checklista HR") );
+        If(IsBlank(varlinkOffboardChef),   UpdateContext({vartestar: true}),  UpdateContext({offboardgallery: true}), UpdateContext({vartimelinepopup: true}); Set(varchecklist, "Checklista chef") );
+        If(IsBlank(varlinkOffboardEkonomi),   UpdateContext({vartestar: true}),  UpdateContext({offboardgallery: true}), UpdateContext({vartimelinepopup: true}); Set(varchecklist, "Checklista ekonomi") );
+        Set(onboardscreenlayoutlabels, {
+            Fontsize: 12,
+            Fontweight: Normal
+        });
+        Set(onboardscreenlayoutbuttons, {
+            Fontsize: 10,
+            Fontweight: Normal,
+            Width: 110,
+            Height: 26
+        });
+        
+        Set(Gallerylayoutsettings, {
+            X: 75,
+            Y: 165,
+            Width: 1274,
+            Height: 558
+        });
+        
+        Set(varsortColumnOff, "cr3a5_lastday"); Set(varsortDirectionOff, Descending)
+
+    Label27_3 As label:
+        Align: =Align.Center
+        Fill: =RGBA(255, 255, 255, 0.5)
+        Font: =First(fontscheme).Helvetica
+        FontWeight: =FontWeight.Lighter
+        Height: =67
+        Size: =30
+        Text: =//"Onboard"
+        Width: =1366
+        ZIndex: =1
+
+    BlurryBckgroundOffboard As rectangle:
+        Fill: =RGBA(0, 0, 0, 0.5)
+        Height: =700
+        Width: =1306
+        X: =60
+        Y: =68
+        ZIndex: =2
+
+    Banner_Menuoffboard As rectangle:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderStyle: =BorderStyle.None
+        Fill: =RGBA(204, 204, 204, 1)
+        Height: =35
+        Width: =1274
+        X: =75
+        Y: =130
+        ZIndex: =3
+
+    CountItems_Offboard As label:
+        Align: =Align.Center
+        Fill: =RGBA(255, 255, 255, 0.7)
+        Height: =30
+        Size: =10
+        Text: |-
+            =If(Varlanguage = "Swedish", "Objekt i listan: " & CountRows(Gallery_Offboard.AllItems), If(Varlanguage = "English", "Objects in the list: " & CountRows(Gallery_Offboard.AllItems)))
+        Width: =130
+        X: =74
+        Y: =738
+        ZIndex: =4
+
+    Gallery_Offboard As gallery.galleryVertical:
+        Fill: =RGBA(255, 255, 255, 0.9)
+        Height: =Gallerylayoutsettings.Height
+        Items: |
+            =If(
+                varAccessAdmin = "True",
+                SortByColumns(
+                    Search(
+                        [@Offboard_1],
+                        Searchbox_Offboard.Text,
+                        "cr3a5_searchable_nameoffboard"
+                    ),
+                    varsortColumnOff, varsortDirectionOff
+                ),
+                varAccessAOC = "True",
+                Filter(
+                    SortByColumns(
+                        Search(
+                            [@Offboard_1],
+                            Searchbox_Offboard.Text,
+                            "cr3a5_searchable_nameoffboard"
+                        ),
+                        varsortColumnOff, varsortDirectionOff
+                    ),
+                    IfError('Office365-användare'.UserProfileV2('Name (Offboard)'.'Primär e-post').department, "") = IfError('Office365-användare'.UserProfileV2(User().Email).department, "")
+            
+                ),
+                Filter(
+                    SortByColumns(
+                        Search(
+                            [@Offboard_1],
+                            Searchbox_Offboard.Text,
+                            "cr3a5_searchable_nameoffboard"
+                        ),
+                        varsortColumnOff, varsortDirectionOff
+                    ),
+                    'Skapad av'.'Primär e-post' = User().Email Or IfError('Office365-användare'.ManagerV2('Name (Offboard)'.'Primär e-post').mail, "") = User().Email
+                    ))
+                    //'Office365-användare'.UserProfileV2('Name (Offboard)'.'Primär e-post').department = User().FullName Or createdby.fullname = User().FullName
+        Layout: =Layout.Vertical
+        OnSelect: |
+            =UpdateContext({offboardgallery: true});  UpdateContext({varoffboardbutton: true});
+            Set(varitemsoffboard, ThisItem);
+            Set(varOffboardParam, "Param_Mode_Selected");
+            UpdateContext({Varusersettings: false})
+        TemplateSize: =56
+        Width: =Gallerylayoutsettings.Width
+        X: =Gallerylayoutsettings.X
+        Y: =Gallerylayoutsettings.Y
+        ZIndex: =5
+
+        "'lbl CreatedBy' As label":
+            Align: =Align.Center
+            Color: =RGBA(134, 136, 187, 1)
+            Height: =54
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: =ThisItem.'Skapad av'.'Fullständigt namn'
+            X: =797
+            ZIndex: =2
+
+        "'lbl UserName' As label":
+            Color: =RGBA(134, 136, 187, 1)
+            Height: =35
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: =ThisItem.'Name (Offboard)'.'Fullständigt namn'
+            Width: =155
+            X: =30
+            Y: =11
+            ZIndex: =4
+
+        Separator_Offboard As rectangle:
+            Fill: =RGBA(0, 0, 0, 1)
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =1280
+            Y: =53
+            ZIndex: =7
+
+        Icon_Name As icon.Person:
+            Color: =ColorValue(First(colorscheme).Primary)
+            Height: =49
+            Icon: =Icon.Person
+            OnSelect: =Select(Parent)
+            Width: =29
+            Y: =3
+            ZIndex: =8
+
+        "'lbl Offboard Status' As label":
+            Align: =Align.Center
+            Color: |-
+                =If(ThisItem.'Offboard completed' in "Yes", Green, 
+                If(ThisItem.'Offboard started' in "Yes", Orange, Blue))
+            Height: =54
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: |
+                =If(ThisItem.'Offboard completed' in "Yes", "Offboard sluförd", If(ThisItem.'Offboard started' in "Yes", "Offboard startad", ""))
+            X: =1075
+            ZIndex: =11
+
+        "'lbl End Date' As label":
+            Align: =Align.Center
+            Height: =54
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: =Text(ThisItem.'Last day', "[$-en-US]dd-mmm-yyyy")
+            X: =266
+            Y: =2
+            ZIndex: =12
+
+        "'lbl CreatedOn' As label":
+            Align: =Align.Center
+            Height: =54
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: =Text(ThisItem.'Skapad den', "[$-en-US]dd-mmm-yyyy")
+            X: =544
+            ZIndex: =13
+
+        "'Button ''Starta Offboard''' As button":
+            Fill: =RGBA(220, 153, 153, 1)
+            FocusedBorderThickness: =1
+            Height: =28
+            HoverColor: =RGBA(220, 153, 153, 1)
+            HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -1%)
+            OnSelect: |-
+                =//OffboardFlowV2.Run(ThisItem.Offboard);; Refresh(Offboard_1);; ClearCollect(Offboardata; Offboard_1);;
+                //UpdateContext({offboardgallery: false});; Set(varitemsoffboard; Blank());;
+                FlowDipart.Offboard({'api-version': "2016-06-01"}.'api-version', {sp: "/triggers/manual/run"}.sp, {sv: "1.0"}.sv, {sig: "l6cVw7zcErto_c-ruaCwGbRK63uXI-MKoHboGxulrhc"}.sig, {Token: "TOKEN",UserID: ThisItem.Offboard}); UpdateContext({vartimer:true}); 
+            RadiusBottomLeft: =2
+            RadiusBottomRight: =2
+            RadiusTopLeft: =2
+            RadiusTopRight: =2
+            Size: =9
+            Text: =If(Varlanguage = "Swedish", "Starta offboard", If(Varlanguage = "English", "Start offboard"))
+            Visible: =If(ThisItem.'Offboard started' in "Yes" Or ThisItem.'Offboard completed' in "Yes", false, true)
+            Width: =114
+            X: =1093
+            Y: =13
+            ZIndex: =14
+
+        "'lbl UserName_1' As label":
+            Color: =RGBA(134, 136, 187, 1)
+            Height: =30
+            OnSelect: =Select(Parent)
+            Size: =7
+            Text: |
+                =IfError('Office365-användare'.UserProfileV2(ComboBox2.Selected.'Primär e-post').department, "")
+            Visible: =false
+            Width: =106
+            X: =136
+            Y: =11
+            ZIndex: =15
+
+        Label3 As label:
+            Height: =51
+            OnSelect: =Select(Parent)
+            Text: |-
+                =
+                //'Office365-användare'.UserProfileV2(ComboBoX.Selected).department
+            Width: =103
+            X: =694
+            ZIndex: =16
+
+        ComboBox2 As combobox:
+            DefaultSelectedItems: =LookUp(Users, 'Fullständigt namn' = 'lbl UserName'.Text)
+            DisplayFields: =["fullname"]
+            Height: =22
+            IsSearchable: =false
+            Items: =Users
+            OnSelect: =Select(Parent)
+            SearchFields: =["fullname"]
+            SearchItems: =[]
+            Size: =11
+            Visible: =false
+            Width: =125
+            X: =975
+            Y: =11
+            ZIndex: =17
+
+        "'lbl UserName_2' As label":
+            Color: =RGBA(134, 136, 187, 1)
+            Height: =30
+            OnSelect: =Select(Parent)
+            Size: =7
+            Text: |
+                =IfError('Office365-användare'.ManagerV2(ComboBox2.Selected.'Primär e-post').displayName, "")
+                //'Office365-användare'.UserProfileV2(ComboBox2.Selected.'Primär e-post').department
+            Visible: =false
+            Width: =106
+            X: =427
+            Y: =12
+            ZIndex: =18
+
+        ComboBox2_1 As combobox:
+            DefaultSelectedItems: =LookUp(Users, 'Fullständigt namn' = 'lbl UserName'.Text)
+            DisplayFields: =["crf38_chefensnamn"]
+            Height: =22
+            IsSearchable: =false
+            Items: =Users
+            OnSelect: =Select(Parent)
+            SearchFields: =["crf38_chefensnamn"]
+            SearchItems: =[]
+            Size: =11
+            Visible: =false
+            Width: =125
+            X: =683
+            Y: =15
+            ZIndex: =19
+
+    Searchbox_Offboard As text:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderThickness: =1
+        Default: =""
+        DisabledColor: =RGBA(0, 0, 0, 1)
+        FocusedBorderThickness: =1
+        Height: =onboardscreenlayoutbuttons.Height
+        HintText: =If(Varlanguage = "Swedish", "Sök på namn", If(Varlanguage = "English", "Search by name"))
+        HoverBorderColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =RGBA(204, 204, 204, 1)
+        PaddingLeft: =30
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =onboardscreenlayoutbuttons.Fontsize
+        Width: =280
+        X: =270
+        Y: =83
+        ZIndex: =6
+
+    NAV_6 As NAV:
+        Height: =700
+        NavItems: |-
+            =Table(
+                {
+                    Title: "Hem",
+                    Screen: StartScreen,
+                    Icon: Home
+                },
+                {
+                    Title: "Onboard",
+                    Screen: OnboardScreen,
+                    Icon: EmojiSmile
+                },
+                {
+                    Title: "Offboard",
+                    Screen: App.ActiveScreen,
+                    Icon: LikeDislike
+                },
+                
+                {
+                    Title: "Switchboard",
+                    Screen: Switchboard,
+                    Icon: Icon.Edit
+                },
+                
+                {    
+                    Title: "Admin",
+                    Screen: Admin,
+                    Icon: Icon.ToolsWrench
+                },
+                {    
+                    Title: "Personalkort",
+                    Screen: 'Employee Info',
+                    Icon: Icon.Person
+                },
+                {    
+                    Title: "Utvecklingssamtal",
+                    Screen: Utvecklingssamtal,
+                    Icon: Icon.People
+                },
+                {    
+                    Title: "Utbildningar",
+                    Screen: Education,
+                    Icon: Icon.Bookmark
+                }
+            )
+        Y: =68
+        ZIndex: =9
+
+    SearchIconOnboard_3 As icon.Search:
+        Color: =RGBA(149, 149, 149, 1)
+        Height: =25
+        Icon: =Icon.Search
+        Width: =22
+        X: =275
+        Y: =84
+        ZIndex: =10
+
+    BackButton_Offboard As button:
+        BorderThickness: =1
+        Fill: =ColorValue(First(colorscheme).Röd)
+        FocusedBorderThickness: =1
+        FontWeight: =FontWeight.Normal
+        Height: =onboardscreenlayoutbuttons.Height
+        HoverColor: =ColorValue(First(colorscheme).Röd)
+        HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -5%)
+        OnSelect: =Back()
+        RadiusBottomLeft: =2
+        RadiusBottomRight: =2
+        RadiusTopLeft: =2
+        RadiusTopRight: =2
+        Size: =onboardscreenlayoutbuttons.Fontsize
+        Text: =If(Varlanguage = "Swedish", "Tillbaka", If(Varlanguage = "English", "Back"))
+        Width: =onboardscreenlayoutbuttons.Width
+        X: =76
+        Y: =83
+        ZIndex: =12
+
+    Offboard_Buttton As button:
+        BorderThickness: =1
+        Fill: =ColorValue(First(colorscheme).Röd)
+        FocusedBorderThickness: =1
+        FontWeight: =FontWeight.Normal
+        Height: =onboardscreenlayoutbuttons.Height
+        HoverColor: =ColorValue(First(colorscheme).Röd)
+        HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -1%)
+        OnSelect: |-
+            =UpdateContext({offboardgallery: true}); UpdateContext({varoffboardbutton: false}); Set(varitemsoffboard, Blank())
+        RadiusBottomLeft: =2
+        RadiusBottomRight: =2
+        RadiusTopLeft: =2
+        RadiusTopRight: =2
+        Size: =onboardscreenlayoutbuttons.Fontsize
+        Text: =If(Varlanguage = "Swedish", "Skapa ny", If(Varlanguage = "English", "Create new"))
+        Visible: =!Varusersettings
+        Width: =onboardscreenlayoutbuttons.Width
+        X: =1239
+        Y: =83
+        ZIndex: =13
+
+    Image5_3 As image:
+        Height: =55
+        Image: ='Dipart-logo'
+        OnSelect: =Navigate(StartScreen)
+        Width: =294
+        ZIndex: =15
+
+    Blurrybackground_Offboard As rectangle:
+        Fill: =RGBA(0, 0, 0, 0.7)
+        Height: =768
+        OnSelect: |-
+            =UpdateContext({offboardgallery: false}); Set(varitem, Blank()); Refresh(Offboard_1);
+            ClearCollect(Offboardata, Offboard_1);
+        Visible: =offboardgallery
+        Width: =1366
+        ZIndex: =16
+
+    Offboardpopupscreen_ As rectangle:
+        BorderColor: =ColorValue(First(colorscheme).Svart)
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =390
+        Visible: =offboardgallery
+        Width: =1232
+        X: =74
+        Y: =178
+        ZIndex: =17
+
+    Gallery_Offboard_Patch As gallery.galleryVertical:
+        Height: =378
+        Items: |-
+            =If(IsBlank(varitemsoffboard), FirstN(Offboardata, 1), varitemsoffboard)
+            //If(IsBlank(varOffboardParam), FirstN(Offboard_1 1),
+            //Switch(varOffboardParam, "Param_Mode_On", varitemsoffboard,  "Param_Mode_Selected", varOffboardselected))
+        Layout: =Layout.Vertical
+        TemplateSize: =363
+        Visible: =offboardgallery
+        Width: =1204
+        X: =87
+        Y: =181
+        ZIndex: =18
+
+        Comments_Offboard_Value As text:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Default: =If(IsBlank(varitemsoffboard), Blank(), ThisItem.Comments)
+            FocusedBorderThickness: =1
+            Height: =133
+            HoverBorderColor: =RGBA(0, 0, 0, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            Mode: =TextMode.MultiLine
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Reset: =!offboardgallery
+            Width: =196
+            X: =975
+            Y: =173
+            ZIndex: =1
+
+        Comment_Offboard As label:
+            Height: =35
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: |-
+                =If(Varlanguage = "Swedish", "Kommentar:", If(Varlanguage = "English", "Comment:"))
+            Width: =128
+            X: =841
+            Y: =173
+            ZIndex: =2
+
+        Name_Offboard_Value As combobox:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            ChevronBackground: =ColorValue(First(colorscheme).Svart)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 1)
+            DefaultSelectedItems: |-
+                =If(IsBlank(varitemsoffboard), Table({Value:""}),
+                Filter(Users, 'Fullständigt namn' = ThisItem.'Name (Offboard)'.'Fullständigt namn'))
+            DisplayFields: =["fullname"]
+            FocusedBorderThickness: =1
+            Height: =35
+            InputTextPlaceholder: |-
+                =If(Varlanguage = "Swedish", "Sök på anställd", If(Varlanguage = "English", "Search by employee:"))
+            Items: |
+                =Users
+                //'Office365-användare'.SearchUser({searchTerm: Name_Offboard_Value.SearchText}).DisplayName
+            OnSelect: =Select(Parent)
+            PressedBorderColor: =RGBA(0, 0, 0, 1)
+            PressedFill: =RGBA(230, 230, 230, 1)
+            Reset: =!offboardgallery
+            SearchFields: =["fullname"]
+            SearchItems: |-
+                =Search(Users
+                //'Office365-användare'.SearchUser({searchTerm: Name_Offboard_Value.SearchText}).DisplayName
+                ,Name_Offboard_Value.SearchText,"fullname")
+            SelectionFill: =ColorValue(First(colorscheme).Svart)
+            SelectMultiple: =false
+            Size: =11
+            Width: =200
+            X: =156
+            Y: =173
+            ZIndex: =11
+
+        Name_Offboard As label:
+            Height: =35
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: |-
+                =If(Varlanguage = "Swedish", "Namn:*", If(Varlanguage = "English", "Name:*"))
+            X: =3
+            Y: =173
+            ZIndex: =12
+
+        LastDay_Offboard_Value As datepicker:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            DefaultDate: =If(IsBlank(varitemsoffboard), Today(), ThisItem.'Last day')
+            FocusedBorderThickness: =1
+            Format: ="dd/mmm/yyyy"
+            Height: =35
+            IconBackground: =ColorValue(First(colorscheme).Svart)
+            OnSelect: =Select(Parent)
+            Reset: =!offboardgallery
+            Size: =13
+            Width: =200
+            X: =600
+            Y: =233
+            ZIndex: =13
+
+        LastDay_Offboard As label:
+            Height: =35
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: |-
+                =If(Varlanguage = "Swedish", "Sista arbetsdag:", If(Varlanguage = "English", "Last work day:"))
+            X: =449
+            Y: =234
+            ZIndex: =14
+
+        Start_Offboard As button:
+            DisplayMode: =If( varoffboardbutton = true, DisplayMode.Edit , DisplayMode.Disabled)
+            Fill: =ColorValue(First(colorscheme).Röd)
+            FocusedBorderThickness: =1
+            Height: =28
+            HoverColor: =ColorValue(First(colorscheme).Primary)
+            HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -1%)
+            OnSelect: |
+                =OffboardFlowV2.Run(ThisItem.Offboard); Refresh(Offboard_1); ClearCollect(Offboardata, Offboard_1);
+                UpdateContext({offboardgallery: false}); Set(varitemsoffboard, Blank());
+            RadiusBottomLeft: =2
+            RadiusBottomRight: =2
+            RadiusTopLeft: =2
+            RadiusTopRight: =2
+            Size: =9
+            Text: =If(Varlanguage = "Swedish", "Offboard", If(Varlanguage = "English", "Offboard"))
+            Visible: =false
+            Width: =114
+            X: =1024
+            Y: =336
+            ZIndex: =15
+
+        SaveButton_Offboard As button:
+            DisplayMode: |
+                =If(IsBlank(Name_Offboard_Value.Selected), DisplayMode.Disabled, DisplayMode.Edit)
+            Fill: =ColorValue(First(colorscheme).Svart)
+            FocusedBorderThickness: =1
+            Height: =28
+            HoverColor: =ColorValue(First(colorscheme).Svart)
+            HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -1%)
+            OnSelect: |-
+                =If(
+                    IsBlank(varitemsoffboard),
+                    Patch(
+                        Offboard_1,
+                        Defaults(Offboard_1),
+                        {'Name (Offboard)': LookUp(Users,'Fullständigt namn' = Name_Offboard_Value.Selected.'Fullständigt namn'),
+                        'Last day': LastDay_Offboard_Value.SelectedDate,
+                        Comments: Comments_Offboard_Value.Text,
+                        //'Archive user': Archive_Offboard_Value.Selected.Value,
+                        //'Block immediately': BlockUser_Offboard_Value_1.Selected.Value,
+                        'Last employment day': Lastemploymentday_Value.SelectedDate,
+                        //'Computer handover': HardwareReturned_Offboard_Value.Selected.Value,
+                        'Closest manager': LookUp(Users,'Fullständigt namn' = 'closest manager Offboard'.Selected.'Fullständigt namn')
+                        }
+                    ),
+                    Patch(
+                        Offboard_1,
+                        ThisItem,
+                        {'Name (Offboard)': LookUp(Users,'Fullständigt namn' = Name_Offboard_Value.Selected.'Fullständigt namn'),
+                        'Last day': LastDay_Offboard_Value.SelectedDate,
+                        Comments: Comments_Offboard_Value.Text,
+                        //'Archive user': Archive_Offboard_Value.Selected.Value,
+                        //'Block immediately': BlockUser_Offboard_Value_1.Selected.Value,
+                        'Last employment day': Lastemploymentday_Value.SelectedDate,
+                        //'Computer handover': HardwareReturned_Offboard_Value.Selected.Value,
+                        'Closest manager': LookUp(Users,'Fullständigt namn' = 'closest manager Offboard'.Selected.'Fullständigt namn')
+                        }
+                    )
+                );
+                UpdateContext({varoffboardbutton: true});
+                Refresh(Offboard_1);
+                ClearCollect(Offboardata, Offboard_1);
+                UpdateContext({offboardgallery: false}); 
+                Set(varitemsoffboard, Blank());
+                Notify("Sparat")
+            RadiusBottomLeft: =2
+            RadiusBottomRight: =2
+            RadiusTopLeft: =2
+            RadiusTopRight: =2
+            Size: =10.5
+            Text: =If(Varlanguage = "Swedish", "Spara", If(Varlanguage = "English", "Save"))
+            Width: =114
+            X: =1057
+            Y: =335
+            ZIndex: =16
+
+        Lastemploymentday As label:
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: |-
+                =If(Varlanguage = "Swedish", "Sista anställningsdag:", If(Varlanguage = "English", "Last day of employment:"))
+            X: =449
+            Y: =173
+            ZIndex: =20
+
+        Lastemploymentday_Value As datepicker:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            DefaultDate: =If(IsBlank(varitemsoffboard), Today(), ThisItem.'Last employment day')
+            FocusedBorderThickness: =1
+            Format: ="dd/mmm/yyyy"
+            Height: =35
+            IconBackground: =ColorValue(First(colorscheme).Svart)
+            OnSelect: =Select(Parent)
+            Reset: =!offboardgallery
+            Size: =13
+            Width: =200
+            X: =600
+            Y: =173
+            ZIndex: =21
+
+        CheckIcon_Offboard_Startat As icon.Check:
+            Color: =RGBA(99, 139, 44, 1)
+            Height: =40
+            Icon: =Icon.Check
+            OnSelect: =
+            Visible: =If(IsBlank(varitemsoffboard), false, If(ThisItem.'Offboard started' in "Yes", true, false))
+            Width: =35
+            X: =138
+            Y: =3
+            ZIndex: =22
+
+        CheckIcon_Offboard_HR As icon.Check:
+            Color: =RGBA(99, 139, 44, 1)
+            Height: =40
+            Icon: =Icon.Check
+            OnSelect: =
+            Visible: =If(IsBlank(varitemsoffboard), false, If(ThisItem.'Checklista HR' in "Ja", true, false))
+            Width: =35
+            X: =302
+            Y: =3
+            ZIndex: =23
+
+        CheckIcon_Offboard_IT As icon.Check:
+            Color: =RGBA(99, 139, 44, 1)
+            Height: =40
+            Icon: =Icon.Check
+            OnSelect: =
+            Visible: =If(IsBlank(varitemsoffboard), false, If(ThisItem.'Checklist IT' in "Yes", true, false))
+            Width: =35
+            X: =470
+            Y: =3
+            ZIndex: =24
+
+        CheckIcon_Offboard_Klar As icon.Check:
+            Color: =RGBA(99, 139, 44, 1)
+            Height: =40
+            Icon: =Icon.Check
+            OnSelect: =
+            Visible: =If(IsBlank(varitemsoffboard), false, If(ThisItem.'Offboard completed' in "Yes", true, false))
+            Width: =35
+            X: =967
+            Y: =3
+            ZIndex: =25
+
+        CheckIcon_Offboard_Chef As icon.Check:
+            Color: =RGBA(99, 139, 44, 1)
+            Height: =40
+            Icon: =Icon.Check
+            OnSelect: =
+            Visible: |-
+                =If(IsBlank(varitemsoffboard), false, If(ThisItem.'Checklist Chef'
+                in "Yes", true, false))
+            Width: =35
+            X: =635
+            Y: =3
+            ZIndex: =26
+
+        CheckIcon_Offboard_Ekonomi As icon.Check:
+            Color: =RGBA(99, 139, 44, 1)
+            Height: =40
+            Icon: =Icon.Check
+            OnSelect: =
+            Visible: =If(IsBlank(varitemsoffboard), false, If(ThisItem.'Checklist Ekonomi' in "Yes", true, false))
+            Width: =35
+            X: =800
+            Y: =3
+            ZIndex: =27
+
+        "'closest manager Offboard' As combobox":
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            ChevronBackground: =ColorValue(First(colorscheme).Svart)
+            ChevronDisabledBackground: =RGBA(0, 0, 0, 1)
+            ChevronHoverBackground: =RGBA(0, 0, 0, 1)
+            DefaultSelectedItems: |-
+                =If(IsBlank(varitemsoffboard), Table({Value:""}),
+                Filter(Users, 'Fullständigt namn' = ThisItem.'Closest manager'.'Fullständigt namn'))
+            DisplayFields: =["fullname"]
+            FocusedBorderThickness: =1
+            Height: =35
+            InputTextPlaceholder: |-
+                =If(Varlanguage = "Swedish", "Sök på anställd", If(Varlanguage = "English", "Search by employee:"))
+            Items: |
+                =Users.'Fullständigt namn'
+                //'Office365-användare'.SearchUser({searchTerm: Name_Offboard_Value.SearchText}).DisplayName
+            OnSelect: =Select(Parent)
+            PressedFill: =RGBA(230, 230, 230, 1)
+            Reset: =!offboardgallery
+            SearchFields: =["fullname"]
+            SearchItems: |-
+                =Search(Users.'Fullständigt namn'
+                //'Office365-användare'.SearchUser({searchTerm: Name_Offboard_Value.SearchText}).DisplayName
+                ,'closest manager Offboard'.SearchText,"fullname")
+            SelectionFill: =ColorValue(First(colorscheme).Svart)
+            SelectMultiple: =false
+            Size: =11
+            Width: =200
+            X: =156
+            Y: =234
+            ZIndex: =28
+
+        Name_Offboard_1 As label:
+            Height: =35
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: |-
+                =If(Varlanguage = "Swedish", "Närmaste chef:*", If(Varlanguage = "English", "Closest manager:*"))
+            X: =3
+            Y: =234
+            ZIndex: =29
+
+        Name_Offboard_Value_2 As combobox:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            ChevronBackground: =ColorValue(First(colorscheme).Svart)
+            ChevronHoverBackground: =RGBA(128, 128, 128, 1)
+            DefaultSelectedItems: |-
+                =If(IsBlank(varitemsoffboard), Table({Value:""}),
+                Filter(Users, 'Fullständigt namn' = ThisItem.'Name (Offboard)'.'Fullständigt namn'))
+            DisplayFields: =["fullname"]
+            FocusedBorderThickness: =1
+            Height: =35
+            InputTextPlaceholder: |-
+                =If(Varlanguage = "Swedish", "Sök på anställd", If(Varlanguage = "English", "Search by employee:"))
+            Items: |
+                =Users.'Fullständigt namn'
+                //'Office365-användare'.SearchUser({searchTerm: Name_Offboard_Value.SearchText}).DisplayName
+            OnSelect: =Select(Parent)
+            PressedFill: =RGBA(230, 230, 230, 1)
+            SearchFields: =["fullname"]
+            SearchItems: |-
+                =Search(Users.'Fullständigt namn'
+                //'Office365-användare'.SearchUser({searchTerm: Name_Offboard_Value.SearchText}).DisplayName
+                ,Name_Offboard_Value_2.SearchText,"fullname")
+            SelectionFill: =ColorValue(First(colorscheme).Svart)
+            SelectMultiple: =false
+            Size: =11
+            Visible: =false
+            Width: =200
+            X: =156
+            Y: =301
+            ZIndex: =32
+
+    Icon_Background_2 As button:
+        BorderThickness: =0
+        Fill: =ColorValue(First(colorscheme).Svart)
+        Height: =28
+        HoverFill: =ColorValue(First(colorscheme).Svart)
+        RadiusBottomLeft: =20
+        RadiusBottomRight: =20
+        RadiusTopLeft: =20
+        RadiusTopRight: =20
+        Text: =""
+        Visible: =offboardgallery
+        Width: =28
+        X: =1293
+        Y: =159
+        ZIndex: =19
+
+    Iconclosepopup_2 As icon.Cancel:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =24
+        HoverColor: =RGBA(204, 204, 204, 1)
+        Icon: =Icon.Cancel
+        OnSelect: |-
+            =UpdateContext({offboardgallery: false}); Set(varitemsoffboard, Blank()); Refresh(Offboard_1);
+            ClearCollect(Offboardata, Offboard_1)
+        Visible: =offboardgallery
+        Width: =24
+        X: =1295
+        Y: =162
+        ZIndex: =20
+
+    "'Icon Sort_3' As icon.ArrowsUpDown":
+        Color: =RGBA(0, 0, 0, 1)
+        Height: =25
+        Icon: =Icon.Sort
+        OnSelect: |-
+            =Set(varsortColumnOff, "cr3a5_searchable_nameoffboard");
+            Set(varsortDirectionOff, If(varsortDirectionOff = Ascending, Descending, Ascending))
+        Width: =20
+        X: =126
+        Y: =135
+        ZIndex: =23
+
+    "'Icon Sort_4' As icon.ArrowsUpDown":
+        Color: =RGBA(0, 0, 0, 1)
+        Height: =25
+        Icon: =Icon.Sort
+        OnSelect: |-
+            =Set(varsortColumnOff, "cr3a5_lastday");
+            Set(varsortDirectionOff, If(varsortDirectionOff = Ascending, Descending, Ascending))
+        Width: =20
+        X: =463
+        Y: =135
+        ZIndex: =24
+
+    "'Icon Sort_5' As icon.ArrowsUpDown":
+        Color: =RGBA(0, 0, 0, 1)
+        Height: =25
+        Icon: =Icon.Sort
+        OnSelect: |-
+            =Set(varsortColumnOff, "createdon");
+            Set(varsortDirectionOff, If(varsortDirectionOff = Ascending, Descending, Ascending))
+        Width: =20
+        X: =728
+        Y: =135
+        ZIndex: =25
+
+    Icon3_1 As icon.Reload:
+        Color: =RGBA(0, 0, 0, 1)
+        Height: =25
+        Icon: =Icon.Reload
+        OnSelect: |
+            =//Refresh(Offboard_1); ClearCollect(Offboardata, Offboard_1)
+        Width: =25
+        X: =1316
+        Y: =135
+        ZIndex: =36
+
+    GalleryTimeLineOnboard_1 As gallery.galleryHorizontal:
+        Height: =119
+        Items: =Filter('Onboard components', 'Onboard components (Vyer)'.'Associerad vy för Onboard components')
+        TemplateSize: =161
+        Visible: =offboardgallery
+        Width: =1008
+        X: =193
+        Y: =178
+        ZIndex: =37
+
+        TimeLineStep_2 As label:
+            Align: =Align.Center
+            Font: =varFont
+            Height: =50
+            OnSelect: =
+            Size: =9
+            Text: =ThisItem.Name
+            Width: =90
+            Y: =50
+            ZIndex: =1
+
+        Circle3_2 As circle:
+            BorderColor: =ColorValue(First(colorscheme).Svart)
+            BorderThickness: =2
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =30
+            OnSelect: =
+            Width: =30
+            X: =30
+            Y: =14
+            ZIndex: =2
+
+        Line_2 As rectangle:
+            Fill: =ColorValue(First(colorscheme).Röd)
+            Height: =2
+            OnSelect: =Select(Parent)
+            Visible: =If(TimeLineStep_2.Text = "Klar", false, true)
+            Width: =90
+            X: =71
+            Y: =28
+            ZIndex: =3
+
+        NewwindonIcon_1 As icon.OpenInNewWindow:
+            Color: =RGBA(151, 0, 0, 1)
+            Height: =15
+            Icon: =Icon.OpenInNewWindow
+            OnSelect: |-
+                =UpdateContext({vartimelinepopup: true}); Set(varchecklist, TimeLineStep_2.Text)
+            Visible: =If(TimeLineStep_2.Text = "Klar", false, true) And If(TimeLineStep_2.Text = "Startat", false, true)
+            Width: =15
+            X: =84
+            Y: =56
+            ZIndex: =4
+
+    Rectangle7_1 As rectangle:
+        Fill: =RGBA(0, 0, 0, 0.7)
+        Height: =766
+        OnSelect: |-
+            =UpdateContext({vartimelinepopup: false}); Set(varchecklist,Blank());
+            Set(varlinkoffboardHR, Blank());
+            Set(varlinksoffboardIT, Blank());
+            Set(varlinkOffboardEkonomi, Blank());
+            Set(varlinkoffboardChef, Blank());
+        Visible: =vartimelinepopup
+        Width: =1366
+        Y: =2
+        ZIndex: =38
+
+    Header_Offboard As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =38
+
+        Header_Status_Offboard As label:
+            Align: =Align.Center
+            FontWeight: =onboardscreenlayoutlabels.Fontweight
+            Height: =35
+            Size: =onboardscreenlayoutlabels.Fontsize
+            Text: ="Status"
+            Width: =113
+            X: =1172
+            Y: =130
+            ZIndex: =7
+
+        Header_CreatedBy_Offboard As label:
+            Align: =Align.Center
+            FontWeight: =onboardscreenlayoutlabels.Fontweight
+            Height: =35
+            Size: =onboardscreenlayoutlabels.Fontsize
+            Text: =If(Varlanguage = "Swedish", "Skapad av", If(Varlanguage = "English", "Created by"))
+            Width: =176
+            X: =865
+            Y: =130
+            ZIndex: =8
+
+        Header_Created_Offboard As label:
+            Align: =Align.Center
+            FontWeight: =onboardscreenlayoutlabels.Fontweight
+            Height: =35
+            Size: =onboardscreenlayoutlabels.Fontsize
+            Text: =If(Varlanguage = "Swedish", "Skapad", If(Varlanguage = "English", "Created"))
+            Width: =176
+            X: =608
+            Y: =130
+            ZIndex: =11
+
+        Header_LastDay_Offboard As label:
+            Align: =Align.Center
+            FontWeight: =onboardscreenlayoutlabels.Fontweight
+            Height: =35
+            Size: =onboardscreenlayoutlabels.Fontsize
+            Text: =If(Varlanguage = "Swedish", "Slutdatum", If(Varlanguage = "English", "End date"))
+            Width: =176
+            X: =334
+            Y: =130
+            ZIndex: =21
+
+        Header_Name_Offboard As label:
+            FontWeight: =onboardscreenlayoutlabels.Fontweight
+            Height: =35
+            Size: =onboardscreenlayoutlabels.Fontsize
+            Text: =If(Varlanguage = "Swedish", "Namn", If(Varlanguage = "English", "Name"))
+            Width: =176
+            X: =75
+            Y: =130
+            ZIndex: =22
+
+    Rectangle8_1 As rectangle:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: |-
+            =If(varchecklist = "Checklista IT",550
+            , 589)
+        Visible: =vartimelinepopup
+        Width: =790
+        X: =339
+        Y: =85
+        ZIndex: =39
+
+    Gallery_HR_1 As gallery.galleryVertical:
+        Height: =613
+        Items: =If(IsBlank(varitemsoffboard), FirstN(OffboardData, 1), varitemsoffboard)
+        Layout: =Layout.Vertical
+        ShowScrollbar: =false
+        TemplateSize: =540
+        Visible: |-
+            =//vartimelinepopup
+            varchecklist = "Checklista HR"
+        Width: =789
+        X: =337
+        Y: =125
+        ZIndex: =40
+
+        "'lbl Vid offboarding' As label":
+            FontWeight: =FontWeight.Semibold
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                ="Vid offboarding:"
+            Width: =178
+            X: =24
+            Y: =24
+            ZIndex: =1
+
+        "'lbl Klar' As label":
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: ="Klart"
+            Width: =100
+            X: =256
+            Y: =24
+            ZIndex: =2
+
+        "'lbl Kommentar' As label":
+            FontWeight: =FontWeight.Semibold
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: ="Kommentar"
+            X: =435
+            Y: =24
+            ZIndex: =3
+
+        "'Save_Button_Offboarding HR' As button":
+            Fill: =ColorValue(First(colorscheme).Svart)
+            FocusedBorderThickness: =1
+            Height: =31
+            HoverColor: =ColorValue(First(colorscheme).Primary)
+            HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -1%)
+            OnSelect: |+
+                =Patch(Offboard_1, ThisItem,
+                    {
+                    'Spara skriftlig uppsägning': 'Chkbx Spara skrifltig uppsägning'.Value,
+                    'Boka avslutningssamtal': 'Chkbx Boka avslutningssamtal'.Value,
+                    'Meddela leverantörer': 'Chkbx Meddela leverantörer'.Value,
+                    'Avsluta ID06': 'Chkbx Avsluta ID06'.Value,
+                    'Avsluta Swedol': 'Chkbx Avsluta Swedol'.Value,
+                    'Kommentar (HR)': 'Text Kommentar (HR)'.Text
+                
+                    }
+                );
+                UpdateContext({vartimelinepopup: false}); Set(varchecklist,Blank());
+                Notify("Sparat");
+                Refresh(Offboard_1); ClearCollect(OffboardData, Offboard_1);
+                
+            RadiusBottomLeft: =2
+            RadiusBottomRight: =2
+            RadiusTopLeft: =2
+            RadiusTopRight: =2
+            Size: =9
+            Text: =If(Varlanguage = "Swedish", "Spara", If(Varlanguage = "English", "Save"))
+            Width: =114
+            X: =649
+            Y: =501
+            ZIndex: =4
+
+        "'Text Kommentar (HR)' As text":
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Default: |-
+                =If(IsBlank(varitemsoffboard), Blank(), 
+                ThisItem.'Kommentar (HR)')
+            FocusedBorderThickness: |
+                =1
+            Height: =303
+            HoverBorderColor: =RGBA(0, 0, 0, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            Mode: =TextMode.MultiLine
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Width: =328
+            X: =435
+            Y: =112
+            ZIndex: =5
+
+        "'Chkbx Avsluta Swedol' As checkbox":
+            BorderColor: =RGBA(0, 0, 0, 0)
+            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+            CheckboxSize: =45
+            CheckmarkFill: =RGBA(127, 178, 57, 1)
+            Default: |-
+                =If(IsBlank(varitemsoffboard), Blank(), 
+                ThisItem.'Spara skriftlig uppsägning')
+            HoverColor: =RGBA(127, 178, 57, 1)
+            OnSelect: =Select(Parent)
+            PressedColor: =RGBA(127, 178, 57, 1)
+            Text: =""
+            Width: =58
+            X: =286
+            Y: =430
+            ZIndex: =6
+
+        "'Chkbx Avsluta ID06' As checkbox":
+            BorderColor: =RGBA(0, 0, 0, 0)
+            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+            CheckboxSize: =45
+            CheckmarkFill: =RGBA(127, 178, 57, 1)
+            Default: |-
+                =If(IsBlank(varitemsoffboard), Blank(), 
+                ThisItem.'Spara skriftlig uppsägning')
+            HoverColor: =RGBA(127, 178, 57, 1)
+            OnSelect: =Select(Parent)
+            PressedColor: =RGBA(127, 178, 57, 1)
+            Text: =""
+            Width: =58
+            X: =286
+            Y: =347
+            ZIndex: =7
+
+        "'Chkbx Meddela leverantörer' As checkbox":
+            BorderColor: =RGBA(0, 0, 0, 0)
+            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+            CheckboxSize: =45
+            CheckmarkFill: =RGBA(127, 178, 57, 1)
+            Default: |-
+                =If(IsBlank(varitemsoffboard), Blank(), 
+                ThisItem.'Spara skriftlig uppsägning')
+            HoverColor: =RGBA(127, 178, 57, 1)
+            OnSelect: =Select(Parent)
+            PressedColor: =RGBA(127, 178, 57, 1)
+            Text: =""
+            Width: =58
+            X: =286
+            Y: =264
+            ZIndex: =8
+
+        "'Chkbx Boka avslutningssamtal' As checkbox":
+            BorderColor: =RGBA(0, 0, 0, 0)
+            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+            CheckboxSize: =45
+            CheckmarkFill: =RGBA(127, 178, 57, 1)
+            Default: |-
+                =If(IsBlank(varitemsoffboard), Blank(), 
+                ThisItem.'Spara skriftlig uppsägning')
+            HoverColor: =RGBA(127, 178, 57, 1)
+            OnSelect: =Select(Parent)
+            PressedColor: =RGBA(127, 178, 57, 1)
+            Text: =""
+            Width: =58
+            X: =286
+            Y: =180
+            ZIndex: =9
+
+        "'Chkbx Spara skrifltig uppsägning' As checkbox":
+            BorderColor: =RGBA(0, 0, 0, 0)
+            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+            CheckboxSize: =45
+            CheckmarkFill: =RGBA(127, 178, 57, 1)
+            Default: |-
+                =If(IsBlank(varitemsoffboard), Blank(), 
+                ThisItem.'Spara skriftlig uppsägning')
+            HoverColor: =RGBA(127, 178, 57, 1)
+            OnSelect: =Select(Parent)
+            PressedColor: =RGBA(127, 178, 57, 1)
+            Text: =""
+            Width: =58
+            X: =286
+            Y: =104
+            ZIndex: =10
+
+        "'lbl Avsluta Swedol' As label":
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: ="Avsluta Swedol"
+            Width: =220
+            X: =24
+            Y: =438
+            ZIndex: =11
+
+        "'lbl Avsluta ID06' As label":
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: ="Avsluta ID06"
+            Width: =220
+            X: =24
+            Y: =355
+            ZIndex: =12
+
+        "'lbl Meddela leverantörer' As label":
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: ="Meddela leverantörer"
+            Width: =220
+            X: =24
+            Y: =272
+            ZIndex: =13
+
+        "'lbl Boka avslutningssamtal' As label":
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: ="Boka avslutningssamtal"
+            Width: =220
+            X: =24
+            Y: =188
+            ZIndex: =14
+
+        "'lbl Spara skriftlig uppsägning' As label":
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: ="Spara skriftlig uppsägning"
+            Width: =220
+            X: =24
+            Y: =112
+            ZIndex: =15
+
+    Closedownpopup_background_1 As button:
+        BorderThickness: =0
+        Fill: =ColorValue(First(colorscheme).Svart)
+        Height: =28
+        HoverFill: =RGBA(0, 0, 0, 1)
+        OnSelect: =
+        RadiusBottomLeft: =20
+        RadiusBottomRight: =20
+        RadiusTopLeft: =20
+        RadiusTopRight: =20
+        Text: =""
+        Visible: =vartimelinepopup
+        Width: =28
+        X: =1120
+        Y: =66
+        ZIndex: =41
+
+    Closedownpopup_5 As icon.Cancel:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        Color: =RGBA(255, 255, 255, 1)
+        FocusedBorderColor: =RGBA(0, 0, 0, 1)
+        Height: =24
+        HoverBorderColor: =RGBA(0, 0, 0, 1)
+        HoverColor: =RGBA(204, 204, 204, 1)
+        Icon: =Icon.Cancel
+        OnSelect: |-
+            =UpdateContext({vartimelinepopup: false}); Set(varchecklist,Blank());
+            Set(varlinkoffboardHR, Blank());
+            Set(varlinksoffboardIT, Blank());
+            Set(varlinkOffboardEkonomi, Blank());
+            Set(varlinkoffboardChef, Blank());
+        Visible: =vartimelinepopup
+        Width: =24
+        X: =1122
+        Y: =68
+        ZIndex: =42
+
+    varchecklist_LABEL_1 As label:
+        Align: =Align.Center
+        Fill: =RGBA(255, 255, 255, 1)
+        FontWeight: =FontWeight.Semibold
+        Height: =30
+        Size: =14
+        Text: =varchecklist
+        Visible: =vartimelinepopup
+        Width: =250
+        X: =609
+        Y: =85
+        ZIndex: =43
+
+    "'Image Dipart Mini2' As image":
+        Height: =38
+        Image: ='Dipart-logo'
+        Visible: =vartimelinepopup
+        Width: =176
+        X: =942
+        Y: =117
+        ZIndex: =44
+
+    Rectangle2_2 As rectangle:
+        Fill: =RGBA(0, 0, 0, 0.2)
+        Height: =35
+        Visible: =vartimelinepopup
+        Width: =790
+        X: =339
+        Y: =82
+        ZIndex: =45
+
+    Gallery_IT_2 As gallery.galleryVertical:
+        Height: =539
+        Items: =If(IsBlank(varitemsoffboard), FirstN(OffboardData, 1), varitemsoffboard)
+        Layout: =Layout.Vertical
+        ShowScrollbar: =false
+        TemplateSize: =534
+        Visible: |-
+            =//vartimelinepopup
+            varchecklist = "Checklista IT"
+        Width: =789
+        X: =345
+        Y: =130
+        ZIndex: =46
+
+        "'lbl Vid offboarding_1' As label":
+            FontWeight: =FontWeight.Semibold
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                ="Vid offboarding:"
+            Width: =178
+            X: =24
+            Y: =24
+            ZIndex: =1
+
+        "'lbl Klar_1' As label":
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: ="Klart"
+            Width: =100
+            X: =256
+            Y: =24
+            ZIndex: =2
+
+        "'lbl Kommentar_1' As label":
+            FontWeight: =FontWeight.Semibold
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: ="Kommentar"
+            X: =415
+            Y: =24
+            ZIndex: =3
+
+        "'Save_Button_Offboarding IT' As button":
+            Fill: =ColorValue(First(colorscheme).Svart)
+            FocusedBorderThickness: =1
+            Height: =31
+            HoverColor: =ColorValue(First(colorscheme).Primary)
+            HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -1%)
+            OnSelect: |+
+                =Patch(Offboard_1, ThisItem,
+                    {
+                    'Uppdatera next?': 'Chkbx Uppdatera Next'.Value,
+                    'Avsluta konto hos Invid och hänvisa mail': 'Chkbx Avsluta konto'.Value,
+                    'Radera användaren från dropbox': 'Chkbx Radera anv dropbox'.Value,
+                    'Closing Email': 'Date Stängning av mejl'.SelectedDate,
+                    'Kommentar (IT)': 'lbl Kommentar_1'.Text
+                    }
+                );
+                UpdateContext({vartimelinepopup: false}); Set(varchecklist,Blank());
+                Notify("Sparat");
+                Refresh(Offboard_1); ClearCollect(OffboardData, Offboard_1);
+                
+            RadiusBottomLeft: =2
+            RadiusBottomRight: =2
+            RadiusTopLeft: =2
+            RadiusTopRight: =2
+            Size: =9
+            Text: =If(Varlanguage = "Swedish", "Spara", If(Varlanguage = "English", "Save"))
+            Width: =114
+            X: =637
+            Y: =435
+            ZIndex: =4
+
+        "'lbl Avsluta konto' As label":
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: ="Avsluta konto hos Invid och hänvisa mail"
+            Width: =220
+            X: =24
+            Y: =188
+            ZIndex: =5
+
+        Archive_Offboard_Value As radio:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            Default: =If(IsBlank(varitemsoffboard), Blank(), If(ThisItem.'Archive user' exactin "Yes", "Yes", "No"))
+            Height: =65
+            HoverColor: =RGBA(0, 0, 0, 1)
+            Items: =Choices(Offboard_1.'Archive user')
+            Layout: =Layout.Horizontal
+            RadioBorderColor: =RGBA(0, 0, 0, 1)
+            RadioSize: =33
+            Visible: =false
+            Width: =200
+            X: =216
+            Y: =349
+            ZIndex: =6
+
+        Phone_Offboard As label:
+            Height: =35
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: =If(Varlanguage = "Swedish", "Hårdvara inlämnad?", If(Varlanguage = "English", "Hardware returned?"))
+            Visible: =false
+            Width: =190
+            X: =24
+            Y: =479
+            ZIndex: =7
+
+        Computer_Offboard As label:
+            Height: =35
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: |-
+                =If(Varlanguage = "Swedish", "Blockera användaren direkt?", If(Varlanguage = "English", "Block the user immediately:?"))
+            Visible: =false
+            Width: =190
+            X: =24
+            Y: =427
+            ZIndex: =8
+
+        Office_Offboard As label:
+            Height: =35
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: =If(Varlanguage = "Swedish", "Arkivera användaren?", If(Varlanguage = "English", "Archive user?"))
+            Visible: =false
+            Width: =190
+            X: =24
+            Y: =362
+            ZIndex: =9
+
+        BlockUser_Offboard_Value_1 As radio:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            Default: =If(IsBlank(varitemsoffboard), Blank(), If(ThisItem.'Block immediately' exactin "Yes", "Yes", "No"))
+            Height: =60
+            HoverColor: =RGBA(0, 0, 0, 1)
+            Items: =Choices(Offboard_1.'Block immediately')
+            Layout: =Layout.Horizontal
+            RadioBorderColor: =RGBA(0, 0, 0, 1)
+            RadioSize: =33
+            Visible: =false
+            Width: =200
+            X: =216
+            Y: =414
+            ZIndex: =10
+
+        HardwareReturned_Offboard_Value As radio:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            Default: =If(IsBlank(varitemsoffboard), Blank(), If(ThisItem.'Computer handover' exactin "Yes", "Yes", "No"))
+            Height: =60
+            HoverColor: =RGBA(0, 0, 0, 1)
+            Items: =Choices(Offboard_1.'Computer handover')
+            Layout: =Layout.Horizontal
+            RadioBorderColor: =RGBA(0, 0, 0, 1)
+            RadioSize: =33
+            Visible: =false
+            Width: =200
+            X: =216
+            Y: =462
+            ZIndex: =11
+
+        "'Text Kommentar (IT)_1' As text":
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Default: |-
+                =If(IsBlank(varitemsoffboard), Blank(), 
+                ThisItem.'Kommentar (IT)')
+            FocusedBorderThickness: |
+                =1
+            Height: =175
+            HoverBorderColor: =RGBA(0, 0, 0, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            Mode: =TextMode.MultiLine
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Width: =335
+            X: =415
+            Y: =112
+            ZIndex: =12
+
+        "'Date Stängning av mejl' As datepicker":
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            DefaultDate: =If(IsBlank(varitemsoffboard), Today(), ThisItem.'Closing Email')
+            FocusedBorderThickness: =1
+            Format: ="dd/mmm/yyyy"
+            Height: =35
+            IconBackground: =ColorValue(First(colorscheme).Svart)
+            OnSelect: =Select(Parent)
+            Size: =13
+            Width: =180
+            X: =242
+            Y: =364
+            ZIndex: =13
+
+        "'Chkbx Radera anv dropbox' As checkbox":
+            BorderColor: =RGBA(0, 0, 0, 0)
+            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+            CheckboxSize: =45
+            CheckmarkFill: =RGBA(127, 178, 57, 1)
+            Default: |-
+                =If(IsBlank(varitemsoffboard), Blank(), 
+                ThisItem.'Radera användaren från dropbox')
+            HoverColor: =RGBA(127, 178, 57, 1)
+            OnSelect: =Select(Parent)
+            PressedColor: =RGBA(127, 178, 57, 1)
+            Text: =""
+            Width: =58
+            X: =286
+            Y: =264
+            ZIndex: =14
+
+        "'Chkbx Avsluta konto' As checkbox":
+            BorderColor: =RGBA(0, 0, 0, 0)
+            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+            CheckboxSize: =45
+            CheckmarkFill: =RGBA(127, 178, 57, 1)
+            Default: |-
+                =If(IsBlank(varitemsoffboard), Blank(), 
+                ThisItem.'Avsluta konto hos Invid och hänvisa mail')
+            HoverColor: =RGBA(127, 178, 57, 1)
+            OnSelect: =Select(Parent)
+            PressedColor: =RGBA(127, 178, 57, 1)
+            Text: =""
+            Width: =58
+            X: =286
+            Y: =180
+            ZIndex: =15
+
+        "'Chkbx Uppdatera Next' As checkbox":
+            BorderColor: =RGBA(0, 0, 0, 0)
+            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+            CheckboxSize: =45
+            CheckmarkFill: =RGBA(127, 178, 57, 1)
+            Default: |-
+                =If(IsBlank(varitemsoffboard), Blank(), 
+                ThisItem.'Uppdatera next?')
+            HoverColor: =RGBA(127, 178, 57, 1)
+            OnSelect: =Select(Parent)
+            PressedColor: =RGBA(127, 178, 57, 1)
+            Text: =""
+            Width: =58
+            X: =286
+            Y: =104
+            ZIndex: =16
+
+        "'lbl Stängning av mejl' As label":
+            Height: =35
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: |-
+                =If(Varlanguage = "Swedish", "Stängning av mejl:", If(Varlanguage = "English", "Closing of email:"))
+            X: =24
+            Y: =364
+            ZIndex: =17
+
+        "'lbl Rader anv dropbox' As label":
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: ="Radera användaren från dropbox"
+            Width: =220
+            X: =24
+            Y: =272
+            ZIndex: =18
+
+        "'lbl Spara skriftlig uppsägning_1' As label":
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: ="Uppdatera Next"
+            Width: =220
+            X: =24
+            Y: =112
+            ZIndex: =19
+
+    Gallery_chef As gallery.galleryVertical:
+        Height: =539
+        Items: =If(IsBlank(varitemsoffboard), FirstN(OffboardData, 1), varitemsoffboard)
+        Layout: =Layout.Vertical
+        ShowScrollbar: =false
+        TemplateSize: =534
+        Visible: |-
+            =//vartimelinepopup
+            varchecklist = "Checklista chef"
+        Width: =789
+        X: =340
+        Y: =145
+        ZIndex: =47
+
+        "'lbl Vid offboarding_2' As label":
+            FontWeight: =FontWeight.Semibold
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                ="Vid offboarding:"
+            Width: =178
+            X: =24
+            Y: =24
+            ZIndex: =1
+
+        "'lbl Klar_2' As label":
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: ="Klart"
+            Width: =100
+            X: =256
+            Y: =24
+            ZIndex: =2
+
+        "'lbl Kommentar_2' As label":
+            FontWeight: =FontWeight.Semibold
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: ="Kommentar"
+            X: =415
+            Y: =24
+            ZIndex: =3
+
+        "'Save_Button_Offboarding IT_1' As button":
+            Fill: =ColorValue(First(colorscheme).Svart)
+            FocusedBorderThickness: =1
+            Height: =31
+            HoverColor: =ColorValue(First(colorscheme).Primary)
+            HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -1%)
+            OnSelect: |+
+                =Patch(Offboard_1, ThisItem,
+                    {
+                    'Informera berörda kollegor': 'Chkbx Avslut och korrigering'.Value,
+                    'Planera in lämplig avtackning ': 'Chkbx Planera in lämplig avtackning'.Value,
+                    'Överlämning av pågående arbetsuppgifter': 'Chkbx Överlämning av pågående arbetsu'.Value,
+                    'Samla in alla bolagets ägodelar ': 'Chkbx Samla in alla bolagets'.Value,
+                    'Kommentar (Chef)': 'Text Kommentar (chef)'.Text
+                    }
+                );
+                UpdateContext({vartimelinepopup: false}); Set(varchecklist,Blank());
+                Notify("Sparat");
+                Refresh(Offboard_1); ClearCollect(OffboardData, Offboard_1);
+                
+            RadiusBottomLeft: =2
+            RadiusBottomRight: =2
+            RadiusTopLeft: =2
+            RadiusTopRight: =2
+            Size: =9
+            Text: =If(Varlanguage = "Swedish", "Spara", If(Varlanguage = "English", "Save"))
+            Width: =114
+            X: =637
+            Y: =435
+            ZIndex: =4
+
+        Archive_Offboard_Value_1 As radio:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            Default: =If(IsBlank(varitemsoffboard), Blank(), If(ThisItem.'Archive user' exactin "Yes", "Yes", "No"))
+            Height: =65
+            HoverColor: =RGBA(0, 0, 0, 1)
+            Items: =Choices(Offboard_1.'Archive user')
+            Layout: =Layout.Horizontal
+            RadioBorderColor: =RGBA(0, 0, 0, 1)
+            RadioSize: =33
+            Visible: =false
+            Width: =200
+            X: =216
+            Y: =349
+            ZIndex: =5
+
+        Phone_Offboard_1 As label:
+            Height: =35
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: =If(Varlanguage = "Swedish", "Hårdvara inlämnad?", If(Varlanguage = "English", "Hardware returned?"))
+            Visible: =false
+            Width: =190
+            X: =24
+            Y: =479
+            ZIndex: =6
+
+        Computer_Offboard_1 As label:
+            Height: =35
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: |-
+                =If(Varlanguage = "Swedish", "Blockera användaren direkt?", If(Varlanguage = "English", "Block the user immediately:?"))
+            Visible: =false
+            Width: =190
+            X: =24
+            Y: =427
+            ZIndex: =7
+
+        Office_Offboard_1 As label:
+            Height: =35
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: =If(Varlanguage = "Swedish", "Arkivera användaren?", If(Varlanguage = "English", "Archive user?"))
+            Visible: =false
+            Width: =190
+            X: =24
+            Y: =362
+            ZIndex: =8
+
+        BlockUser_Offboard_Value_2 As radio:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            Default: =If(IsBlank(varitemsoffboard), Blank(), If(ThisItem.'Block immediately' exactin "Yes", "Yes", "No"))
+            Height: =60
+            HoverColor: =RGBA(0, 0, 0, 1)
+            Items: =Choices(Offboard_1.'Block immediately')
+            Layout: =Layout.Horizontal
+            RadioBorderColor: =RGBA(0, 0, 0, 1)
+            RadioSize: =33
+            Visible: =false
+            Width: =200
+            X: =216
+            Y: =414
+            ZIndex: =9
+
+        HardwareReturned_Offboard_Value_1 As radio:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            Default: =If(IsBlank(varitemsoffboard), Blank(), If(ThisItem.'Computer handover' exactin "Yes", "Yes", "No"))
+            Height: =60
+            HoverColor: =RGBA(0, 0, 0, 1)
+            Items: =Choices(Offboard_1.'Computer handover')
+            Layout: =Layout.Horizontal
+            RadioBorderColor: =RGBA(0, 0, 0, 1)
+            RadioSize: =33
+            Visible: =false
+            Width: =200
+            X: =216
+            Y: =462
+            ZIndex: =10
+
+        "'Text Kommentar (chef)' As text":
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Default: |-
+                =If(IsBlank(varOffboardParam), Blank(), 
+                ThisItem.'Kommentar (Chef)')
+            FocusedBorderThickness: |
+                =1
+            Height: =175
+            HoverBorderColor: =RGBA(0, 0, 0, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            Mode: =TextMode.MultiLine
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Width: =335
+            X: =415
+            Y: =112
+            ZIndex: =11
+
+        "'Chkbx Överlämning av pågående arbetsu' As checkbox":
+            BorderColor: =RGBA(0, 0, 0, 0)
+            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+            CheckboxSize: =45
+            CheckmarkFill: =RGBA(127, 178, 57, 1)
+            Default: |-
+                =If(IsBlank(varitemsoffboard), Blank(), 
+                ThisItem.'Överlämning av pågående arbetsuppgifter')
+            HoverColor: =RGBA(127, 178, 57, 1)
+            OnSelect: =Select(Parent)
+            PressedColor: =RGBA(127, 178, 57, 1)
+            Text: =""
+            Width: =58
+            X: =286
+            Y: =264
+            ZIndex: =13
+
+        "'Chkbx Planera in lämplig avtackning' As checkbox":
+            BorderColor: =RGBA(0, 0, 0, 0)
+            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+            CheckboxSize: =45
+            CheckmarkFill: =RGBA(127, 178, 57, 1)
+            Default: |-
+                =If(IsBlank(varitemsoffboard), Blank(), 
+                ThisItem.'Planera in lämplig avtackning ')
+            HoverColor: =RGBA(127, 178, 57, 1)
+            OnSelect: =Select(Parent)
+            PressedColor: =RGBA(127, 178, 57, 1)
+            Text: =""
+            Width: =58
+            X: =286
+            Y: =180
+            ZIndex: =14
+
+        "'Chkbx Avslut och korrigering' As checkbox":
+            BorderColor: =RGBA(0, 0, 0, 0)
+            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+            CheckboxSize: =45
+            CheckmarkFill: =RGBA(127, 178, 57, 1)
+            Default: |-
+                =If(IsBlank(varitemsoffboard), Blank(), 
+                ThisItem.'Informera berörda kollegor')
+            HoverColor: =RGBA(127, 178, 57, 1)
+            OnSelect: =Select(Parent)
+            PressedColor: =RGBA(127, 178, 57, 1)
+            Text: =""
+            Width: =58
+            X: =286
+            Y: =104
+            ZIndex: =15
+
+        "'lbl Överlämning av pågående arbetsu' As label":
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: ="Överlämning av pågående arbetsuppgifter "
+            Width: =220
+            X: =24
+            Y: =272
+            ZIndex: =17
+
+        "'lbl Planera in lämplig avtackning' As label":
+            Height: =60
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: ="Planera in lämplig avtackning"
+            Tooltip: ="(tex. fika/ blommor, se riktlinjer i handboken för chefer"
+            Width: =220
+            X: =24
+            Y: =188
+            ZIndex: =18
+
+        "'lbl Avslut och korrigering' As label":
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: ="Informera berörda kollegor"
+            Width: =220
+            X: =24
+            Y: =112
+            ZIndex: =19
+
+        "'Chkbx Samla in alla bolagets' As checkbox":
+            BorderColor: =RGBA(0, 0, 0, 0)
+            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+            CheckboxSize: =45
+            CheckmarkFill: =RGBA(127, 178, 57, 1)
+            Default: |-
+                =If(IsBlank(varitemsoffboard), Blank(), 
+                ThisItem.'Samla in alla bolagets ägodelar ')
+            HoverColor: =RGBA(127, 178, 57, 1)
+            OnSelect: =Select(Parent)
+            PressedColor: =RGBA(127, 178, 57, 1)
+            Text: =""
+            Width: =58
+            X: =286
+            Y: =349
+            ZIndex: =20
+
+        "'lbl Samla in alla bolagets' As label":
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: ="Samla in alla bolagets ägodelar "
+            Width: =220
+            X: =24
+            Y: =357
+            ZIndex: =21
+
+        Label5 As label:
+            Color: =ColorValue(First(colorscheme).Röd)
+            Height: =108
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                ="*Verktyg                
+                *Kamera 
+                *Arbetskläder       
+                *ID06
+                *Nycklar"
+            Width: =115
+            X: =35
+            Y: =410
+            ZIndex: =22
+
+        Label5_1 As label:
+            Color: =ColorValue(First(colorscheme).Röd)
+            Height: =108
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                ="*Betalkort                
+                *Bil 
+                *Telefon       
+                *Dator
+                *Laddare"
+            Width: =115
+            X: =146
+            Y: =410
+            ZIndex: =23
+
+        Rectangle11 As rectangle:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Fill: =RGBA(0, 0, 0, 0)
+            OnSelect: =Select(Parent)
+            Width: =220
+            X: =24
+            Y: =414
+            ZIndex: =24
+
+    Gallery_HR_2 As gallery.galleryVertical:
+        Height: =479
+        Items: =If(IsBlank(varitemsoffboard), FirstN(OffboardData, 1), varitemsoffboard)
+        Layout: =Layout.Vertical
+        ShowScrollbar: =false
+        TemplateSize: =474
+        Visible: |-
+            =//vartimelinepopup
+            varchecklist = "Checklista ekonomi"
+        Width: =789
+        X: =345
+        Y: =155
+        ZIndex: =48
+
+        "'lbl Vid offboarding_3' As label":
+            FontWeight: =FontWeight.Semibold
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                ="Vid offboarding:"
+            Width: =178
+            X: =24
+            Y: =24
+            ZIndex: =1
+
+        "'lbl Klar_3' As label":
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: ="Klart"
+            Width: =100
+            X: =256
+            Y: =24
+            ZIndex: =2
+
+        "'lbl Kommentar_3' As label":
+            FontWeight: =FontWeight.Semibold
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: ="Kommentar"
+            X: =435
+            Y: =24
+            ZIndex: =3
+
+        "'Save_Button_Offboarding Ekonomi' As button":
+            Fill: =ColorValue(First(colorscheme).Svart)
+            FocusedBorderThickness: =1
+            Height: =31
+            HoverColor: =ColorValue(First(colorscheme).Primary)
+            HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -1%)
+            OnSelect: |+
+                =Patch(Offboard_1, ThisItem,
+                    {
+                    'Avslut och korrigering av lön': 'Chkbx Avslut o korrigering'.Value,
+                    'Lägg in slutdatum i Hogia': 'Chkbx Lägg in slutdatum'.Value,
+                    'Uppdatera personalfördelningslistan': 'Chkbx Uppdatera personalfördelnin'.Value,
+                    'Kommentar (Ekonomi)':'Text Kommentar (ekonomi)'.Text
+                    
+                    }
+                );
+                UpdateContext({vartimelinepopup: false}); Set(varchecklist,Blank());
+                Notify("Sparat");
+                Refresh(Offboard_1); ClearCollect(OffboardData, Offboard_1);
+                
+            RadiusBottomLeft: =2
+            RadiusBottomRight: =2
+            RadiusTopLeft: =2
+            RadiusTopRight: =2
+            Size: =9
+            Text: =If(Varlanguage = "Swedish", "Spara", If(Varlanguage = "English", "Save"))
+            Width: =114
+            X: =649
+            Y: =443
+            ZIndex: =5
+
+        "'Text Kommentar (ekonomi)' As text":
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Default: |-
+                =If(IsBlank(varOffboardParam), Blank(), 
+                ThisItem.'Kommentar (Ekonomi)')
+            FocusedBorderThickness: |
+                =1
+            Height: =303
+            HoverBorderColor: =RGBA(0, 0, 0, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            Mode: =TextMode.MultiLine
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Width: =328
+            X: =435
+            Y: =112
+            ZIndex: =6
+
+        "'Chkbx Uppdatera personalfördelnin' As checkbox":
+            BorderColor: =RGBA(0, 0, 0, 0)
+            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+            CheckboxSize: =45
+            CheckmarkFill: =RGBA(127, 178, 57, 1)
+            Default: |-
+                =If(IsBlank(varitemsoffboard), Blank(), 
+                ThisItem.'Uppdatera personalfördelningslistan')
+            HoverColor: =RGBA(127, 178, 57, 1)
+            OnSelect: =Select(Parent)
+            PressedColor: =RGBA(127, 178, 57, 1)
+            Text: =""
+            Width: =58
+            X: =286
+            Y: =278
+            ZIndex: =7
+
+        "'Chkbx Lägg in slutdatum' As checkbox":
+            BorderColor: =RGBA(0, 0, 0, 0)
+            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+            CheckboxSize: =45
+            CheckmarkFill: =RGBA(127, 178, 57, 1)
+            Default: |-
+                =If(IsBlank(varitemsoffboard), Blank(), 
+                ThisItem.'Lägg in slutdatum i Hogia')
+            HoverColor: =RGBA(127, 178, 57, 1)
+            OnSelect: =Select(Parent)
+            PressedColor: =RGBA(127, 178, 57, 1)
+            Text: =""
+            Width: =58
+            X: =286
+            Y: =190
+            ZIndex: =8
+
+        "'Chkbx Avslut o korrigering' As checkbox":
+            BorderColor: =RGBA(0, 0, 0, 0)
+            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+            CheckboxSize: =45
+            CheckmarkFill: =RGBA(127, 178, 57, 1)
+            Default: |-
+                =If(IsBlank(varitemsoffboard), Blank(), 
+                ThisItem.'Avslut och korrigering av lön')
+            HoverColor: =RGBA(127, 178, 57, 1)
+            OnSelect: =Select(Parent)
+            PressedColor: =RGBA(127, 178, 57, 1)
+            Text: =""
+            Width: =58
+            X: =286
+            Y: =104
+            ZIndex: =9
+
+        "'lbl Uppdatera personalfördelnin' As label":
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: ="Uppdatera personalfördelningslistan"
+            Width: =220
+            X: =24
+            Y: =286
+            ZIndex: =10
+
+        "'lbl Lägg in slutdatum' As label":
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: ="Lägg in slutdatum i Hogia"
+            Width: =220
+            X: =24
+            Y: =198
+            ZIndex: =11
+
+        "'lbl Avslut o korrigering' As label":
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: ="Avslut och korrigering av lön"
+            Width: =220
+            X: =24
+            Y: =112
+            ZIndex: =12
+
+    "'Timer Onboard_1' As timer":
+        Duration: |
+            =3500
+        OnTimerEnd: |-
+            =Refresh(Offboard_1); ClearCollect(Offboardata, Offboard_1); UpdateContext({vartimer:false})
+        Start: =vartimer
+        Visible: =false
+        X: =1054
+        Y: =28
+        ZIndex: =49
+
+    GroupMeOffboard As group:
+        Height: =5
+        Width: =5
+        X: =1
+        Y: =20
+        ZIndex: =60
+
+        IconOpenMenu_6 As icon.ChevronDown:
+            AccessibleLabel: ="PersonalSettings"
+            Color: =RGBA(0, 0, 0, 1)
+            DisplayMode: =DisplayMode.Disabled
+            Height: =25
+            Icon: =Icon.Settings
+            OnSelect: |-
+                =If(Varusersettings = true, UpdateContext({Varusersettings: false}), UpdateContext({Varusersettings: true}))
+            Width: =25
+            X: =1323
+            Y: =18
+            ZIndex: =14
+
+        Rectangle3_6 As rectangle:
+            BorderColor: =RGBA(0, 13, 75, 1)
+            Fill: |-
+                =RGBA(0,0,0,0.8
+                )
+            Height: =245
+            Visible: =Varusersettings
+            Width: =165
+            X: =1201
+            Y: =68
+            ZIndex: =26
+
+        IconCloseMenu_6 As icon.ChevronUp:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =35
+            Icon: =Icon.ChevronUp
+            OnSelect: |-
+                =UpdateContext({Varusersettings: false})
+            Visible: =false//Varusersettings
+            Width: =51
+            X: =1306
+            Y: =178
+            ZIndex: =27
+
+        Language_Title_6 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =28
+            Size: =10
+            Text: =If(Varlanguage = "Swedish", "Språk", If(Varlanguage = "English", "Language"))
+            Visible: =Varusersettings
+            Width: =93
+            X: =1228
+            Y: =234
+            ZIndex: =28
+
+        "'Choose language_13' As dropdown":
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            ChevronBackground: =Gray
+            ChevronHoverBackground: =RGBA(179, 179, 179, 1)
+            Default: ="Swedish"
+            DisabledColor: =RGBA(0, 0, 0, 1)
+            FocusedBorderThickness: =1
+            Height: =22
+            HoverFill: =RGBA(204, 204, 204, 1)
+            Items: =["English", "Swedish"]
+            OnChange: =Set(Varlanguage, 'Choose language_13'.Selected.Value)
+            OnSelect: =Set(Varlanguage, 'Choose language_13'.Selected.Value)
+            PressedFill: =RGBA(179, 179, 179, 1)
+            SelectionFill: =RGBA(204, 204, 204, 1)
+            Size: =8
+            Visible: =Varusersettings
+            Width: =97
+            X: =1230
+            Y: =262
+            ZIndex: =29
+
+        Theme_6 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =28
+            Size: =10
+            Text: =If(Varlanguage = "Swedish", "Tema", If(Varlanguage = "English", "Theme"))
+            Visible: =Varusersettings
+            Width: =93
+            X: =1228
+            Y: =164
+            ZIndex: =30
+
+        "'Choose language_12' As dropdown":
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            ChevronBackground: =Gray
+            ChevronHoverBackground: =RGBA(204, 204, 204, 1)
+            FocusedBorderThickness: =1
+            Height: =22
+            HoverFill: =RGBA(204, 204, 204, 1)
+            Items: =["Theme 1", "Theme 2"]
+            OnChange: =
+            OnSelect: =
+            PressedFill: =RGBA(204, 204, 204, 1)
+            SelectionFill: =RGBA(204, 204, 204, 1)
+            Size: =8
+            Visible: =Varusersettings
+            Width: =97
+            X: =1230
+            Y: =194
+            ZIndex: =31
+
+        "'SwedishFlag.Image_6' As image":
+            Height: =23
+            Image: ='Swedish flag'
+            Visible: =If(Varlanguage = "Swedish", true, false) And Varusersettings
+            Width: =19
+            X: =1331
+            Y: =264
+            ZIndex: =32
+
+        "'EnglishFlag.Image_6' As image":
+            Height: =20
+            Image: ='English flag'
+            Visible: =If(Varlanguage = "English", true, false) And Varusersettings
+            Width: =17
+            X: =1331
+            Y: =264
+            ZIndex: =33
+
+        UserImage_6 As image:
+            Height: =40
+            Image: =User().Image
+            RadiusBottomLeft: =70
+            RadiusBottomRight: =70
+            RadiusTopLeft: =70
+            RadiusTopRight: =70
+            Visible: =Varusersettings
+            Width: =40
+            X: =1266
+            Y: =83
+            ZIndex: =34
+
+        "'User.Name_6' As label":
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Size: =11
+            Text: =User().FullName
+            Visible: =Varusersettings
+            Width: =160
+            X: =1206
+            Y: =124
+            ZIndex: =35
+

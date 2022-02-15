@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "13a7614e-64b5-4195-93a4-373769c75958",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "HR-UTV-PDFSharePoint",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "c4fb0795-3ad2-427b-9ce2-e3f061880c14",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "HR-Updateuserprofilepicture",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

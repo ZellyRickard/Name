@@ -1,0 +1,109 @@
+NAV As CanvasComponent:
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =713
+    MenuWith: =100
+    NavItems: |-
+        =Table(
+            {
+                Title: "Hem",
+                Screen: App.ActiveScreen,
+                Icon: Home
+            },
+            {
+                Title: "Onboard",
+                Screen: App.ActiveScreen,
+                Icon: EmojiSmile
+            },
+            {
+                Title: "Offboard",
+                Screen: App.ActiveScreen,
+                Icon: LikeDislike
+            },
+            
+            {
+                Title: "Switchboard",
+                Screen: App.ActiveScreen,
+                Icon: Icon.Edit
+            },
+            {    
+                Title: "Infoboard",
+                Screen: App.ActiveScreen,
+                Icon: Icon.Information
+            },
+            {    
+                Title: "Admin",
+                Screen: App.ActiveScreen,
+                Icon: Icon.ToolsWrench
+            },
+            {    
+                Title: "Personalkort",
+                Screen: App.ActiveScreen,
+                Icon: Icon.Person
+            },
+            {    
+                Title: "Utvecklingssamtal",
+                Screen: App.ActiveScreen,
+                Icon: Icon.People
+            },
+            {    
+                Title: "Utbildningar",
+                Screen: App.ActiveScreen,
+                Icon: Icon.Bookmark
+            }
+        )
+    Width: =60
+    X: =
+    Y: =0
+    ZIndex: =1
+
+    "Gallery1 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+        AccessibleLabel: ="Menu"
+        Default: =LookUp(NAV.NavItems, Screen=App.ActiveScreen)
+        Fill: =ColorValue(First(colorscheme).Svart)
+        Height: =713
+        Items: =NAV.NavItems
+        Layout: =Layout.Vertical
+        OnSelect: =Navigate(ThisItem.Screen)
+        TabIndex: ="Nav"
+        TemplatePadding: =0
+        TemplateSize: =50
+        Width: =60
+        ZIndex: =1
+
+        Title1 As label:
+            Align: =Align.Center
+            Color: =ColorValue(First(colorscheme).Färg3)
+            Height: =30
+            OnSelect: =Navigate(ThisItem.Screen)
+            Size: =6
+            TabIndex: ="Home"
+            Text: =ThisItem.Title
+            Width: =60
+            Y: =25
+            ZIndex: =2
+
+        Separator1 As rectangle:
+            AccessibleLabel: ="SelectedIconMenu"
+            Fill: =ColorValue(First(colorscheme).Färg3)
+            Height: =49
+            OnSelect: =Navigate(ThisItem.Screen)
+            TabIndex: ="this"
+            Visible: =ThisItem.IsSelected
+            Width: =4
+            Y: =
+            ZIndex: =5
+
+        NavIcon As icon.Add:
+            AccessibleLabel: ="MenuIcon"
+            Color: =ColorValue(First(colorscheme).Färg3)
+            FocusedBorderThickness: =0
+            Height: =20
+            Icon: =ThisItem.Icon
+            OnSelect: =Navigate(ThisItem.Screen)
+            TabIndex: |
+                ="Home icon"
+            Width: =20
+            X: =20
+            Y: =10
+            ZIndex: =6
+

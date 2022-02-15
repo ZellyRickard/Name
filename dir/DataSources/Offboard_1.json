@@ -1,0 +1,719 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr3a5_offboards",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr3a5_offboard",
+    "MaxGetRowsCount": 1500,
+    "Name": "Offboard_1",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Ägare",
+      "cr3a5_closingemail": "Closing Email",
+      "cr3a5_comments": "Comments",
+      "cr3a5_computerhandover": "Computer handover",
+      "cr3a5_deleteofficeuser": "Delete Office user",
+      "cr3a5_hrtalk": "HR-Talk",
+      "cr3a5_lastday": "Last day",
+      "cr3a5_NameOffboard": "Name (Offboard)",
+      "cr3a5_namnoffboard": "Namn offboard",
+      "cr3a5_offboard_AsyncOperations": "Systemuppgifter",
+      "cr3a5_offboard_BulkDeleteFailures": "Fel i massradering",
+      "cr3a5_offboard_DuplicateBaseRecord": "Dubblettposter (cr3a5_offboard_DuplicateBaseRecord)",
+      "cr3a5_offboard_DuplicateMatchingRecord": "Dubblettposter (cr3a5_offboard_DuplicateMatchingRecord)",
+      "cr3a5_offboard_MailboxTrackingFolders": "Automatiskt spårade mappar i postlåda",
+      "cr3a5_offboard_PrincipalObjectAttributeAccesses": "Fältdelning",
+      "cr3a5_offboard_ProcessSession": "Bearbetningssessioner",
+      "cr3a5_offboard_SyncErrors": "Synkroniseringsfel",
+      "cr3a5_offboardid": "Offboard",
+      "cr3a5_offboardstatus": "Offboard status",
+      "cr3a5_ovrigkommentar": "Övrig kommentar",
+      "cr3a5_phonehandover": "Phone handover",
+      "cr3a5_searchable_nameoffboard": "Searchable_Name (Offboard)",
+      "cr3a5_tabortanvandare": "Ta bort användare",
+      "createdby": "Skapad av",
+      "createdon": "Skapad den",
+      "createdonbehalfby": "Skapat av (ombud)",
+      "crf38_archiveuser": "Archive user",
+      "crf38_avslutaid06": "Avsluta ID06",
+      "crf38_avslutakontohosinvidochhanvisamail": "Avsluta konto hos Invid och hänvisa mail",
+      "crf38_avslutaswedol": "Avsluta Swedol",
+      "crf38_avslutochkorrigeringavlon": "Avslut och korrigering av lön",
+      "crf38_blockimmediately": "Block immediately",
+      "crf38_bokaavslutningssamtal": "Boka avslutningssamtal",
+      "crf38_checklistachef": "Checklista Chef",
+      "crf38_checklistaekonomi": "Checklista Ekonomi",
+      "crf38_checklistahr": "Checklista HR",
+      "crf38_checklistait": "Checklista IT",
+      "crf38_Closestmanager": "Closest manager",
+      "crf38_informeraberordakollegor": "Informera berörda kollegor",
+      "crf38_kommentarchef": "Kommentar (Chef)",
+      "crf38_kommentarekonomi": "Kommentar (Ekonomi)",
+      "crf38_kommentarhr": "Kommentar (HR)",
+      "crf38_kommentarit": "Kommentar (IT)",
+      "crf38_lagginslutdatumihogia": "Lägg in slutdatum i Hogia",
+      "crf38_lastemploymentday": "Last employment day",
+      "crf38_meddelaleverantorer": "Meddela leverantörer",
+      "crf38_offboardcompleted": "Offboard completed",
+      "crf38_offboarddoneflow": "Offboard Done (Flow)",
+      "crf38_offboardstarted": "Offboard started",
+      "crf38_overlamningavpagaendearbetsuppgifter": "Överlämning av pågående arbetsuppgifter",
+      "crf38_planerainlampligavtackning": "Planera in lämplig avtackning ",
+      "crf38_raderaanvandarenfrandropbox": "Radera användaren från dropbox",
+      "crf38_samlainallabolagetsagodelar": "Samla in alla bolagets ägodelar ",
+      "crf38_sparaskriftliguppsagning": "Spara skriftlig uppsägning",
+      "crf38_uppdateranext": "Uppdatera next?",
+      "crf38_uppdaterapersonalfordelningslistan": "Uppdatera personalfördelningslistan",
+      "importsequencenumber": "Importsekvensnummer",
+      "modifiedby": "Ändrad av",
+      "modifiedon": "Ändrad den",
+      "modifiedonbehalfby": "Ändrat av (ombud)",
+      "overriddencreatedon": "Posten skapades den",
+      "owningbusinessunit": "Ägande affärsenhet",
+      "owningteam": "Ägande team",
+      "owninguser": "Ägande användare",
+      "statecode": "Status",
+      "statuscode": "Statusorsak",
+      "timezoneruleversionnumber": "Versionsnummer för tidszonsregel",
+      "utcconversiontimezonecode": "Tidszonskod för UTC-konvertering",
+      "versionnumber": "Versionsnummer"
+    },
+    "PreferredName": "Offboard_1",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Offboard_1 (Vyer)",
+    "Name": "_cr3a5_offboard_views",
+    "RelatedEntityName": "Offboard_1",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "a0806dd2-fe20-49a5-8755-651f065b89b7": "Inaktiva Offboard",
+      "d41f1204-2ec8-4de2-a063-e79f2488cf12": "Avancerad sökvy för Offboard",
+      "dfc5ec51-4d34-4796-bc9a-1175a4d9e959": "Aktiva Offboard",
+      "f52078e1-322d-4086-ac07-2ebf49f6b85a": "Associerad vy för Offboard",
+      "fd20f788-ad5e-4209-a06d-2b3a63d8706c": "Uppslagsvy för Offboard"
+    }
+  },
+  {
+    "DisplayName": "Computer handover (Offboard_1)",
+    "Name": "cr3a5_cr3a5_offboard_computerhandover",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "cr3a5_computerhandover",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "cr3a5_computerhandover",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Delete Office user (Offboard_1)",
+    "Name": "cr3a5_cr3a5_offboard_deleteuser",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "cr3a5_deleteofficeuser",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "cr3a5_deleteofficeuser",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "HR-Talk (Offboard_1)",
+    "Name": "cr3a5_cr3a5_offboard_hrtalk",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "cr3a5_hrtalk",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "cr3a5_hrtalk",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Phone handover (Offboard_1)",
+    "Name": "cr3a5_cr3a5_offboard_phonehandover",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "cr3a5_phonehandover",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "cr3a5_phonehandover",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Ta bort användare (Offboard_1)",
+    "Name": "cr3a5_cr3a5_offboard_tabortanvandare",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "cr3a5_tabortanvandare",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "cr3a5_tabortanvandare",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (Offboard_1)",
+    "Name": "cr3a5_offboard_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Aktiv",
+      "1": "Inaktiv"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Statusorsak (Offboard_1)",
+    "Name": "cr3a5_offboard_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Aktiv",
+      "2": "Inaktiv"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Archive user (Offboard_1)",
+    "Name": "crf38_cr3a5_offboard_archiveuser",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_archiveuser",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_archiveuser",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Avsluta ID06 (Offboard_1)",
+    "Name": "crf38_cr3a5_offboard_avslutaid06",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_avslutaid06",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_avslutaid06",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Avsluta konto hos Invid och hänvisa mail (Offboard_1)",
+    "Name": "crf38_cr3a5_offboard_avslutakontohosinvidochhanvisamail",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_avslutakontohosinvidochhanvisamail",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_avslutakontohosinvidochhanvisamail",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Avsluta Swedol (Offboard_1)",
+    "Name": "crf38_cr3a5_offboard_avslutaswedol",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_avslutaswedol",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_avslutaswedol",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Avslut och korrigering av lön (Offboard_1)",
+    "Name": "crf38_cr3a5_offboard_avslutochkorrigeringavlon",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_avslutochkorrigeringavlon",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_avslutochkorrigeringavlon",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Block immediately (Offboard_1)",
+    "Name": "crf38_cr3a5_offboard_blockimmediately",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_blockimmediately",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_blockimmediately",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Boka avslutningssamtal (Offboard_1)",
+    "Name": "crf38_cr3a5_offboard_bokaavslutningssamtal",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_bokaavslutningssamtal",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_bokaavslutningssamtal",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Checklista Chef (Offboard_1)",
+    "Name": "crf38_cr3a5_offboard_checklistachef",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_checklistachef",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_checklistachef",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Checklista Ekonomi (Offboard_1)",
+    "Name": "crf38_cr3a5_offboard_checklistaekonomi",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_checklistaekonomi",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_checklistaekonomi",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Checklista HR (Offboard_1)",
+    "Name": "crf38_cr3a5_offboard_checklistahr",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_checklistahr",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_checklistahr",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Checklista IT (Offboard_1)",
+    "Name": "crf38_cr3a5_offboard_checklistait",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_checklistait",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_checklistait",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Informera berörda kollegor (Offboard_1)",
+    "Name": "crf38_cr3a5_offboard_informeraberordakollegor",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_informeraberordakollegor",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_informeraberordakollegor",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Lägg in slutdatum i Hogia (Offboard_1)",
+    "Name": "crf38_cr3a5_offboard_lagginslutdatumihogia",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_lagginslutdatumihogia",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_lagginslutdatumihogia",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Meddela leverantörer (Offboard_1)",
+    "Name": "crf38_cr3a5_offboard_meddelaleverantorer",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_meddelaleverantorer",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_meddelaleverantorer",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Offboard completed (Offboard_1)",
+    "Name": "crf38_cr3a5_offboard_offboardcompleted",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_offboardcompleted",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_offboardcompleted",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Offboard Done (Flow) (Offboard_1)",
+    "Name": "crf38_cr3a5_offboard_offboarddoneflow",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_offboarddoneflow",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_offboarddoneflow",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Offboard started (Offboard_1)",
+    "Name": "crf38_cr3a5_offboard_offboardstarted",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_offboardstarted",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_offboardstarted",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Överlämning av pågående arbetsuppgifter (Offboard_1)",
+    "Name": "crf38_cr3a5_offboard_overlamningavpagaendearbetsuppgifter",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_overlamningavpagaendearbetsuppgifter",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_overlamningavpagaendearbetsuppgifter",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Planera in lämplig avtackning  (Offboard_1)",
+    "Name": "crf38_cr3a5_offboard_planerainlampligavtackning",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_planerainlampligavtackning",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_planerainlampligavtackning",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Radera användaren från dropbox (Offboard_1)",
+    "Name": "crf38_cr3a5_offboard_raderaanvandarenfrandropbox",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_raderaanvandarenfrandropbox",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_raderaanvandarenfrandropbox",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Samla in alla bolagets ägodelar  (Offboard_1)",
+    "Name": "crf38_cr3a5_offboard_samlainallabolagetsagodelar",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_samlainallabolagetsagodelar",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_samlainallabolagetsagodelar",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Spara skriftlig uppsägning (Offboard_1)",
+    "Name": "crf38_cr3a5_offboard_sparaskriftliguppsagning",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_sparaskriftliguppsagning",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_sparaskriftliguppsagning",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Uppdatera next? (Offboard_1)",
+    "Name": "crf38_cr3a5_offboard_uppdateranext",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_uppdateranext",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_uppdateranext",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Uppdatera personalfördelningslistan (Offboard_1)",
+    "Name": "crf38_cr3a5_offboard_uppdaterapersonalfordelningslistan",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_uppdaterapersonalfordelningslistan",
+        "OptionSetReferenceEntityName": "Offboard_1"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_uppdaterapersonalfordelningslistan",
+    "RelatedEntityName": "Offboard_1",
+    "Type": "OptionSetInfo"
+  }
+]

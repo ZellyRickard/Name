@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "2d2b2c34-d7d9-4187-a743-b51b0444dc8c",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "Getgroups",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

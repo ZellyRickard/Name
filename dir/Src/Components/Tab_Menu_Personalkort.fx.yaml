@@ -1,0 +1,53 @@
+Tab_Menu_Personalkort As CanvasComponent:
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =50
+    MenuWith: =100
+    NavItems: |-
+        =Table(
+            {    
+                Title: "Dokument",
+                ID: 1
+            },
+            {    
+                Title: "Utbildningar",
+                ID: 2
+            }, 
+            {    
+                Title: "Switchboard",
+                ID: 3
+            }
+        )
+    SelectedItem: =Gallery3_2.Selected.ID
+    Width: =530
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    Gallery3_2 As gallery.galleryHorizontal:
+        Height: =53
+        Items: =Tab_Menu_Personalkort.NavItems
+        OnSelect: =Tab_Menu_Personalkort.SelectedItem
+        ShowScrollbar: =false
+        TemplateSize: =164
+        Width: =530
+        ZIndex: =1
+
+        Label11_2 As label:
+            Align: =Align.Center
+            Height: =41
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: =ThisItem.Title
+            Width: =164
+            Y: =2
+            ZIndex: =1
+
+        Rectangle6_2 As rectangle:
+            Fill: =ColorValue(First(colorscheme).Röd)
+            Height: =3
+            OnSelect: =Select(Parent)
+            Visible: =ThisItem.IsSelected
+            Width: =164
+            Y: =40
+            ZIndex: =2
+

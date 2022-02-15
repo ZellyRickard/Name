@@ -1,0 +1,158 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "crf38_utvecklingssamtals",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "crf38_utvecklingssamtal",
+    "MaxGetRowsCount": 1500,
+    "Name": "Utvecklingssamtals",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Ägare",
+      "createdby": "Skapad av",
+      "createdon": "Skapad den",
+      "createdonbehalfby": "Skapat av (ombud)",
+      "crf38_checkboxsigneringmedarbetare": "Checkbox Signering Medarbetare",
+      "crf38_Chef": "Chef",
+      "crf38_chef_email": "Chef_Email",
+      "crf38_chefstring": "Chef (String)",
+      "crf38_datum": "Datum",
+      "crf38_forvantningarpaframtidensumaktivutbildn": "6. Förväntningar på framtiden, sum aktiv & utbildn",
+      "crf38_gemensammaforvantingarchef": "3. Gemensamma förväntingar (Chef)",
+      "crf38_gemensammaforvantningarochstodmedarbetare": "2. Gemensamma förväntningar och stöd (Medarbetare)",
+      "crf38_langsiktigamal": "4. Långsiktiga mål",
+      "crf38_Medarbetare": "Medarbetare",
+      "crf38_medarbetarestotalaprestation": "1. Medarbetares totala prestation",
+      "crf38_medarbetarestotalaprestationkommentar": "1. Medarbetares totala prestation kommentar",
+      "crf38_name": "Medarb.",
+      "crf38_onskvardautbildningarsomfinnsforrollen": "5. Önskvärda utbildningar som finns för rollen",
+      "crf38_signeringchef": "Signering - Chef",
+      "crf38_signeringchefid": "crf38_SigneringChefId",
+      "crf38_signeringmedarbetare": "Signering - Medarbetare",
+      "crf38_signeringmedarbetareid": "crf38_SigneringMedarbetareId",
+      "crf38_SummeringAktivitetUtbildning_Relati": "Summering Aktivitet/Utbildnings (crf38_SummeringAktivitetUtbildning_Relati)",
+      "crf38_useremail": "User Email",
+      "crf38_utvecklingssamtal_AsyncOperations": "Systemuppgifter",
+      "crf38_utvecklingssamtal_BulkDeleteFailures": "Fel i massradering",
+      "crf38_Utvecklingssamtal_crf38_Utvecklings": "Summering Aktivitet/Utbildnings (crf38_Utvecklingssamtal_crf38_Utvecklings)",
+      "crf38_utvecklingssamtal_DuplicateBaseRecord": "Dubblettposter (crf38_utvecklingssamtal_DuplicateBaseRecord)",
+      "crf38_utvecklingssamtal_DuplicateMatchingRecord": "Dubblettposter (crf38_utvecklingssamtal_DuplicateMatchingRecord)",
+      "crf38_utvecklingssamtal_MailboxTrackingFolders": "Automatiskt spårade mappar i postlåda",
+      "crf38_utvecklingssamtal_PrincipalObjectAttributeAccesses": "Fältdelning",
+      "crf38_utvecklingssamtal_ProcessSession": "Bearbetningssessioner",
+      "crf38_utvecklingssamtal_SyncErrors": "Synkroniseringsfel",
+      "crf38_utvecklingssamtalid": "Utvecklingssamtal",
+      "importsequencenumber": "Importsekvensnummer",
+      "modifiedby": "Ändrad av",
+      "modifiedon": "Ändrad den",
+      "modifiedonbehalfby": "Ändrat av (ombud)",
+      "overriddencreatedon": "Posten skapades den",
+      "owningbusinessunit": "Ägande affärsenhet",
+      "owningteam": "Ägande team",
+      "owninguser": "Ägande användare",
+      "statecode": "Status",
+      "statuscode": "Statusorsak",
+      "timezoneruleversionnumber": "Versionsnummer för tidszonsregel",
+      "utcconversiontimezonecode": "Tidszonskod för UTC-konvertering",
+      "versionnumber": "Versionsnummer"
+    },
+    "PreferredName": "Utvecklingssamtals",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Utvecklingssamtals (Views)",
+    "Name": "_crf38_utvecklingssamtal_views",
+    "RelatedEntityName": "Utvecklingssamtals",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "04b4c301-be4d-49e4-b5fe-da0121f8dcd4": "Avancerad sökvy för Utvecklingssamtal",
+      "37f15339-3cd7-4d1f-b9c3-ef7e08e0b930": "Aktiva Utvecklingssamtals",
+      "748b8ea1-0d6c-434a-a104-f377e9230ffb": "Uppslagsvy för Utvecklingssamtal",
+      "b0392fd0-fceb-4794-a32c-230d3efd6748": "Associerad vy för Utvecklingssamtal",
+      "c40d5bcb-d323-4ed1-8897-e7392b2183c4": "Inaktiva Utvecklingssamtals"
+    }
+  },
+  {
+    "DisplayName": "Checkbox Signering Medarbetare (Utvecklingssamtals)",
+    "Name": "crf38_crf38_utvecklingssamtal_checkboxsigneringmedarbetare",
+    "OptionSetInfoNameMapping": {
+      "0": "No",
+      "1": "Yes"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_checkboxsigneringmedarbetare",
+        "OptionSetReferenceEntityName": "Utvecklingssamtals"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_checkboxsigneringmedarbetare",
+    "RelatedEntityName": "Utvecklingssamtals",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "1. Medarbetares totala prestation",
+    "Name": "crf38_medarbetarestotalaprestation",
+    "OptionSetInfoNameMapping": {
+      "651160000": "Under förväntan",
+      "651160001": "Enligt förväntan",
+      "651160002": "Över förväntan"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_medarbetarestotalaprestation",
+        "OptionSetReferenceEntityName": "Utvecklingssamtals"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "crf38_medarbetarestotalaprestation",
+    "RelatedEntityName": "Utvecklingssamtals",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (Utvecklingssamtals)",
+    "Name": "crf38_utvecklingssamtal_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Aktiv",
+      "1": "Inaktiv"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Utvecklingssamtals"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Utvecklingssamtals",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Statusorsak (Utvecklingssamtals)",
+    "Name": "crf38_utvecklingssamtal_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Aktiv",
+      "2": "Inaktiv"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Utvecklingssamtals"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Utvecklingssamtals",
+    "Type": "OptionSetInfo"
+  }
+]

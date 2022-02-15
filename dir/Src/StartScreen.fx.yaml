@@ -1,0 +1,438 @@
+StartScreen As screen:
+    BackgroundImage: ='building-1080591'
+    Fill: =RGBA(255, 255, 255, 0.4)
+    ImagePosition: =ImagePosition.Fill
+    OnHidden: |-
+        =UpdateContext({Varusersettings: false})
+
+    Rectangle10 As rectangle:
+        Fill: =RGBA(255, 255, 255, 0.3)
+        Height: =768
+        OnSelect: |-
+            =If(Varusersettings = true, UpdateContext({Varusersettings: false}), UpdateContext({Varusersettings: false}))
+        Width: =1366
+        ZIndex: =1
+
+    Image5 As image:
+        Height: =79
+        Image: ='Dipart-logo'
+        OnSelect: =Navigate(StartScreen)
+        Width: =1366
+        Y: =31
+        ZIndex: =2
+
+    NAV_1 As NAV:
+        Height: =700
+        NavItems: |-
+            =Table(
+                {
+                    Title: "Hem",
+                    Screen: App.ActiveScreen,
+                    Icon: Home
+                },
+                {
+                    Title: "Onboard",
+                    Screen: OnboardScreen,
+                    Icon: EmojiSmile
+                },
+                {
+                    Title: "Offboard",
+                    Screen: Offboard,
+                    Icon: LikeDislike
+                },
+                
+                {
+                    Title: "Switchboard",
+                    Screen: Switchboard,
+                    Icon: Icon.Edit
+                },
+            
+                {    
+                    Title: "Admin",
+                    Screen: Admin,
+                    Icon: Icon.ToolsWrench
+                },
+                {    
+                    Title: "Personalkort",
+                    Screen: App.ActiveScreen,
+                    Icon: Icon.Person
+                },
+                {    
+                    Title: "Utvecklingssamtal",
+                    Screen: 'Employee Info',
+                    Icon: Icon.People
+                },
+                {    
+                    Title: "Utbildningar",
+                    Screen: App.ActiveScreen,
+                    Icon: Icon.Bookmark
+                }
+            )
+        Visible: =false
+        Y: =68
+        ZIndex: =3
+
+    "'Btn Onboard' As button":
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        Fill: =RGBA(255, 255, 255, 0.7)
+        FocusedBorderThickness: |
+            =1
+        Font: =varFont
+        FontWeight: =startscreenbuttonslayout.Fontweight
+        Height: |-
+            =45
+            
+            //startscreenbuttonslayout.Height
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =RGBA(230, 230, 230, 1)
+        OnSelect: =Navigate(OnboardScreen)
+        PressedColor: =RGBA(0, 0, 0, 1)
+        PressedFill: =RGBA(230, 230, 230, 0.3)
+        RadiusBottomLeft: =11
+        RadiusBottomRight: =11
+        RadiusTopLeft: =11
+        RadiusTopRight: =11
+        Size: =startscreenbuttonslayout.Fontsize
+        Text: ="Onboard"
+        Width: |-
+            =266
+            //startscreenbuttonslayout.Width
+        X: =401
+        Y: =285
+        ZIndex: =13
+
+    "'Btn Switchboard' As button":
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        Fill: =RGBA(255, 255, 255, 0.7)
+        FocusedBorderThickness: |
+            =1
+        Font: =varFont
+        FontWeight: =startscreenbuttonslayout.Fontweight
+        Height: |-
+            =45
+            
+            //startscreenbuttonslayout.Height
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =RGBA(230, 230, 230, 1)
+        OnSelect: =Navigate(Switchboard)
+        PressedColor: =RGBA(0, 0, 0, 1)
+        PressedFill: =RGBA(230, 230, 230, 0.3)
+        RadiusBottomLeft: =11
+        RadiusBottomRight: =11
+        RadiusTopLeft: =11
+        RadiusTopRight: =11
+        Size: =startscreenbuttonslayout.Fontsize
+        Text: ="Switchboard"
+        Width: |-
+            =266
+            //startscreenbuttonslayout.Width
+        X: =401
+        Y: =370
+        ZIndex: =14
+
+    "'Btn Utvecklingssamtal' As button":
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        Fill: =RGBA(255, 255, 255, 0.7)
+        FocusedBorderThickness: |
+            =1
+        Font: =varFont
+        FontWeight: =startscreenbuttonslayout.Fontweight
+        Height: |-
+            =45
+            
+            //startscreenbuttonslayout.Height
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =RGBA(230, 230, 230, 1)
+        OnSelect: =Navigate(Utvecklingssamtal)
+        PressedColor: =RGBA(0, 0, 0, 1)
+        PressedFill: =RGBA(230, 230, 230, 0.3)
+        RadiusBottomLeft: =11
+        RadiusBottomRight: =11
+        RadiusTopLeft: =11
+        RadiusTopRight: =11
+        Size: =startscreenbuttonslayout.Fontsize
+        Text: ="Utvecklingssamtal"
+        Width: |-
+            =266
+            //startscreenbuttonslayout.Width
+        X: =401
+        Y: =455
+        ZIndex: =15
+
+    "'Btn Offboard' As button":
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        Fill: =RGBA(255, 255, 255, 0.7)
+        FocusedBorderThickness: |
+            =1
+        Font: =varFont
+        FontWeight: =startscreenbuttonslayout.Fontweight
+        Height: |-
+            =45
+            
+            //startscreenbuttonslayout.Height
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =RGBA(230, 230, 230, 1)
+        OnSelect: =Navigate(Offboard)
+        PressedColor: =RGBA(0, 0, 0, 1)
+        PressedFill: =RGBA(230, 230, 230, 0.3)
+        RadiusBottomLeft: =11
+        RadiusBottomRight: =11
+        RadiusTopLeft: =11
+        RadiusTopRight: =11
+        Size: =startscreenbuttonslayout.Fontsize
+        Text: ="Offboard"
+        Width: |-
+            =266
+            //startscreenbuttonslayout.Width
+        X: =700
+        Y: =285
+        ZIndex: =16
+
+    "'Btn Personalkort' As button":
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        Fill: =RGBA(255, 255, 255, 0.7)
+        FocusedBorderThickness: |
+            =1
+        Font: =varFont
+        FontWeight: =startscreenbuttonslayout.Fontweight
+        Height: |-
+            =45
+            
+            //startscreenbuttonslayout.Height
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =RGBA(230, 230, 230, 1)
+        OnSelect: =Navigate('Employee Info')
+        PressedColor: =RGBA(0, 0, 0, 1)
+        PressedFill: =RGBA(230, 230, 230, 0.3)
+        RadiusBottomLeft: =11
+        RadiusBottomRight: =11
+        RadiusTopLeft: =11
+        RadiusTopRight: =11
+        Size: =startscreenbuttonslayout.Fontsize
+        Text: ="Personalkort"
+        Width: |-
+            =266
+            //startscreenbuttonslayout.Width
+        X: =700
+        Y: =370
+        ZIndex: =17
+
+    "'Btn Utbildning' As button":
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderThickness: =1
+        Color: =RGBA(0, 0, 0, 1)
+        Fill: =RGBA(255, 255, 255, 0.7)
+        FocusedBorderThickness: |
+            =1
+        Font: =varFont
+        FontWeight: =startscreenbuttonslayout.Fontweight
+        Height: |-
+            =45
+            
+            //startscreenbuttonslayout.Height
+        HoverColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =RGBA(230, 230, 230, 1)
+        OnSelect: =Navigate(Education)
+        PressedColor: =RGBA(0, 0, 0, 1)
+        PressedFill: =RGBA(230, 230, 230, 0.3)
+        RadiusBottomLeft: =11
+        RadiusBottomRight: =11
+        RadiusTopLeft: =11
+        RadiusTopRight: =11
+        Size: =startscreenbuttonslayout.Fontsize
+        Text: ="Utbildning"
+        Width: |-
+            =266
+            //startscreenbuttonslayout.Width
+        X: =700
+        Y: =455
+        ZIndex: =18
+
+    "'Dropdown Language' As dropdown":
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderThickness: =1
+        ChevronBackground: =Gray
+        ChevronHoverBackground: =RGBA(204, 204, 204, 1)
+        FocusedBorderThickness: =1
+        Height: =22
+        HoverFill: =RGBA(204, 204, 204, 1)
+        Items: =["Helvetica", "Times New Roman", "Franklin Gothic", "Open Sans"]
+        OnChange: =Set(varFont, 'Dropdown Language'.SelectedText.Value)
+        OnSelect: =//Set(varFont, 'Choose language_10'.SelectedText.Value)
+        PressedFill: =RGBA(204, 204, 204, 1)
+        SelectionFill: =RGBA(204, 204, 204, 1)
+        Size: =8
+        Visible: =Varusersettings
+        Width: =120
+        X: =1213
+        Y: =195
+        ZIndex: =19
+
+    "'Icon Questionmark' As icon.Help":
+        Color: =RGBA(0, 0, 0, 1)
+        Height: =30
+        Icon: =Icon.Help
+        Width: =25
+        X: =1280
+        Y: =16
+        ZIndex: =20
+
+    GroupMeStartScreen As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =20
+
+        Rectangle3 As rectangle:
+            BorderColor: =RGBA(0, 13, 75, 1)
+            Fill: =RGBA(0,0,0,0.4)
+            Height: =245
+            Visible: =Varusersettings
+            Width: =165
+            X: =1200
+            Y: =66
+            ZIndex: =4
+
+        IconCloseMenu As icon.ChevronUp:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =35
+            Icon: =Icon.ChevronUp
+            OnSelect: |-
+                =UpdateContext({Varusersettings: false})
+            Visible: =false//Varusersettings
+            Width: =51
+            X: =1315
+            Y: =134
+            ZIndex: =5
+
+        Language_Title As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =28
+            Size: =10
+            Text: =If(Varlanguage = "Swedish", "Språk", If(Varlanguage = "English", "Language"))
+            Visible: =Varusersettings
+            Width: =93
+            X: =1212
+            Y: =232
+            ZIndex: =6
+
+        "'Choose language' As dropdown":
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            ChevronBackground: =Gray
+            ChevronHoverBackground: =RGBA(179, 179, 179, 1)
+            Default: ="Swedish"
+            DisabledColor: =RGBA(0, 0, 0, 1)
+            FocusedBorderThickness: =1
+            Height: =22
+            HoverFill: =RGBA(204, 204, 204, 1)
+            Items: =["English", "Swedish"]
+            OnChange: =Set(Varlanguage, 'Choose language'.Selected.Value)
+            OnSelect: =//Set(Varlanguage, 'Choose language'.Selected.Value)
+            PressedFill: =RGBA(179, 179, 179, 1)
+            SelectionFill: =RGBA(204, 204, 204, 1)
+            Size: =8
+            Visible: =Varusersettings
+            Width: =120
+            X: =1214
+            Y: =260
+            ZIndex: =7
+
+        Theme As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =28
+            Size: =10
+            Text: =If(Varlanguage = "Swedish", "Font", If(Varlanguage = "English", "Font"))
+            Visible: =Varusersettings
+            Width: =93
+            X: =1212
+            Y: =162
+            ZIndex: =8
+
+        "'SwedishFlag.Image' As image":
+            Height: =23
+            Image: ='Swedish flag'
+            Visible: =If(Varlanguage = "Swedish", true, false) And Varusersettings
+            Width: =19
+            X: =1340
+            Y: =262
+            ZIndex: =9
+
+        "'EnglishFlag.Image' As image":
+            Height: =20
+            Image: ='English flag'
+            Visible: =If(Varlanguage = "English", true, false) And Varusersettings
+            Width: =17
+            X: =1340
+            Y: =262
+            ZIndex: =10
+
+        UserImage As image:
+            Height: =40
+            Image: =User().Image
+            RadiusBottomLeft: =70
+            RadiusBottomRight: =70
+            RadiusTopLeft: =70
+            RadiusTopRight: =70
+            Visible: =Varusersettings
+            Width: =40
+            X: =1265
+            Y: =81
+            ZIndex: =11
+
+        "'User.Name' As label":
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Size: =11
+            Text: =User().FullName
+            Visible: =Varusersettings
+            Width: =160
+            X: =1205
+            Y: =122
+            ZIndex: =12
+
+        IconOpenMenu As icon.ChevronDown:
+            AccessibleLabel: ="PersonalSettings"
+            Color: =RGBA(0, 0, 0, 1)
+            DisplayMode: =DisplayMode.View
+            Height: =25
+            Icon: =Icon.Settings
+            OnSelect: |-
+                =If(Varusersettings = true, UpdateContext({Varusersettings: false}), UpdateContext({Varusersettings: true}))
+            Width: =25
+            X: =1323
+            Y: =18
+            ZIndex: =21
+
+    Label_Varadmin As label:
+        Text: =Varadmin
+        Visible: =false
+        Width: =292
+        X: =491
+        Y: =6
+        ZIndex: =22
+
+    Image1 As image:
+        Height: =82
+        Image: =PowerBiLogo
+        OnSelect: |-
+            =Launch("https://app.powerbi.com/groups/d31df2f1-b876-4415-a222-19a5a01bc2c6/dashboards/50c177fb-80da-4332-9e74-64c3e322d97b")
+        Visible: =If(Varadmin = "zelly.lukas@dipart.se" Or "zelly.rickard@dipart.se" Or "zelly.andre@dipart.se" Or "k-j.brannstrom@dipart.se" Or "Elin.Naverfelt@dipart.se" Or "Erika.Ingerdal@dipart.se" Or "jan.thorsell@dipart.se", true, false)
+        Width: =68
+        X: =1280
+        Y: =669
+        ZIndex: =23
+

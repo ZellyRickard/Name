@@ -1,0 +1,79 @@
+App As appinfo:
+    BackEnabled: =false
+    OnStart: |-
+        =// Tittar vilken behörighet användaren har beroende på vilka AAD-grupper den är med i
+        If(!IsEmpty(AzureAD.CheckMemberGroupsV2(User().Email,["df18ef8c-2a7d-4459-bc9b-463b242ca3ea"]).value), Set(varAccessAdmin, "True"), Set(varAccessAdmin, "False"));
+        If(!IsEmpty(AzureAD.CheckMemberGroupsV2(User().Email,["3c46317a-90bb-43bb-94ea-48f4e77d17c0"]).value), Set(varAccessAOC, "True"), Set(varAccessAOC, "False"));
+        
+        // Sätter variabel beoende på vem som loggar in
+        Set(Varadmin, User().Email);
+        (ClearCollect(allgroupss,AddColumns(AzureAD.GetMemberGroups("k-j.brannstrom@dipart.se",false).Value,"GroupName",AzureAD.GetGroup(Value).displayName)));
+        // Skapar collection för alla datakällor med Concurrent
+        Concurrent(
+        ClearCollect(fontscheme, {Times: "Times New Roman", Helvetica: "Helvetica", Franklin: "Franklin Gothic", Anpassad: "Times New Roman"}),
+        ClearCollect(colorscheme, {Färg1: "#527138", Färg2: "#07060B", Färg3: "#FFFFFF",  Färg4: "#CACACA", Färg5:"#D32B2B", Primary: "#20507B", Svart: "#000000", Röd: "#E20129"}),
+        ClearCollect(Personalkort, ShowColumns(Users, "crf38_tillaggmbledamot", "crf38_skyddsombud", "crf38_kravutbildning_text",
+        "crf38_tillaggplatsansvarig", "crf38_tillaggplatsbas", "crf38_companyazuread", "jobtitle", "fullname",  "internalemailaddress", "crf38_typavanstallning", "mobilephone", "crf38_avdelning", "azureactivedirectoryobjectid", "systemuserid", "crf38_chefensmail", "crf38_tillaggskyddsombud", "crf38_tillaggtext", "crf38_chefensnamn", 
+        "crf38_platsbas", "crf38_userpicture", "crf38_statusaad", "crf38_tillaggvattenbilare", "crf38_personnummer", "crf38_azureadid",
+        "crf38_manager_mailaddress", "crf38_vattenbilare", "crf38_mbledamot", "crf38_Kravutbildningar", "crf38_platsansvarig", "crf38_anstallningsdatum")),
+           
+        //ClearCollect(OnboardData, Onboard),
+        //ClearCollect(Offboardata, Offboard_1),
+        //ClearCollect(Switchboardata, Switchboard_1),
+        //ClearCollect(utvecklingssamtalData, Utvecklingssamtals),
+        //ClearCollect(summeringsData, 'Summering Aktivitet/Utbildnings'),
+        ClearCollect(educationData, Utbildning),
+        ClearCollect(educationDataCompleted, 'Utbildning Utförd')
+        //ClearCollect(Personal, ShowColumns(Users, "jobtitle", "fullname",  "internalemailaddress", "crf38_typavanstallning", "mobilephone", "crf38_avdelning", "azureactivedirectoryobjectid", "systemuserid" ))
+        );
+        
+        // Sätter språk
+        Set(Varlanguage, "Swedish");
+        // Sätter Param på Onboard, Switchboard & Offboard
+        Set(varlinkOnboard, Param("ID_Onboard"));
+        Set(varlinkOnboardIT, Param("ID_Onboard_IT"));
+        Set(varlinkOnboardHR, Param("ID_Onboard_HR"));
+        Set(varlinkOnboardChef, Param("ID_Onboard_Chef"));
+        
+        Set(varlinkOffboard, Param("ID_Offboard"));
+        Set(varlinkOffboardHR, Param("ID_OffboardHR"));
+        Set(varlinkOffboardChef, Param("ID_OffboardChef"));
+        Set(varlinkOffboardEkonomi, Param("ID_OffboardEkonomi"));
+        Set(varlinkOffboardIT, Param("ID_OffboardIT"));
+        
+        
+        Set(varlinkSwitchboard, Param("ID_Switchboard"));
+        Set(varlinkEducation, Param("ID_Education"));
+        Set(varlinkEducationCompleted, Param("ID_EducationCompleted"));
+        
+        
+        // Tittar om det finns någon param. Finns det param tas ID för recordet fram och sätter i variabeln Varlink....
+        If(IsBlank(varlinkOnboardIT),  Set(varlookIT, "No_dataon"), Set(varitemsonboard, LookUp(OnboardData, Onboardin in varlinkOnboardIT)) & Navigate(OnboardScreen));
+        If(IsBlank(varlinkOnboardHR),  Set(varlookIT, "No_dataon"), Set(varitemsonboard, LookUp(OnboardData, Onboardin in varlinkOnboardHR)) & Navigate(OnboardScreen));
+        If(IsBlank(varlinkOnboardChef),  Set(varlookIT, "No_dataon"), Set(varitemsonboard, LookUp(OnboardData, Onboardin in varlinkOnboardChef)) & Navigate(OnboardScreen));
+        If(IsBlank(varlinkOnboard),  Set(varlook, "No_dataon"), Set(varitemsonboard, LookUp(OnboardData, Onboardin in varlinkOnboard)) & Navigate(OnboardScreen));
+        
+        If(IsBlank(varlinkOffboard),  Set(varlook2, "No_dataoff"), Set(varitemsoffboard, LookUp(Offboardata, Offboard in varlinkOffboard)) & Navigate(Offboard));
+        If(IsBlank(varlinkOffboardHR),  Set(varlook2, "No_dataoff"), Set(varitemsoffboard, LookUp(Offboardata, Offboard in varlinkOffboardHR)) & Navigate(Offboard));
+        If(IsBlank(varlinkOffboardChef),  Set(varlook2, "No_dataoff"), Set(varitemsoffboard, LookUp(Offboardata, Offboard in varlinkOffboardChef)) & Navigate(Offboard));
+        If(IsBlank(varlinkOffboardEkonomi),  Set(varlook2, "No_dataoff"), Set(varitemsoffboard, LookUp(Offboardata, Offboard in varlinkOffboardEkonomi)) & Navigate(Offboard));
+        If(IsBlank(varlinkOffboardIT),  Set(varlook2, "No_dataoff"), Set(varitemsoffboard, LookUp(Offboardata, Offboard in varlinkOffboardIT)) & Navigate(Offboard));
+        
+        If(IsBlank(varlinkSwitchboard), Set(varlook3, "No_dataSwitch"), Set(varitemswitchboard, LookUp(Switchboardata, Switchboard in varlinkSwitchboard)) & Navigate(Switchboard));
+        
+        // Kan nog tas bort
+        //If(IsBlank(varlinkOnboard), Set(varOnboardParam, "Param_Mode_On"), Set(varOnboardParam, "Param_Mode_Off"));
+        //If(IsBlank(varlinkOffboard), Set(varOffboardParam, "Param_Mode_On"), Set(varOffboardParam, "Param_Mode_Off"));
+        //If(IsBlank(varlinkSwitchboard), Set(varSwitchboardParam, "Param_Mode_On"), Set(varSwitchboardParam, "Param_Mode_Off"));
+        //If(IsBlank(varlinkEducation), Set(varEducationParam, "Param_Mode_On"), Set(varEducationParam, "Param_Mode_Off"));
+        //If(IsBlank(varlinkEducationCompleted), Set(varEducationCompletedParam, "Param_Mode_On"), Set(varEducationCompletedParam, "Param_Mode_Off"));
+        
+        // Sätter layout för startsidoknapparna
+        Set(startscreenbuttonslayout, {
+            Fontsize: 15,
+            Fontweight: Normal,
+            Width: 266,
+            Height: 45
+        
+        })
+

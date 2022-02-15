@@ -1,0 +1,2594 @@
+"'Employee Info' As screen":
+    BackgroundImage: ='building-1080591'
+    Fill: =RGBA(0, 0, 0, 0)
+    ImagePosition: =ImagePosition.Fill
+    OnHidden: |-
+        =UpdateContext({Varusersettings: false})
+    OnVisible: |-
+        =If(IsBlank(varlinkOnboard),   UpdateContext({vartestar: true}),  UpdateContext({onnboardgalleryEdit: true}));UpdateContext({OnboardingPopVisible: false});Set(onboardscreenlayoutlabels, {
+            Fontsize: 12,
+            Fontweight: Normal
+        });
+        Set(onboardscreenlayoutbuttons, {
+            Fontsize: 10,
+            Fontweight: Normal,
+            Width: 110,
+            Height: 26
+        });
+        
+        Set(Gallerylayoutsettings, {
+            X: 75,
+            Y: 165,
+            Width: 1274,
+            Height: 558
+        });
+        Set(varsortColumn, "fullname"); Set(varsortDirection, Ascending)
+
+    Label_Whitebackground As label:
+        Align: =Align.Center
+        Fill: =RGBA(255, 255, 255, 0.5)
+        Font: =First(fontscheme).Helvetica
+        FontWeight: =FontWeight.Lighter
+        Height: =67
+        Size: =30
+        Text: =//"Onboard"
+        Width: =1366
+        ZIndex: =1
+
+    BlurryBackground_Onboard_2 As rectangle:
+        Fill: =RGBA(0, 0, 0, 0.5)
+        Height: =700
+        Width: =1366
+        Y: =68
+        ZIndex: =2
+
+    Image7 As image:
+        Height: =55
+        Image: ='Dipart-logo'
+        Width: =294
+        ZIndex: =3
+
+    BlurryBackground_Onboard_1 As rectangle:
+        Fill: =RGBA(0, 0, 0, 0.1)
+        Height: =701
+        Width: =1366
+        Y: =67
+        ZIndex: =4
+
+    NAV_8 As NAV:
+        Height: =700
+        NavItems: |-
+            =Table({Title:"Hem",Screen:StartScreen,Icon:Home},{Title:"Onboard",Screen:OnboardScreen,Icon:EmojiSmile},{Title:"Offboard",Screen:Offboard,Icon:LikeDislike},{Title:"Switchboard",Screen:Switchboard,Icon:Icon.Edit},{Title:"Admin",Screen:Admin,Icon:Icon.ToolsWrench},{Title:"Personalkort",Screen:App.ActiveScreen,Icon:Icon.Person},{Title:"Utvecklingssamtal",Screen:Utvecklingssamtal,Icon:Icon.People},{Title:"Utbildningar",Screen:Education,Icon:Icon.Bookmark})
+        Y: =68
+        ZIndex: =5
+
+    Onboard_Button1_2 As button:
+        BorderThickness: =1
+        Fill: =ColorValue(First(colorscheme).Röd)
+        FocusedBorderThickness: =1
+        Font: =varFont
+        FontWeight: =FontWeight.Normal
+        Height: =onboardscreenlayoutbuttons.Height
+        HoverColor: =ColorValue(First(colorscheme).Röd)
+        HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -1%)
+        OnSelect: |
+            =UpdateContext({varutvecklingssamtalpage1: true}); UpdateContext({varonboardbutton: false}); //;; UpdateContext({varitem: Blank()})
+            Set(varlinkOnboard, Blank());
+            Set(varOnboardParam, Blank());
+            UpdateContext({varutvecklingssamtalpage2: false});
+            Set(varitemsutveckl, Blank());
+            UpdateContext({varrightbutton: true});
+        RadiusBottomLeft: =2
+        RadiusBottomRight: =2
+        RadiusTopLeft: =2
+        RadiusTopRight: =2
+        Size: =10
+        Text: =If(Varlanguage = "Swedish", "Skapa ny", If(Varlanguage = "English", "Create new"))
+        Visible: =false
+        Width: =onboardscreenlayoutbuttons.Width
+        X: =1238
+        Y: =83
+        ZIndex: =6
+
+    Searchbox_Employeeinfo As text:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderThickness: =1
+        Clear: =true
+        Default: =""
+        FocusedBorderThickness: =1
+        Font: =varFont
+        FontWeight: =onboardscreenlayoutlabels.Fontweight
+        Height: =26
+        HintText: =If(Varlanguage = "Swedish", "Sök på namn/ affärsområde/ Chef", If(Varlanguage = "English", "Search by name"))
+        HoverBorderColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =RGBA(230, 230, 230, 1)
+        PaddingLeft: =30
+        RadiusBottomLeft: =0
+        RadiusBottomRight: =0
+        RadiusTopLeft: =0
+        RadiusTopRight: =0
+        Size: =10
+        Width: =280
+        X: =270
+        Y: =83
+        ZIndex: =7
+
+    Titel_Startdatum_Onboard_2 As label:
+        Align: =Align.Center
+        FontWeight: =FontWeight.Semibold
+        Height: =35
+        Size: =12
+        Text: =If(Varlanguage = "Swedish", "Skapad av", If(Varlanguage = "English", "Created by"))
+        Width: =160
+        X: =932
+        Y: =127
+        ZIndex: =8
+
+    Banner_Menuonboard_1 As rectangle:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderStyle: =BorderStyle.None
+        Fill: =RGBA(204, 204, 204, 1)
+        Height: =35
+        Width: =1274
+        X: =75
+        Y: =130
+        ZIndex: =9
+
+    CountItemGallery_Onboarding_1 As label:
+        Align: =Align.Center
+        Fill: =RGBA(255, 255, 255, 0.7)
+        Height: =30
+        Size: =10
+        Text: |-
+            =If(Varlanguage = "Swedish", "Objekt i listan: " & CountRows(Gallery_Show_Employeeinfo.AllItems), If(Varlanguage = "English", "Objects in the list: " & CountRows(Gallery_Show_Employeeinfo.AllItems)))
+            //"Amount: " & CountRows(Gallery_Show_Onboard.AllItems)
+        Width: =140
+        X: =75
+        Y: =738
+        ZIndex: =10
+
+    Gallery_Show_Employeeinfo As gallery.galleryVertical:
+        Fill: =RGBA(255, 255, 255, 0.9)
+        Height: =Gallerylayoutsettings.Height
+        Items: |+
+            =If(
+                varAccessAdmin = "True",
+                SortByColumns(
+                    Filter(
+            
+                
+                    Search(
+                        Users,
+                        Searchbox_Employeeinfo.Text,
+                        "fullname",
+                        "crf38_avdelning",
+                        "crf38_chefensnamn",
+                        "title",
+                        "crf38_tillaggtext"
+                    ),
+                    
+            
+                !("#" in 'Fullständigt namn'),
+                !("test" in 'Fullständigt namn'),
+                !("kkkkkkkkkkkkkkkkk" in 'Primär e-post'),
+                !("admin" in 'Fullständigt namn'),
+                !("Integration" in 'Fullständigt namn'),
+                !("system" in 'Fullständigt namn'),
+                !("power" in 'Fullständigt namn'),
+                !("flow" in 'Fullständigt namn'),
+                !("dipart" in 'Fullständigt namn'),
+                !("support" in 'Fullständigt namn'),
+                !("fgdsfds fdsfds" in 'Fullständigt namn'),
+                !("admin@dipartab.onmicrosoft.com" in 'Primär e-post'),
+                !("Bertil Johanson" in 'Fullständigt namn'),
+                !("Fredrik Munkhammar" in 'Fullständigt namn'),
+                !("Kalender Bokning" in 'Fullständigt namn'),
+                !("Karl-Anton Hansback" in 'Fullständigt namn'),
+                !("Peter Lindgren" in 'Fullständigt namn'),
+                !("Samet Akdeve" in 'Fullständigt namn'),
+                !("Sten Löfvenberg" in 'Fullständigt namn'),
+                !("Ulf Bäckström" in 'Fullständigt namn'),
+                !("Vujadin Blagojevic" in 'Fullständigt namn'),
+                !("Zelly Lukas" in 'Fullständigt namn'),
+                !("Zelly" in Förnamn), 
+                !("Haffenberg" in Efternamn))
+                ,
+            
+                varsortColumn, varsortDirection
+            ),
+            varAccessAOC = "True",
+                Filter(
+                Filter(
+                    Search(
+                        Users,
+                        Searchbox_Employeeinfo.Text,
+                        "fullname",
+                        "crf38_avdelning",
+                        "crf38_chefensnamn",
+                        "title"
+                    ),
+                    Avdelning = 'Office365-användare'.UserProfileV2(User().Email).department),
+                    !("#" in 'Fullständigt namn'),
+                    !("test" in 'Fullständigt namn'),
+                    !("kkkkkkkkkkkkkkkkk" in 'Primär e-post'),
+                    !("admin" in 'Fullständigt namn'),
+                    !("Integration" in 'Fullständigt namn'),
+                    !("system" in 'Fullständigt namn'),
+                    !("power" in 'Fullständigt namn'),
+                    !("flow" in 'Fullständigt namn'),
+                    !("dipart" in 'Fullständigt namn'),
+                    !("support" in 'Fullständigt namn'),
+                    !("fgdsfds fdsfds" in 'Fullständigt namn'),
+                    !("admin@dipartab.onmicrosoft.com" in 'Primär e-post'),
+                    !("Bertil Johanson" in 'Fullständigt namn'),
+                    !("Fredrik Munkhammar" in 'Fullständigt namn'),
+                    !("Kalender Bokning" in 'Fullständigt namn'),
+                    !("Karl-Anton Hansback" in 'Fullständigt namn'),
+                    !("Peter Lindgren" in 'Fullständigt namn'),
+                    !("Samet Akdeve" in 'Fullständigt namn'),
+                    !("Sten Löfvenberg" in 'Fullständigt namn'),
+                    !("Ulf Bäckström" in 'Fullständigt namn'),
+                    !("Vujadin Blagojevic" in 'Fullständigt namn'),
+                    !("Zelly Lukas" in 'Fullständigt namn'),
+                    !("Zelly" in Förnamn)
+            
+                ),
+                Filter(
+                Filter(
+                        Search(
+                            Users,
+                            Searchbox_Onboarding.Text,
+                        "fullname",
+                        "crf38_avdelning",
+                        "crf38_chefensnamn",
+                        "title"
+                        ),
+                     
+                    
+                    'Chefens namn' = User().FullName
+            ),
+                    !("#" in 'Fullständigt namn'),
+                    !("test" in 'Fullständigt namn'),
+                    !("kkkkkkkkkkkkkkkkk" in 'Primär e-post'),
+                    !("admin" in 'Fullständigt namn'),
+                    !("Integration" in 'Fullständigt namn'),
+                    !("system" in 'Fullständigt namn'),
+                    !("power" in 'Fullständigt namn'),
+                    !("flow" in 'Fullständigt namn'),
+                    !("dipart" in 'Fullständigt namn'),
+                    !("support" in 'Fullständigt namn'),
+                    !("fgdsfds fdsfds" in 'Fullständigt namn'),
+                    !("admin@dipartab.onmicrosoft.com" in 'Primär e-post'),
+                    !("Bertil Johanson" in 'Fullständigt namn'),
+                    !("Fredrik Munkhammar" in 'Fullständigt namn'),
+                    !("Kalender Bokning" in 'Fullständigt namn'),
+                    !("Karl-Anton Hansback" in 'Fullständigt namn'),
+                    !("Peter Lindgren" in 'Fullständigt namn'),
+                    !("Samet Akdeve" in 'Fullständigt namn'),
+                    !("Sten Löfvenberg" in 'Fullständigt namn'),
+                    !("Ulf Bäckström" in 'Fullständigt namn'),
+                    !("Vujadin Blagojevic" in 'Fullständigt namn'),
+                    !("Zelly Lukas" in 'Fullständigt namn'),
+                    !("Zelly" in Förnamn)
+                
+                
+                ))
+            
+            
+        Layout: =Layout.Vertical
+        OnSelect: |-
+            =UpdateContext({varutvecklingssamtalpage1: true});
+            UpdateContext({onnboardgalleryEdit: true});
+            //UpdateContext({varitem: ThisItem});;
+            UpdateContext({varonboardbutton: true});
+            Set(varitempersonalkort, ThisItem);
+            Set(varOnboardParam, "Param_Mode_Selected");
+            UpdateContext({Varusersettings: false});
+            Set(varUserID, ThisItem.'Användare (systemuserid)');
+            Set(varName, ThisItem.'Fullständigt namn');
+            Set(varUserUPN, ThisItem.Användarnamn);
+            UpdateContext({varrightbutton: true});
+            UpdateContext({varinformation: false})
+            //Set(varID, ThisItem.Utvecklingssamtal)
+        ShowScrollbar: =false
+        TemplateSize: =49
+        Width: =Gallerylayoutsettings.Width
+        X: =Gallerylayoutsettings.X
+        Y: =Gallerylayoutsettings.Y
+        ZIndex: =11
+
+        Rectangle5_1 As rectangle:
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =53
+            HoverFill: =
+            OnSelect: =Select(Parent)
+            PressedFill: =
+            Width: =1264
+            ZIndex: =1
+
+        "'Label_DisplayName /User' As label":
+            Color: =RGBA(134, 136, 187, 1)
+            Height: =30
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: =ThisItem.'Fullständigt namn'
+            Width: =200
+            X: =55
+            Y: =11
+            ZIndex: =2
+
+        Rectangle1_1 As rectangle:
+            Fill: =RGBA(0, 0, 0, 1)
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =1264
+            Y: =50
+            ZIndex: =6
+
+        Label_Affärsområde As label:
+            Align: =Align.Center
+            Height: =30
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: |-
+                =//If(!IsBlank(ThisItem.'Objekt-ID för Azure AD'),Office365Users.UserProfileV2(ThisItem.'Objekt-ID för Azure AD').jobTitle)
+                //If(!IsBlank(ThisItem.Id), 'Office365-användare'.UserProfileV2(ThisItem.Id).jobTitle)
+                ThisItem.Avdelning
+            Width: =200
+            X: =309
+            Y: =11
+            ZIndex: =11
+
+        Label_Phone As label:
+            Align: =Align.Center
+            Height: =30
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: =ThisItem.Mobiltelefon
+            Width: =200
+            X: =821
+            Y: =11
+            ZIndex: =12
+
+        Image_AzureAD_ProfileImage As image:
+            Height: =46
+            Image: |-
+                =//'Office365-användare'.UserPhotoV2(Label_Azure_ADID)
+                ThisItem.'User picture'
+            OnSelect: =Select(Parent)
+            Width: =45
+            ZIndex: =13
+
+        Label_Jobtitle As label:
+            Align: =Align.Center
+            Height: =30
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: |-
+                =//If(!IsBlank(ThisItem.'Objekt-ID för Azure AD'),Office365Users.UserProfileV2(ThisItem.'Objekt-ID för Azure AD').jobTitle)
+                //If(!IsBlank(ThisItem.Id), 'Office365-användare'.UserProfileV2(ThisItem.Id).jobTitle)
+                ThisItem.Rubrik
+            Width: =285
+            X: =536
+            Y: =11
+            ZIndex: =14
+
+        Label_Azure_ADID As label:
+            Color: =RGBA(134, 136, 187, 1)
+            Height: =30
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: =IfError(AzureAD.GetUser(ThisItem.'Objekt-ID för Azure AD').id, "")
+            Visible: =false
+            Width: =200
+            X: =212
+            Y: =8
+            ZIndex: =15
+
+        Label_Jobtitle_1 As label:
+            Align: =Align.Center
+            Height: =30
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: |-
+                =//If(!IsBlank(ThisItem.'Objekt-ID för Azure AD'),Office365Users.UserProfileV2(ThisItem.'Objekt-ID för Azure AD').jobTitle)
+                //If(!IsBlank(ThisItem.Id), 'Office365-användare'.UserProfileV2(ThisItem.Id).jobTitle)
+                //IfError('Office365-användare'.ManagerV2(ThisItem.'Objekt-ID för Azure AD').displayName, "")
+                ThisItem.'Chefens namn'
+            Width: =243
+            X: =995
+            Y: =11
+            ZIndex: =16
+
+    SearchIconOnboard_4 As icon.Search:
+        Color: =RGBA(149, 149, 149, 1)
+        Height: =22
+        Icon: =Icon.Search
+        Width: =25
+        X: =270
+        Y: =85
+        ZIndex: =12
+
+    Titel_Namn_Onboard_1 As label:
+        Font: =varFont
+        FontWeight: =onboardscreenlayoutlabels.Fontweight
+        Height: =34
+        Size: =12
+        Text: =If(Varlanguage = "Swedish", "Namn", If(Varlanguage = "English", "Name"))
+        Width: =200
+        X: =76
+        Y: =130
+        ZIndex: =13
+
+    "'lbl manager empl Info' As label":
+        Align: =Align.Center
+        Font: =varFont
+        FontWeight: =onboardscreenlayoutlabels.Fontweight
+        Height: =35
+        Size: =12
+        Text: =If(Varlanguage = "Swedish", "Chef", If(Varlanguage = "English", "Manager"))
+        Width: =84
+        X: =1160
+        Y: =130
+        ZIndex: =14
+
+    Rectangle9 As rectangle:
+        Fill: =RGBA(0, 0, 0, 0.7)
+        Height: =768
+        OnSelect: |-
+            =UpdateContext({varutvecklingssamtalpage2:  false}); UpdateContext({varutvecklingssamtalpage1:  false});
+            UpdateContext({varutvecklingssamtal:  false}); Set(varchecklist,Blank()); UpdateContext({VarPicture: false});
+            Refresh(Utvecklingssamtals); ClearCollect(utvecklingssamtalData, Utvecklingssamtals)
+        Visible: =varutvecklingssamtalpage1 Or varutvecklingssamtalpage2
+        Width: =1366
+        ZIndex: =15
+
+    "'lbl title employeeInfo' As label":
+        Align: =Align.Center
+        Font: =varFont
+        FontWeight: =onboardscreenlayoutlabels.Fontweight
+        Height: =34
+        Size: =12
+        Text: =If(Varlanguage = "Swedish", "Affärsområde", If(Varlanguage = "English", "Business area"))
+        Width: =200
+        X: =388
+        Y: =130
+        ZIndex: =24
+
+    "'lbl title employeeInfo_1' As label":
+        Align: =Align.Center
+        Font: =varFont
+        FontWeight: =onboardscreenlayoutlabels.Fontweight
+        Height: =34
+        Size: =12
+        Text: =If(Varlanguage = "Swedish", "Telefon", If(Varlanguage = "English", "Phone"))
+        Width: =200
+        X: =896
+        Y: =129
+        ZIndex: =27
+
+    FilterDateOnboard_1 As icon.ArrowsUpDown:
+        Color: =RGBA(0, 0, 0, 1)
+        Height: =18
+        Icon: =Icon.Sort
+        Visible: =false
+        Width: =18
+        X: =1165
+        Y: =137
+        ZIndex: =28
+
+    "'btn ''Tillbaka''_1' As button":
+        BorderThickness: =1
+        Fill: =ColorValue(First(colorscheme).Röd)
+        FocusedBorderThickness: =1
+        Font: =varFont
+        FontWeight: =FontWeight.Normal
+        Height: =onboardscreenlayoutbuttons.Height
+        HoverColor: =ColorValue(First(colorscheme).Röd)
+        HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -5%)
+        OnSelect: =Back()
+        RadiusBottomLeft: =2
+        RadiusBottomRight: =2
+        RadiusTopLeft: =2
+        RadiusTopRight: =2
+        Size: =10
+        Text: =If(Varlanguage = "Swedish", "Tillbaka", If(Varlanguage = "English", "Back"))
+        Width: =onboardscreenlayoutbuttons.Width
+        X: =76
+        Y: =83
+        ZIndex: =29
+
+    Onboardpopupscreen_3 As rectangle:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =656
+        Visible: =varutvecklingssamtalpage1 Or varutvecklingssamtalpage2
+        Width: =1288
+        X: =45
+        Y: =66
+        ZIndex: =30
+
+    Icon_Background_4 As button:
+        BorderThickness: =0
+        Fill: =ColorValue(First(colorscheme).Svart)
+        Height: =28
+        HoverFill: =ColorValue(First(colorscheme).Svart)
+        RadiusBottomLeft: =20
+        RadiusBottomRight: =20
+        RadiusTopLeft: =20
+        RadiusTopRight: =20
+        Text: =""
+        Visible: =varutvecklingssamtalpage1 Or varutvecklingssamtalpage2
+        Width: =28
+        X: =1323
+        Y: =47
+        ZIndex: =32
+
+    Closedownpopup_1 As icon.Cancel:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =24
+        HoverColor: =RGBA(204, 204, 204, 1)
+        Icon: =Icon.Cancel
+        OnSelect: |-
+            =UpdateContext({varutvecklingssamtal:  false}); Set(varchecklist,Blank());
+            UpdateContext({varutvecklingssamtalpage2:  false}); UpdateContext({varutvecklingssamtalpage1:  false}); UpdateContext({varbtnförvantan: ""}); UpdateContext({VarPicture: false});
+            Refresh(Utvecklingssamtals); ClearCollect(utvecklingssamtalData, Utvecklingssamtals)
+        Visible: =varutvecklingssamtalpage1 Or varutvecklingssamtalpage2
+        Width: =24
+        X: =1325
+        Y: =49
+        ZIndex: =33
+
+    Label14 As label:
+        Align: =Align.Center
+        FontWeight: =FontWeight.Semibold
+        Height: =49
+        Size: =25
+        Text: ="PERSONALKORT"
+        Visible: =varutvecklingssamtalpage1 Or varutvecklingssamtalpage2
+        Width: =350
+        X: =513
+        Y: =68
+        ZIndex: =34
+
+    "'lbl title employeeInfo_5' As label":
+        Align: =Align.Center
+        Font: =varFont
+        FontWeight: =onboardscreenlayoutlabels.Fontweight
+        Height: =34
+        Size: =12
+        Text: =If(Varlanguage = "Swedish", "Jobbtitel", If(Varlanguage = "English", "Title"))
+        Width: =200
+        X: =662
+        Y: =131
+        ZIndex: =35
+
+    EmployeeGalleryPage As gallery.galleryVertical:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =614
+        Items: |-
+            =Gallery_Show_Employeeinfo.Selected
+            //If(IsBlank(varitempersonalkort), FirstN('Employee Info', 1), varitempersonalkort)
+        Layout: =Layout.Vertical
+        ShowScrollbar: =false
+        TemplateSize: =607
+        Visible: =varutvecklingssamtalpage1
+        Width: =1280
+        X: =51
+        Y: =108
+        ZIndex: =39
+
+        Rectangle4 As rectangle:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Fill: =RGBA(230, 230, 230, 1)
+            Height: =350
+            OnSelect: =Select(Parent)
+            Width: =500
+            X: =74
+            Y: =225
+            ZIndex: =1
+
+        Label_UserID As label:
+            Height: =45
+            OnSelect: =Select(Parent)
+            Text: =varUserID
+            Visible: =false
+            Width: =332
+            X: =385
+            Y: =75
+            ZIndex: =10
+
+        Icon9 As icon.Camera:
+            Color: =RGBA(0, 0, 0, 1)
+            Height: =16
+            Icon: =Icon.Camera
+            Visible: =false
+            Width: =28
+            X: =425
+            Y: =30
+            ZIndex: =11
+
+        "'Spara bild' As button":
+            BorderThickness: =1
+            DisplayMode: |
+                =DisplayMode.Edit
+            Fill: =ColorValue(First(colorscheme).Färg1)
+            FocusedBorderThickness: =1
+            FontWeight: =FontWeight.Normal
+            Height: =15
+            HoverColor: =ColorValue(First(colorscheme).Svart)
+            HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -1%)
+            OnSelect: |+
+                =
+                Patch(Users, ThisItem,
+                    {
+                    'User picture': UploadedImage1.Image
+                    }
+                
+                );
+                Reset(AddMediaButton1);
+                Refresh(Users)
+                    
+                
+            RadiusBottomLeft: =2
+            RadiusBottomRight: =2
+            RadiusTopLeft: =2
+            RadiusTopRight: =2
+            Size: =9
+            Text: =If(Varlanguage = "Swedish", "Spara bild", If(Varlanguage = "English", "Save"))
+            Width: =85
+            X: =337
+            Y: =123
+            ZIndex: =12
+
+        "'Image Profile' As image":
+            Height: =70
+            Image: =Last(AttachmentProfileImage_Control.Attachments).Value//UploadedImage1.Image
+            RadiusBottomLeft: =1
+            RadiusBottomRight: =1
+            RadiusTopLeft: =1
+            RadiusTopRight: =1
+            Width: =70
+            X: =346
+            Y: =59
+            ZIndex: =13
+
+        Label12 As label:
+            FontWeight: =FontWeight.Semibold
+            Height: =25
+            OnSelect: |-
+                =UpdateContext({varshowimage: true})
+            Size: =9
+            Text: ="Visa bild"
+            Visible: =false//If(IsBlank(ThisItem.'User picture'), false, true)
+            Width: =65
+            X: =171
+            Y: =145
+            ZIndex: =16
+
+        "'Image Profile_1' As image":
+            Height: =110
+            Image: =ThisItem.'User picture'.Full
+            OnSelect: =
+            RadiusBottomLeft: =1
+            RadiusBottomRight: =1
+            RadiusTopLeft: =1
+            RadiusTopRight: =1
+            Width: =141
+            X: =133
+            Y: =13
+            ZIndex: =18
+
+        AddMediaWithImage1 As group:
+            Height: =5
+            Width: =5
+            X: =-579
+            Y: =-107
+            ZIndex: =19
+
+            UploadedImage1 As image:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                Height: =50
+                Image: =If(IsBlank(AddMediaButton1.Media), SampleImage, AddMediaButton1.Media)
+                ImagePosition: =ImagePosition.Fill
+                RadiusBottomLeft: =100
+                RadiusBottomRight: =100
+                RadiusTopLeft: =100
+                RadiusTopRight: =100
+                Width: =50
+                X: =356
+                Y: =59
+                ZIndex: =14
+
+            AddMediaButton1 As addMedia:
+                BorderColor: =RGBA(0, 0, 0, 0)
+                ChangePictureText: ="Ändra/Lägg bild"
+                Height: =25
+                OnSelect: |-
+                    =UpdateContext({VarPicture: true})
+                Size: =9
+                Text: ="Ändra/Lägg bild"
+                Width: =110
+                X: =326
+                Y: =21
+                ZIndex: =15
+
+        Platsbas_1 As label:
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: |-
+                =If(Varlanguage = "Swedish", "Platsbas:", If(Varlanguage = "English", "Location base:"))
+            Visible: =varinformation And varutvecklingssamtalpage1
+            Width: =130
+            X: =341
+            Y: =248
+            ZIndex: =26
+
+        "'lbl Platsansvarig_1' As label":
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: |-
+                =If(Varlanguage = "Swedish", "Platsansvarig:", If(Varlanguage = "English", "Site manager:"))
+            Visible: =varinformation And varutvecklingssamtalpage1
+            Width: =130
+            X: =341
+            Y: =303
+            ZIndex: =27
+
+        "'lbl Skyddsombud_1' As label":
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: |-
+                =If(Varlanguage = "Swedish", "Skyddsombud:", If(Varlanguage = "English", "Safety representative:"))
+            Visible: =varinformation And varutvecklingssamtalpage1
+            Width: =130
+            X: =341
+            Y: =354
+            ZIndex: =28
+
+        "'lbl Vattenbilar_1' As label":
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: |-
+                =If(Varlanguage = "Swedish", "Vattenbilare:", If(Varlanguage = "English", "Vattenbilare:"))
+            Visible: =varinformation And varutvecklingssamtalpage1
+            Width: =130
+            X: =341
+            Y: =410
+            ZIndex: =29
+
+        "'lbl MB-ledamot_1' As label":
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: |-
+                =If(Varlanguage = "Swedish", "MB-ledamot:", If(Varlanguage = "English", "MB-Commissioner:"))
+            Visible: =varinformation And varutvecklingssamtalpage1
+            Width: =130
+            X: =341
+            Y: =458
+            ZIndex: =30
+
+        "'Checkbox Platsbas_1' As checkbox":
+            BorderColor: =RGBA(0, 0, 0, 0)
+            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+            CheckboxSize: =35
+            Default: |-
+                =ThisItem.'Tillägg: Platsbas'
+            Height: =44
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: =""
+            Visible: =varinformation And varutvecklingssamtalpage1
+            Width: =40
+            X: =481
+            Y: =243
+            ZIndex: =31
+
+        "'Checkbox Platsansvarig_1' As checkbox":
+            BorderColor: =RGBA(0, 0, 0, 0)
+            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+            CheckboxSize: =35
+            Default: |-
+                =ThisItem.'Tillägg: Platsansvarig'
+            Height: =44
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: =""
+            Visible: =varinformation And varutvecklingssamtalpage1
+            Width: =40
+            X: =481
+            Y: =302
+            ZIndex: =32
+
+        "'Checkbox Skyddsombud_1' As checkbox":
+            BorderColor: =RGBA(0, 0, 0, 0)
+            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+            CheckboxSize: =35
+            Default: |-
+                =ThisItem.'Tillägg: Skyddsombud'
+            Height: =44
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: =""
+            Visible: =varinformation And varutvecklingssamtalpage1
+            Width: =40
+            X: =481
+            Y: =350
+            ZIndex: =33
+
+        "'Checkbox Vattenbilar_1' As checkbox":
+            BorderColor: =RGBA(0, 0, 0, 0)
+            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+            CheckboxSize: =35
+            Default: |-
+                =ThisItem.'Tillägg: Vattenbilare'
+            Height: =44
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: =""
+            Visible: =varinformation And varutvecklingssamtalpage1
+            Width: =40
+            X: =481
+            Y: =404
+            ZIndex: =34
+
+        "'Checkbox MB-ledamot_1' As checkbox":
+            BorderColor: =RGBA(0, 0, 0, 0)
+            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+            CheckboxSize: =35
+            Default: |-
+                =ThisItem.'Tillägg: MB-ledamot'
+            Height: =44
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: =""
+            Visible: |
+                =varinformation And varutvecklingssamtalpage1
+            Width: =40
+            X: =481
+            Y: =452
+            ZIndex: =35
+
+        Button4_1 As button:
+            Fill: =RGBA(0, 0, 0, 1)
+            FontWeight: =FontWeight.Normal
+            Height: =28
+            HoverColor: =RGBA(0, 0, 0, 1)
+            HoverFill: =RGBA(255, 255, 255, 1)
+            OnSelect: |-
+                =Patch(Users, ThisItem,
+                    {
+                        'Tillägg: Platsbas': 'Checkbox Platsbas_1'.Value,
+                        'Tillägg: Platsansvarig': 'Checkbox Platsansvarig_1'.Value,
+                        'Tillägg: Skyddsombud': 'Checkbox Skyddsombud_1'.Value,
+                        'Tillägg: Vattenbilare': 'Checkbox Vattenbilar_1'.Value,
+                        'Tillägg: MB-ledamot': 'Checkbox MB-ledamot_1'.Value
+                
+                    })
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Size: =11
+            Text: ="Spara"
+            Visible: =varinformation And varutvecklingssamtalpage1
+            Width: =100
+            X: =461
+            Y: =531
+            ZIndex: =36
+
+        Button_FollowSharePointSiteFlow_1 As button:
+            BorderThickness: =1
+            DisplayMode: |
+                =DisplayMode.Edit
+            Fill: =ColorValue(First(colorscheme).Färg1)
+            FocusedBorderThickness: =1
+            FontWeight: =FontWeight.Normal
+            Height: =25
+            HoverColor: =ColorValue(First(colorscheme).Svart)
+            HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -1%)
+            OnSelect: ='HRApp-FollowSiteinSharePoint'.Run(varUserUPN)
+            RadiusBottomLeft: =2
+            RadiusBottomRight: =2
+            RadiusTopLeft: =2
+            RadiusTopRight: =2
+            Size: =9
+            Text: =If(Varlanguage = "Swedish", "SharePoint följ site", If(Varlanguage = "English", "SharePoint follow site"))
+            Visible: |-
+                =Switch(Varadmin, "jan.thorsell@dipart.se", true, "zelly.lukas@dipart.se", true, "zelly.rickard@dipart.se", "powerapps.hr.test@dipart.se")
+                
+                //If(Varadmin = "zelly.lukas@dipart.se", If(Varadmin = "jan.thorsell@dipart.se", If(Varadmin = "zelly.rickard@zelly.se", true, false)))
+            Width: =153
+            X: =84
+            Y: =547
+            ZIndex: =37
+
+        Group_EmployeeInformation As group:
+            Height: =5
+            Width: =5
+            X: =40
+            Y: =40
+            ZIndex: =46
+
+            Label_Jobtitle_Header As label:
+                FontWeight: =FontWeight.Semibold
+                Height: =20
+                OnSelect: =Select(Parent)
+                Size: =10
+                Text: =If(Varlanguage = "Swedish", "Jobbtitel", If(Varlanguage = "English", "Title"))
+                Visible: =!varinformation And varutvecklingssamtalpage1
+                Width: =129
+                X: =Label_EmployeementDate_Header.X
+                Y: =Label_EmployeementDate_Header.Y + 35
+                ZIndex: =2
+
+            Label_Jobtitle_Value As label:
+                Height: =20
+                OnSelect: =Select(Parent)
+                Size: =10
+                Text: |-
+                    =//If(!IsBlank(ThisItem.Id), 'Office365-användare'.UserProfileV2(ThisItem.Id).jobTitle)
+                    ThisItem.Rubrik
+                Visible: =!varinformation And varutvecklingssamtalpage1
+                Width: =300
+                X: =Label_EmployeementDate_Value.X
+                Y: =Label_Jobtitle_Header.Y
+                ZIndex: =3
+
+            Label_Phone_Header As label:
+                FontWeight: =FontWeight.Semibold
+                Height: =20
+                OnSelect: =Select(Parent)
+                Size: =10
+                Text: =If(Varlanguage = "Swedish", "Telefonnummer", If(Varlanguage = "English", "Phonenumber"))
+                Visible: =!varinformation And varutvecklingssamtalpage1
+                Width: =149
+                X: =Label_Jobtitle_Header.X
+                Y: =Label_Jobtitle_Header.Y + 35
+                ZIndex: =4
+
+            Label_Phone_Value As label:
+                Height: =20
+                OnSelect: |-
+                    =Launch("tel:" & ThisItem.Mobiltelefon)
+                Size: =10
+                Text: =ThisItem.Mobiltelefon
+                Visible: =!varinformation And varutvecklingssamtalpage1
+                Width: =300
+                X: =Label_Jobtitle_Value.X
+                Y: =Label_Phone_Header.Y
+                ZIndex: =5
+
+            Label_Manager_Header As label:
+                FontWeight: =FontWeight.Semibold
+                Height: =20
+                OnSelect: =Select(Parent)
+                Size: =10
+                Text: =If(Varlanguage = "Swedish", "Chef", If(Varlanguage = "English", "Manager"))
+                Visible: =!varinformation And varutvecklingssamtalpage1
+                Width: =149
+                X: =Label_Affärsområde_Header.X
+                Y: =Label_Affärsområde_Header.Y + 35
+                ZIndex: =6
+
+            Label_Mail_Header As label:
+                FontWeight: =FontWeight.Semibold
+                Height: =20
+                OnSelect: =Select(Parent)
+                Size: =10
+                Text: =If(Varlanguage = "Swedish", "Mejl", If(Varlanguage = "English", "Mail"))
+                Visible: =!varinformation And varutvecklingssamtalpage1
+                Width: =149
+                X: =Label_Manager_Header.X
+                Y: =Label_Manager_Header.Y + 35
+                ZIndex: =8
+
+            Label_Mail_Value As label:
+                Height: =20
+                OnSelect: |-
+                    =Launch("mailto:" & ThisItem.'Primär e-post')
+                Size: =10
+                Text: |-
+                    =//If(!IsBlank(ThisItem.Id), 'Office365-användare'.UserProfileV2(ThisItem.Id).mail)
+                    ThisItem.'Primär e-post'
+                Underline: =true
+                Visible: =!varinformation And varutvecklingssamtalpage1
+                Width: =300
+                X: =Label_Manager_Value.X
+                Y: =Label_Mail_Header.Y
+                ZIndex: =9
+
+            Label_Affärsområde_Header As label:
+                FontWeight: =FontWeight.Semibold
+                Height: =20
+                OnSelect: =Select(Parent)
+                Size: =10
+                Text: =If(Varlanguage = "Swedish", "Affärsområde", If(Varlanguage = "English", "Business area"))
+                Visible: =!varinformation And varutvecklingssamtalpage1
+                Width: =129
+                X: =Label_Phone_Header.X
+                Y: =Label_Phone_Header.Y + 35
+                ZIndex: =19
+
+            Label_Affärsområde_Value As label:
+                Height: =20
+                OnSelect: =Select(Parent)
+                Size: =10
+                Text: =ThisItem.Avdelning
+                Visible: =!varinformation And varutvecklingssamtalpage1
+                Width: =300
+                X: =Label_Phone_Value.X
+                Y: =Label_Affärsområde_Header.Y
+                ZIndex: =20
+
+            Label_Manager_Value As label:
+                Height: =20
+                OnSelect: =Select(Parent)
+                Size: =10
+                Text: =IfError('Office365-användare'.ManagerV2(ThisItem.'Objekt-ID för Azure AD').displayName, "")
+                Visible: =!varinformation And varutvecklingssamtalpage1
+                Width: =300
+                X: =Label_Affärsområde_Value.X
+                Y: =Label_Manager_Header.Y
+                ZIndex: =21
+
+            Label_EmployeementType_Header As label:
+                FontWeight: =FontWeight.Semibold
+                Height: =20
+                OnSelect: =Select(Parent)
+                Size: =10
+                Text: =If(Varlanguage = "Swedish", "Typ av anställning", If(Varlanguage = "English", "Mail"))
+                Visible: =!varinformation And varutvecklingssamtalpage1
+                X: =Label_Mail_Header.X
+                Y: =Label_Mail_Header.Y + 35
+                ZIndex: =22
+
+            Label_EmployeementType_Value As label:
+                Height: =20
+                OnSelect: =Select(Parent)
+                Size: =10
+                Text: |-
+                    =//If(!IsBlank(ThisItem.Id), 'Office365-användare'.UserProfileV2(ThisItem.Id).mail)
+                    ThisItem.'Typ av anställning'
+                Underline: =true
+                Visible: =!varinformation And varutvecklingssamtalpage1
+                Width: =300
+                X: =Label_Mail_Value.X
+                Y: =Label_EmployeementType_Header.Y
+                ZIndex: =23
+
+            Label_SocialSecurityNumber_Header As label:
+                FontWeight: =FontWeight.Semibold
+                Height: =20
+                OnSelect: =Select(Parent)
+                Size: =10
+                Text: =If(Varlanguage = "Swedish", "Personnummer", If(Varlanguage = "English", "Social security number"))
+                Visible: =!varinformation And varutvecklingssamtalpage1
+                Width: =129
+                X: =101
+                Y: =251
+                ZIndex: =42
+
+            Label_SocialSecurityNumber_value As label:
+                Height: =22
+                OnSelect: =Select(Parent)
+                Size: =10
+                Text: =ThisItem.Personnummer
+                Visible: =!varinformation And varutvecklingssamtalpage1
+                Width: =300
+                X: =Label_SocialSecurityNumber_Header.X + 161
+                Y: =Label_SocialSecurityNumber_Header.Y
+                ZIndex: =43
+
+            Label_EmployeementDate_Header As label:
+                FontWeight: =FontWeight.Semibold
+                Height: =20
+                OnSelect: =Select(Parent)
+                Size: =10
+                Text: =If(Varlanguage = "Swedish", "Anställningsdatum", If(Varlanguage = "English", "Date of employment"))
+                Visible: =!varinformation And varutvecklingssamtalpage1
+                Width: =145
+                X: =Label_SocialSecurityNumber_Header.X
+                Y: =Label_SocialSecurityNumber_Header.Y + 35
+                ZIndex: =44
+
+            Label_EmployeementDate_Value As label:
+                Height: =20
+                OnSelect: =Select(Parent)
+                Size: =10
+                Text: =Text(ThisItem.Anställningsdatum, "[$-sv]dd-mmm-yyyy")
+                Visible: =!varinformation And varutvecklingssamtalpage1
+                Width: =300
+                X: =Label_SocialSecurityNumber_value.X
+                Y: =Label_EmployeementDate_Header.Y
+                ZIndex: =45
+
+        Group_Icon_Education_Information As group:
+            Height: =5
+            Width: =5
+            X: =40
+            Y: =40
+            ZIndex: =46
+
+            Icon_ThumbsUp_Description As icon.Check:
+                BorderColor: =RGBA(54, 176, 75, 1)
+                Color: =RGBA(54, 176, 75, 1)
+                DisplayMode: =DisplayMode.View
+                Height: =30
+                Icon: =Icon.ThumbsUp
+                OnSelect: =Select(Parent)
+                Visible: =If(Dropdown_Filter_Galleries_EmployeeInfo.Selected.ID = 2, true,false) And varutvecklingssamtalpage1
+                Width: =20
+                X: =764
+                Y: =120
+                ZIndex: =38
+
+            Icon_Clock_Description As icon.Check:
+                BorderColor: =RGBA(54, 176, 75, 1)
+                Color: =RGBA(255, 0, 0, 1)
+                DisplayMode: =DisplayMode.View
+                Height: =30
+                Icon: =Icon.Alarm
+                OnSelect: =Select(Parent)
+                Visible: =If(Dropdown_Filter_Galleries_EmployeeInfo.Selected.ID = 2, true,false) And varutvecklingssamtalpage1
+                Width: =20
+                X: =764
+                Y: =79
+                ZIndex: =39
+
+            Label_ThumbsUp_Description As label:
+                Height: =27
+                Italic: =true
+                OnSelect: =Select(Parent)
+                Size: =10
+                Text: ="Den genomförda utbildningen har utgått"
+                Visible: =If(Dropdown_Filter_Galleries_EmployeeInfo.Selected.ID = 2, true,false) And varutvecklingssamtalpage1
+                Width: =251
+                X: =784
+                Y: =82
+                ZIndex: =40
+
+            Label_ThumbsUp_Description_1 As label:
+                Height: =24
+                Italic: =true
+                OnSelect: =Select(Parent)
+                Size: =10
+                Text: ="Önskvärda utbildningen är genomförd"
+                Visible: =If(Dropdown_Filter_Galleries_EmployeeInfo.Selected.ID = 2, true,false) And varutvecklingssamtalpage1
+                Width: =239
+                X: =781
+                Y: =123
+                ZIndex: =41
+
+    Tab_Menu_Personalkort_1 As Tab_Menu_Personalkort:
+        Visible: =false//varutvecklingssamtalpage1
+        X: =745
+        Y: =203
+        ZIndex: =40
+
+    Rectangle9_1 As rectangle:
+        Fill: =RGBA(0, 0, 0, 0.8)
+        Height: =768
+        OnSelect: |-
+            =UpdateContext({varutvecklingssamtalpage3:  false})
+        Visible: =varutvecklingssamtalpage3
+        Width: =1366
+        ZIndex: =41
+
+    Digital_Signering As gallery.galleryVertical:
+        Fill: =RGBA(241, 244, 249, 1)
+        Height: =640
+        Items: |-
+            =If(IsBlank(varitemsutveckl), 
+            FirstN(Utvecklingssamtals, 1), varitemsutveckl)
+        Layout: =Layout.Vertical
+        TemplateSize: =625
+        Visible: =varutvecklingssamtalpage3
+        Width: =1276
+        X: =51
+        Y: =82
+        ZIndex: =42
+
+        Label26 As label:
+            Align: =Align.Center
+            Height: =78
+            OnSelect: =Select(Parent)
+            Size: =36
+            Text: ="Digital signering"
+            Width: =1265
+            ZIndex: =1
+
+        Label28 As label:
+            FontWeight: =FontWeight.Semibold
+            OnSelect: =Select(Parent)
+            Text: ="Chefens signering"
+            Width: =226
+            X: =667
+            Y: =126
+            ZIndex: =2
+
+        Label28_1 As label:
+            FontWeight: =FontWeight.Semibold
+            OnSelect: =Select(Parent)
+            Text: ="Medarbetarens signering"
+            Width: =226
+            X: =25
+            Y: =126
+            ZIndex: =3
+
+        "'MedarbetareSign.Value' As inkControl":
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Height: =332
+            OnSelect: =Select(Parent)
+            Width: =580
+            X: =25
+            Y: =166
+            ZIndex: =4
+
+        "'ChefSign.Value' As inkControl":
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Height: =332
+            OnSelect: =Select(Parent)
+            Reset: =true
+            Width: =580
+            X: =667
+            Y: =166
+            ZIndex: =5
+
+        Save_Button_Onboard_9 As button:
+            DisplayMode: |
+                =DisplayMode.Edit
+            Fill: =ColorValue(First(colorscheme).Röd)
+            FocusedBorderThickness: =1
+            Height: =31
+            HoverColor: =ColorValue(First(colorscheme).Röd)
+            HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -1%)
+            OnSelect: |+
+                =If(IsBlank(varitemsutveckl), 
+                Patch(Utvecklingssamtals, Defaults(Utvecklingssamtals),
+                    {
+                    'Signering - Chef': 'ChefSign.Value'.Image
+                  
+                
+                    }),
+                    Patch(Utvecklingssamtals, ThisItem,
+                    {
+                    
+                    'Signering - Chef': 'ChefSign.Value'.Image
+                    }
+                    ));
+                
+                    UpdateContext({varstarttimerright: true})
+                    
+                
+                
+                
+                
+            RadiusBottomLeft: =2
+            RadiusBottomRight: =2
+            RadiusTopLeft: =2
+            RadiusTopRight: =2
+            Size: =9
+            Text: =If(Varlanguage = "Swedish", "Spara signering", If(Varlanguage = "English", "Save sign"))
+            Visible: |-
+                =true
+                //varutvecklingssamtalpage1 Or varutvecklingssamtalpage2
+            Width: =114
+            X: =684
+            Y: =453
+            ZIndex: =6
+
+        "'KlarsigneringChef.Image' As image":
+            BorderColor: =RGBA(204, 204, 204, 1)
+            BorderStyle: =BorderStyle.Dashed
+            Height: =127
+            Image: =If(IsBlank(varitemsutveckl), Blank(), ThisItem.'Signering - Chef')
+            OnSelect: =Select(Parent)
+            Width: =350
+            X: =821
+            Y: =498
+            ZIndex: =7
+
+        "'KlarSignering.Image' As image":
+            Height: =125
+            Image: =If(IsBlank(varitemsutveckl), Blank(), ThisItem.'Signering - Medarbetare')
+            OnSelect: =Select(Parent)
+            Visible: =If(IsBlank(ThisItem.'Signering - Medarbetare'), false, true)
+            Width: =350
+            X: =165
+            Y: =500
+            ZIndex: =8
+
+        Label28_2 As label:
+            FontWeight: =FontWeight.Semibold
+            OnSelect: =Select(Parent)
+            Text: ="Signering klar?"
+            Width: =139
+            X: =25
+            Y: =500
+            ZIndex: =9
+
+        Checkbox_MedarbetareSign As checkbox:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+            CheckboxSize: =50
+            CheckmarkFill: =RGBA(127, 178, 57, 1)
+            Default: =If(IsBlank('KlarSignering.Image'.Image), false, true)
+            DisplayMode: =DisplayMode.View
+            OnSelect: =Select(Parent)
+            PressedColor: =RGBA(0, 0, 0, 1)
+            Text: =""
+            Width: =56
+            X: =66
+            Y: =540
+            ZIndex: =10
+
+        Label28_3 As label:
+            FontWeight: =FontWeight.Semibold
+            OnSelect: =Select(Parent)
+            Text: ="Signering klar?"
+            Width: =139
+            X: =667
+            Y: =500
+            ZIndex: =11
+
+        Checkbox_ChefSign As checkbox:
+            BorderColor: =RGBA(0, 0, 0, 0)
+            CheckboxBorderColor: =RGBA(0, 0, 0, 1)
+            CheckboxSize: =50
+            CheckmarkFill: =RGBA(127, 178, 57, 1)
+            Default: =If(IsBlank('KlarsigneringChef.Image'.Image), false, true)
+            DisplayMode: =DisplayMode.View
+            OnSelect: =Select(Parent)
+            PressedColor: =RGBA(0, 0, 0, 1)
+            Text: =""
+            Width: =56
+            X: =708
+            Y: =540
+            ZIndex: =12
+
+        Save_Button_Onboard_11 As button:
+            DisplayMode: |
+                =DisplayMode.Edit
+            Fill: =ColorValue(First(colorscheme).Röd)
+            FocusedBorderThickness: =1
+            Height: =31
+            HoverColor: =ColorValue(First(colorscheme).Röd)
+            HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -1%)
+            OnSelect: |+
+                =If(IsBlank(varitemsutveckl), 
+                Patch(Utvecklingssamtals, Defaults(Utvecklingssamtals),
+                    {
+                    'Signering - Medarbetare':  'MedarbetareSign.Value'.Image,
+                    'Checkbox Signering Medarbetare': true
+                  
+                
+                    }),
+                    Patch(Utvecklingssamtals, ThisItem,
+                    {
+                    
+                    'Signering - Medarbetare': 'MedarbetareSign.Value'.Image,
+                    'Checkbox Signering Medarbetare': true
+                  
+                    }
+                    ));
+                    UpdateContext({varstarttimerright: true});
+                    Refresh(Utvecklingssamtals); ClearCollect(utvecklingssamtalData, Utvecklingssamtals);
+                
+                
+                
+                
+            RadiusBottomLeft: =2
+            RadiusBottomRight: =2
+            RadiusTopLeft: =2
+            RadiusTopRight: =2
+            Size: =9
+            Text: =If(Varlanguage = "Swedish", "Spara signering", If(Varlanguage = "English", "Save sign"))
+            Visible: |-
+                =true
+                //varutvecklingssamtalpage1 Or varutvecklingssamtalpage2
+            Width: =114
+            X: =37
+            Y: =453
+            ZIndex: =19
+
+    Closedownpopup_2 As icon.Cancel:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =24
+        HoverColor: =RGBA(204, 204, 204, 1)
+        Icon: =Icon.Cancel
+        OnSelect: |-
+            =UpdateContext({varutvecklingssamtalpage3:  false})
+        Visible: =varutvecklingssamtalpage3
+        Width: =24
+        X: =1322
+        Y: =63
+        ZIndex: =43
+
+    Image3 As image:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =12
+        Image: ='Message-1s-200px (2)'
+        Visible: =varstartgifright
+        Width: =366
+        X: =908
+        Y: =756
+        ZIndex: =44
+
+    Timer1 As timer:
+        Duration: =1400
+        OnTimerEnd: |-
+            =UpdateContext({varstartgifright: false});
+            UpdateContext({varstarttimerright: false})
+        OnTimerStart: |-
+            =UpdateContext({varstartgifright: true})
+        Start: =varstarttimerright
+        Visible: =false
+        X: =1084
+        Y: =97
+        ZIndex: =45
+
+    Image3_1 As image:
+        Height: =252
+        Image: ='Message-1s-200px (2)'
+        Visible: =varstartgifright
+        Width: =660
+        X: =358
+        Y: =289
+        ZIndex: =46
+
+    Label_Name As label:
+        Align: =Align.Center
+        Color: =ColorValue(First(colorscheme).Röd)
+        FontWeight: =FontWeight.Semibold
+        Height: =28
+        Size: =16
+        Text: =varName
+        Visible: =varutvecklingssamtalpage1 Or varutvecklingssamtalpage2
+        Width: =350
+        X: =513
+        Y: =125
+        ZIndex: =47
+
+    Gallery_Employee_SharePointDocuments As gallery.galleryVertical:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderThickness: =1
+        Height: =350
+        Items: =SortByColumns(Filter(Employees, 'User ID' = Label_UserID.Text), "Title", Descending)
+        Layout: =Layout.Vertical
+        OnSelect: =Launch(ThisItem.'Link to item')
+        ShowScrollbar: =false
+        TemplateSize: =48
+        Visible: =If(Dropdown_Filter_Galleries_EmployeeInfo.Selected.ID = 1, true,false) And varutvecklingssamtalpage1
+        Width: =556
+        X: =750
+        Y: =338
+        ZIndex: =48
+
+        Label6 As label:
+            Height: =38
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: =ThisItem.Name
+            Width: =295
+            X: =45
+            Y: =7
+            ZIndex: =2
+
+        Image6 As image:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =30
+            Image: |-
+                =If(ThisItem.IsFolder, 'Documents icon', If(
+                    EndsWith(
+                        ThisItem.'File name with extension',
+                        "png"
+                    ),
+                    ThisItem.Miniatyr.Large,
+                    If(
+                        EndsWith(
+                            ThisItem.'File name with extension',
+                            "pdf"
+                        ),
+                        'PDF icon',
+                    If(
+                        EndsWith(
+                            ThisItem.'File name with extension',
+                            "docx"
+                        ),
+                        WordIcon,
+                    If(
+                        EndsWith(
+                            ThisItem.'File name with extension',
+                            "doc"
+                        ),WordIcon,
+                    If(
+                        EndsWith(
+                            ThisItem.'File name with extension',
+                            "jpg"
+                        ),
+                        ThisItem.Miniatyr.Large,
+                    If(
+                        EndsWith(
+                            ThisItem.'File name with extension',
+                            "jpeg"
+                        ),
+                        ThisItem.Miniatyr.Large
+                    )
+                ))))))
+                //If(ThisItem.ÄrMapp, 'Documents icon', 
+            OnSelect: =Select(Parent)
+            Width: =30
+            X: =5
+            Y: =3
+            ZIndex: =5
+
+        Label6_3 As label:
+            Height: =26
+            OnSelect: =Select(Parent)
+            Size: =9
+            Text: =ThisItem.'Utbildningens namn'
+            Width: =171
+            X: =340
+            Y: =7
+            ZIndex: =6
+
+    AttachmentFilesControl_Employee As attachments:
+        AddAttachmentText: =If(Varlanguage = "Swedish", "Klicka här för att bifoga fil", If(Varlanguage = "English", "Click here to add attachment"))
+        BorderColor: =
+        BorderThickness: =0
+        DropTargetBorderThickness: =1
+        FocusedBorderThickness: |
+            =1
+        Height: =90
+        IsInDataCard: =true
+        Items: =
+        MaxAttachments: =1
+        MaxAttachmentsText: =
+        NoAttachmentsText: =
+        OnAddFile: |-
+            =Set(
+                VarFile,
+                JSON(
+                    FlowFiles.Image,
+                    JSONFormat.IncludeBinaryData
+                )
+            );
+            Set(
+                VarBase64,
+                Mid(
+                    VarFile,
+                    Find(
+                        ",",
+                        VarFile
+                    ) + 1,
+                    Len(VarFile) - Find(
+                        ",",
+                        VarFile
+                    ) - 1
+                )
+            );
+            ClearCollect(
+                attachmentsList_Employee,
+                {
+                    name: AttachmentFilesControl_Employee.Attachments,
+                    media: VarFile,
+                    Base64: VarBase64
+                }
+            );
+            Set(
+                varfile2,
+                Concat(
+                    AttachmentFilesControl_Employee.Attachments.Name,
+                    Name & ""
+                )
+            );
+            ForAll(
+                attachmentsList_Employee,
+                'DipartHR-AddfiletoSharePoint'.Run(
+                    varUserID,
+                    varName,
+                    varfile2,
+                    VarBase64,
+                    varUserUPN
+                )
+            );Reset(AttachmentFilesControl_Employee);Refresh(Employees)
+        PaddingBottom: =5
+        PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+        PaddingRight: =5
+        PaddingTop: =5
+        Size: =11
+        Tooltip: =
+        Visible: =If(Dropdown_Filter_Galleries_EmployeeInfo.Selected.ID = 1, true,false) And varutvecklingssamtalpage1
+        Width: =215
+        X: =1090
+        Y: =597
+        ZIndex: =49
+
+    FlowFiles As image:
+        Image: =Last(AttachmentFilesControl_Employee.Attachments).Value
+        Visible: =false
+        X: =563
+        Y: =470
+        ZIndex: =50
+
+    Gallery_Personalkort_ÖnskadeUTB As gallery.galleryVertical:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderThickness: =1
+        Height: =350
+        Items: =ComboBox_Users_Kravutbildning.Selected.Utbildning
+        Layout: =Layout.Vertical
+        ShowScrollbar: =false
+        TemplateSize: =45
+        Visible: =If(Dropdown_Filter_Galleries_EmployeeInfo.Selected.ID = 2, true,false) And If(Dropdown_Filter_Educations.Selected.ID = 2, true,false) And varutvecklingssamtalpage1
+        Width: =556
+        X: =750
+        Y: =338
+        ZIndex: =51
+
+        Label_ÖnskadUTB As label:
+            Height: =25
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: =ThisItem.'Utbildning/Kurs'
+            Width: =335
+            X: =13
+            Y: =6
+            ZIndex: =1
+
+        Label17_4 As label:
+            Height: =25
+            OnSelect: =//Filter(Employees, UtbildningsID = Gallery_Personalkort_UtfördaUTB.AllItems, Label_UtfördUTB_ID)
+            Size: =10
+            Text: =LookUp(Gallery_Personalkort_UtfördaUTB.AllItems, StartsWith(Label_ÖnskadUTB.Text, Label_UtfördUTB.Text), true)
+            Visible: =false
+            Width: =63
+            X: =394
+            Y: =6
+            ZIndex: =2
+
+        Rectangle11_1 As rectangle:
+            BorderColor: =RGBA(179, 179, 179, 1)
+            Fill: =ColorValue(First(colorscheme).Röd)
+            Height: =2
+            OnSelect: =Select(Parent)
+            Width: =500
+            X: =15
+            Y: =38
+            ZIndex: =3
+
+        Icon10 As icon.Check:
+            BorderColor: =RGBA(54, 176, 75, 1)
+            Color: =RGBA(54, 176, 75, 1)
+            DisplayMode: =DisplayMode.View
+            Height: =30
+            Icon: =Icon.ThumbsUp
+            OnSelect: =Select(Parent)
+            Visible: =LookUp(Gallery_Personalkort_UtfördaUTB.AllItems, StartsWith(Label_ÖnskadUTB.Text, Label_UtfördUTB.Text), true)
+            Width: =20
+            X: =500
+            Y: =1
+            ZIndex: =4
+
+        Label17_16 As label:
+            Height: =25
+            OnSelect: =
+            Size: =10
+            Text: =Text(ThisItem.'Giltighetstid (År)' & " år")
+            Width: =63
+            X: =361
+            Y: =6
+            ZIndex: =5
+
+    Label_Switchboard_Header_Date As label:
+        Align: =Align.Center
+        Height: =25
+        Size: =12
+        Text: =If(Varlanguage = "Swedish", "Datum", If(Varlanguage = "English", "Date"))
+        Visible: =If(Dropdown_Filter_Galleries_EmployeeInfo.Selected.ID = 3, true,false) And varutvecklingssamtalpage1 Or varutvecklingssamtalpage2
+        Width: =85
+        X: =774
+        Y: =311
+        ZIndex: =52
+
+    GroupMeOnboard_1 As group:
+        Height: =5
+        Width: =5
+        X: =1
+        Y: =20
+        ZIndex: =52
+
+        IconOpenMenu_10 As icon.ChevronDown:
+            AccessibleLabel: ="PersonalSettings"
+            Color: =RGBA(0, 0, 0, 1)
+            DisplayMode: =DisplayMode.Disabled
+            Height: =25
+            Icon: =Icon.Settings
+            OnSelect: |-
+                =If(Varusersettings = true, UpdateContext({Varusersettings: false}), UpdateContext({Varusersettings: true}))
+            Width: =25
+            X: =1323
+            Y: =18
+            ZIndex: =16
+
+        Rectangle3_10 As rectangle:
+            BorderColor: =RGBA(0, 13, 75, 1)
+            Fill: |-
+                =RGBA(0,0,0,0.8
+                )
+            Height: =245
+            Visible: =Varusersettings
+            Width: =165
+            X: =1201
+            Y: =68
+            ZIndex: =17
+
+        IconCloseMenu_10 As icon.ChevronUp:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =35
+            Icon: =Icon.ChevronUp
+            OnSelect: |-
+                =UpdateContext({Varusersettings: false})
+            Visible: =false//Varusersettings
+            Width: =51
+            X: =1228
+            ZIndex: =18
+
+        Language_Title_10 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =28
+            Size: =10
+            Text: =If(Varlanguage = "Swedish", "Språk", If(Varlanguage = "English", "Language"))
+            Visible: =Varusersettings
+            Width: =93
+            X: =1228
+            Y: =234
+            ZIndex: =19
+
+        "'Choose language_21' As dropdown":
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            ChevronBackground: =Gray
+            ChevronHoverBackground: =RGBA(179, 179, 179, 1)
+            Default: ="Swedish"
+            DisabledColor: =RGBA(0, 0, 0, 1)
+            FocusedBorderThickness: =1
+            Height: =22
+            HoverFill: =RGBA(204, 204, 204, 1)
+            Items: =["English", "Swedish"]
+            OnChange: =Set(Varlanguage, 'Choose language_21'.Selected.Value)
+            OnSelect: =Set(Varlanguage, 'Choose language_21'.Selected.Value)
+            PressedFill: =RGBA(179, 179, 179, 1)
+            SelectionFill: =RGBA(204, 204, 204, 1)
+            Size: =8
+            Visible: =Varusersettings
+            Width: =97
+            X: =1230
+            Y: =262
+            ZIndex: =20
+
+        Theme_10 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =28
+            Size: =10
+            Text: =If(Varlanguage = "Swedish", "Tema", If(Varlanguage = "English", "Theme"))
+            Visible: =Varusersettings
+            Width: =93
+            X: =1228
+            Y: =164
+            ZIndex: =21
+
+        "'Choose language_20' As dropdown":
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            ChevronBackground: =Gray
+            ChevronHoverBackground: =RGBA(204, 204, 204, 1)
+            FocusedBorderThickness: =1
+            Height: =22
+            HoverFill: =RGBA(204, 204, 204, 1)
+            Items: =["Theme 1", "Theme 2"]
+            OnChange: =
+            OnSelect: =
+            PressedFill: =RGBA(204, 204, 204, 1)
+            SelectionFill: =RGBA(204, 204, 204, 1)
+            Size: =8
+            Visible: =Varusersettings
+            Width: =97
+            X: =1230
+            Y: =194
+            ZIndex: =22
+
+        "'SwedishFlag.Image_10' As image":
+            Height: =23
+            Image: ='Swedish flag'
+            Visible: =If(Varlanguage = "Swedish", true, false) And Varusersettings
+            Width: =19
+            X: =1331
+            Y: =264
+            ZIndex: =23
+
+        "'EnglishFlag.Image_10' As image":
+            Height: =20
+            Image: ='English flag'
+            Visible: =If(Varlanguage = "English", true, false) And Varusersettings
+            Width: =17
+            X: =1331
+            Y: =264
+            ZIndex: =25
+
+        UserImage_10 As image:
+            Height: =40
+            Image: =User().Image
+            RadiusBottomLeft: =70
+            RadiusBottomRight: =70
+            RadiusTopLeft: =70
+            RadiusTopRight: =70
+            Visible: =Varusersettings
+            Width: =40
+            X: =1266
+            Y: =83
+            ZIndex: =26
+
+        "'User.Name_10' As label":
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Size: =11
+            Text: =User().FullName
+            Visible: =Varusersettings
+            Width: =160
+            X: =1206
+            Y: =124
+            ZIndex: =31
+
+    Gallery_Personalkort_UtfördaUTB As gallery.galleryVertical:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderThickness: =1
+        Height: =350
+        Items: =Filter(educationDataCompleted, 'Anställd UPN' = varUserUPN)
+        Layout: =Layout.Vertical
+        ShowScrollbar: =false
+        TemplateSize: =45
+        Visible: =If(Dropdown_Filter_Galleries_EmployeeInfo.Selected.ID = 2, true,false) And If(Dropdown_Filter_Educations.Selected.ID = 1, true,false) And varutvecklingssamtalpage1
+        Width: =556
+        X: =750
+        Y: =338
+        ZIndex: =53
+
+        Label_UtfördUTB As label:
+            Height: =25
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: =ThisItem.'Utbildning/Kurs'.'Utbildning/Kurs'
+            Width: =287
+            X: =13
+            Y: =6
+            ZIndex: =1
+
+        Label17_17 As label:
+            Height: =25
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: =Text(ThisItem.'Datum utförande', "[$-sv]dd-mmm-yyyy")
+            Width: =90
+            X: =300
+            Y: =6
+            ZIndex: =2
+
+        Rectangle11_2 As rectangle:
+            BorderColor: =RGBA(179, 179, 179, 1)
+            Fill: =ColorValue(First(colorscheme).Röd)
+            Height: =2
+            OnSelect: =Select(Parent)
+            Width: =500
+            X: =15
+            Y: =38
+            ZIndex: =3
+
+        Label17_19 As label:
+            Height: =25
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: =Text(ThisItem.Förfallodatum, "[$-sv]dd-mmm-yyyy")
+            Width: =93
+            X: =408
+            Y: =6
+            ZIndex: =4
+
+        Icon_UtfördUTB_Utgått As icon.Check:
+            BorderColor: =RGBA(54, 176, 75, 1)
+            Color: =RGBA(255, 0, 0, 1)
+            DisplayMode: =DisplayMode.View
+            Height: =30
+            Icon: =Icon.Alarm
+            OnSelect: =Select(Parent)
+            Visible: |-
+                =If(Now() > ThisItem.Förfallodatum, true, false)
+                
+                //LookUp(Gallery_Personalkort_UtfördaUTB.AllItems.Förfallodatum
+                
+                //LookUp(Gallery_Personalkort_UtfördaUTB.AllItems, StartsWith(Label_ÖnskadUTB.Text, Label_UtfördUTB.Text), true)
+            Width: =20
+            X: =500
+            Y: =1
+            ZIndex: =5
+
+    Gallery_User As gallery.galleryVertical:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderThickness: =1
+        Default: =First(Gallery_User.AllItems)
+        Height: =73
+        Items: =Filter(Users, Användarnamn = varUserUPN)
+        Layout: =Layout.Vertical
+        TemplateSize: =45
+        Visible: =false
+        Width: =437
+        X: =32
+        Y: =47
+        ZIndex: =54
+
+        Label17_18 As label:
+            Height: =27
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: =ThisItem.'Fullständigt namn'
+            Width: =228
+            X: =13
+            Y: =6
+            ZIndex: =1
+
+        Label17_20 As label:
+            Height: =27
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: =ThisItem.'Användare (systemuserid)'
+            Width: =228
+            X: =168
+            Y: =6
+            ZIndex: =4
+
+    ComboBox_Users_Kravutbildning As combobox:
+        DefaultSelectedItems: =Gallery_User.Selected.'Krav utbildningar'
+        DisplayFields: =["crf38_yrkesroll"]
+        Height: =102
+        IsSearchable: =false
+        Items: =Gallery_User.Selected.'Krav utbildningar'
+        SearchFields: =["crf38_yrkesroll"]
+        SearchItems: =[]
+        Visible: =false
+        Width: =435
+        X: =156
+        Y: =183
+        ZIndex: =55
+
+    Gallery_Personalkort_Switchboard As gallery.galleryVertical:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderThickness: =1
+        Height: =350
+        Items: =Filter(Switchboardata, 'Searchable Name (Switchboard)' = varName)
+        Layout: =Layout.Vertical
+        ShowScrollbar: =false
+        TemplateSize: =53
+        Visible: =If(Dropdown_Filter_Galleries_EmployeeInfo.Selected.ID = 3, true,false) And varutvecklingssamtalpage1
+        Width: =556
+        X: =750
+        Y: =338
+        ZIndex: =56
+
+        Label17_21 As label:
+            Height: =27
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: =Text(ThisItem.Datum, "[$-sv]dd-mmm-yyyy")
+            Width: =228
+            X: =13
+            Y: =6
+            ZIndex: =1
+
+        Label17_22 As label:
+            Height: =25
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: =ThisItem.'Skapad av'.'Fullständigt namn'
+            Width: =132
+            X: =241
+            Y: =6
+            ZIndex: =2
+
+        Rectangle11_3 As rectangle:
+            BorderColor: =RGBA(179, 179, 179, 1)
+            Fill: =ColorValue(First(colorscheme).Röd)
+            Height: =2
+            OnSelect: =Select(Parent)
+            Width: =500
+            X: =13
+            Y: =38
+            ZIndex: =3
+
+    BLurryBlurry As rectangle:
+        Fill: =RGBA(0, 0, 0, 0.7)
+        Height: =768
+        OnSelect: |-
+            =UpdateContext({varshowimage: false, varshowChanges: false})
+        Visible: =varshowimage Or varshowChanges
+        Width: =1366
+        ZIndex: =57
+
+    Gallery4 As gallery.galleryVertical:
+        Items: =Gallery_Show_Employeeinfo.Selected
+        Layout: =Layout.Vertical
+        TemplateSize: =519
+        Visible: =varshowimage
+        X: =388
+        Y: =87
+        ZIndex: =58
+
+        Image11 As image:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =461
+            Image: ='Image Profile_1'.Image
+            OnSelect: =Select(Parent)
+            Width: =587
+            X: =20
+            Y: =30
+            ZIndex: =1
+
+    Label_Switchboard_Header_CreatedBy As label:
+        Align: =Align.Center
+        Height: =25
+        Size: =12
+        Text: =If(Varlanguage = "Swedish", "Skapad av", If(Varlanguage = "English", "Created by"))
+        Visible: =If(Dropdown_Filter_Galleries_EmployeeInfo.Selected.ID = 3, true,false) And varutvecklingssamtalpage1 Or varutvecklingssamtalpage2
+        Width: =128
+        X: =978
+        Y: =311
+        ZIndex: =59
+
+    Label_Switchboard_Header_SeeMore As label:
+        Height: =25
+        OnSelect: |-
+            =UpdateContext({varshowChanges: true})
+        Size: =10
+        Text: ="Se mer"
+        Underline: =true
+        Visible: =If(Dropdown_Filter_Galleries_EmployeeInfo.Selected.ID = 3, true,false) And varutvecklingssamtalpage1 Or varutvecklingssamtalpage2
+        Width: =60
+        X: =1180
+        Y: =311
+        ZIndex: =60
+
+    Dropdown_Filter_Educations As dropdown:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderThickness: =1
+        ChevronBackground: =RGBA(0, 0, 0, 1)
+        ChevronHoverBackground: =
+        FocusedBorderThickness: =1
+        Height: =31
+        HoverBorderColor: =
+        HoverFill: =RGBA(230, 230, 230, 1)
+        Items: |-
+            =Table(
+                {    
+                    Title: "Utförda",
+                    ID: 1
+                },
+                {    
+                    Title: "Önskvärda",
+                    ID: 2
+                }
+            )
+        PressedFill: =RGBA(230, 230, 230, 1)
+        SelectionColor: =RGBA(0, 0, 0, 1)
+        SelectionFill: =RGBA(230, 230, 230, 1)
+        Size: =11
+        Visible: =If(Dropdown_Filter_Galleries_EmployeeInfo.Selected.ID = 2, true,false) And varutvecklingssamtalpage1
+        Width: =179
+        X: =1126
+        Y: =235
+        ZIndex: =61
+
+    FlowFiles_1 As image:
+        Image: =Last(AttachmentFilesControl_Employee.Attachments).Value
+        Visible: =false
+        X: =595
+        Y: =361
+        ZIndex: =62
+
+    Label34 As label:
+        Align: =Align.Center
+        Height: =150
+        Italic: =true
+        Size: =12
+        Text: ="Inga ändringar har genomförts för " & varName
+        Visible: =If(IsBlank(Gallery_Personalkort_Switchboard.Selected), true, false) And varutvecklingssamtalpage1 And varshowChanges = false And If(Tab_Menu_Personalkort_1.SelectedItem = 3, true,false)
+        Width: =288
+        X: =852
+        Y: =438
+        ZIndex: =63
+
+    Banner_Menuonboard_3 As rectangle:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderStyle: =BorderStyle.None
+        Fill: =RGBA(204, 204, 204, 1)
+        Height: =35
+        Visible: =varshowChanges
+        Width: =1090
+        X: =144
+        Y: =97
+        ZIndex: =64
+
+    Label_Name_Gallery_Personalkort_Switchboard As label:
+        Height: =32
+        Text: =If(Varlanguage = "Swedish", "Tidigare jobbtitel", If(Varlanguage = "English", "Previous jobtitle"))
+        Visible: =varshowChanges
+        X: =158
+        Y: =97
+        ZIndex: =65
+
+    Label_Name_Gallery_Personalkort_Switchboard_1 As label:
+        Height: =33
+        Text: =If(Varlanguage = "Swedish", "Tidiagare affärsområde", If(Varlanguage = "English", "Previous businessunit"))
+        Visible: =varshowChanges
+        Width: =209
+        X: =511
+        Y: =97
+        ZIndex: =66
+
+    Label_Name_Gallery_Personalkort_Switchboard_2 As label:
+        Align: =Align.Center
+        Height: =32
+        Text: =If(Varlanguage = "Swedish", "Datum", If(Varlanguage = "English", "New businessunit"))
+        Visible: =varshowChanges
+        Width: =162
+        X: =925
+        Y: =97
+        ZIndex: =67
+
+    Label_Name_Gallery_Personalkort_Switchboard_3 As label:
+        Height: =32
+        Text: =If(Varlanguage = "Swedish", "Nytt affärsområde", If(Varlanguage = "English", "New businessunit"))
+        Visible: =varshowChanges
+        Width: =162
+        X: =746
+        Y: =97
+        ZIndex: =68
+
+    Label_Name_Gallery_Personalkort_Switchboard_4 As label:
+        Align: =Align.Center
+        Height: =32
+        Text: =If(Varlanguage = "Swedish", "Inskickad av", If(Varlanguage = "English", "Requested by"))
+        Visible: =varshowChanges
+        Width: =162
+        X: =1075
+        Y: =97
+        ZIndex: =69
+
+    Label_Name_Gallery_Personalkort_Switchboard_5 As label:
+        Height: =32
+        Text: =If(Varlanguage = "Swedish", "Tidigare jobbtitel", If(Varlanguage = "English", "Previous jobtitle"))
+        Visible: =varshowChanges
+        X: =339
+        Y: =97
+        ZIndex: =70
+
+    Gallery_Personalkort_Switchboard_1 As gallery.galleryVertical:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderThickness: =1
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =531
+        Items: =Filter(Switchboardata, 'Searchable Name (Switchboard)' = varName)
+        Layout: =Layout.Vertical
+        ShowScrollbar: =false
+        TemplateSize: =53
+        Visible: =varshowChanges
+        Width: =1090
+        X: =144
+        Y: =131
+        ZIndex: =71
+
+        Label17_27 As label:
+            Align: =Align.Center
+            Height: =25
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: =Text(ThisItem.Datum, "[$-sv]dd-mmm-yyyy")
+            Width: =159
+            X: =781
+            Y: =6
+            ZIndex: =1
+
+        Label17_28 As label:
+            Align: =Align.Center
+            Height: =25
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: =ThisItem.'New job title'
+            Width: =144
+            X: =187
+            Y: =6
+            ZIndex: =2
+
+        Rectangle11_4 As rectangle:
+            BorderColor: =RGBA(179, 179, 179, 1)
+            Fill: =ColorValue(First(colorscheme).Röd)
+            Height: =2
+            OnSelect: =Select(Parent)
+            Width: =1000
+            X: =37
+            Y: =40
+            ZIndex: =3
+
+        Label17_29 As label:
+            Align: =Align.Center
+            Height: =25
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: =ThisItem.'Skapad av'.'Fullständigt namn'
+            Width: =159
+            X: =921
+            Y: =6
+            ZIndex: =4
+
+        Label17_30 As label:
+            Align: =Align.Center
+            Height: =25
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: =ThisItem.'Current jobtitle'
+            Width: =146
+            X: =13
+            Y: =6
+            ZIndex: =5
+
+        Label17_31 As label:
+            Align: =Align.Center
+            Height: =25
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: =ThisItem.'Current department'
+            Width: =163
+            X: =379
+            Y: =6
+            ZIndex: =6
+
+        Label17_32 As label:
+            Align: =Align.Center
+            Height: =25
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: =ThisItem.'New department'
+            Width: =146
+            X: =601
+            Y: =6
+            ZIndex: =7
+
+    "'Icon Sort' As icon.ArrowsUpDown":
+        Color: =RGBA(0, 0, 0, 1)
+        Height: =25
+        Icon: =Icon.Sort
+        OnSelect: |-
+            =UpdateContext({varSortUser: true})
+        Visible: =false
+        Width: =20
+        X: =133
+        Y: =135
+        ZIndex: =72
+
+    AttachmentProfileImage_Control As attachments:
+        AddAttachmentText: =If(Varlanguage = "Swedish", "Ändra/lägg bild", If(Varlanguage = "English", "Change/Add picture"))
+        BorderColor: =
+        BorderThickness: =0
+        DisabledBorderColor: =
+        DisabledColor: =
+        DropTargetBorderThickness: =1
+        FocusedBorderColor: =
+        FocusedBorderThickness: =0
+        Height: =84
+        IsInDataCard: =true
+        Items: =
+        MaxAttachments: =1
+        MaxAttachmentsText: =
+        NoAttachmentsText: =
+        OnAddFile: |-
+            =Set(
+                VarImageProfile,
+                JSON(
+                    'Image Profile'.Image,
+                    JSONFormat.IncludeBinaryData
+                )
+            );
+            Set(
+                VarImageBase64,
+                Mid(
+                    VarImageProfile,
+                    Find(
+                        ",",
+                        VarImageProfile
+                    ) + 1,
+                    Len(VarImageProfile) - Find(
+                        ",",
+                        VarImageProfile
+                    ) - 1
+                )
+            );
+            ClearCollect(
+                AttachmentProfileImage_Col,
+                {
+                    name: AttachmentProfileImage_Control.Attachments,
+                    media: VarImageProfile,
+                    Base64: VarImageBase64
+                }
+            );
+            Set(
+                VarImageProfile2,
+                Concat(
+                    AttachmentProfileImage_Control.Attachments.Name,
+                    Name & ""
+                )
+            );
+            ForAll(
+                AttachmentProfileImage_Col,
+                'HR-Updateuserprofilepicture'.Run(
+                    varUserID,
+                    varName,
+                    VarImageProfile2,
+                    VarImageBase64,
+                    varUserUPN
+                )
+            );
+            Reset(AttachmentProfileImage_Control)
+        PaddingBottom: =5
+        PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+        PaddingRight: =5
+        PaddingTop: =5
+        Size: =11
+        Tooltip: =
+        Visible: |-
+            =
+            varutvecklingssamtalpage1 And varshowChanges = false
+        Width: =168
+        X: =351
+        Y: =169
+        ZIndex: =73
+
+    "'Icon Sort_1' As icon.ArrowsUpDown":
+        Color: =RGBA(0, 0, 0, 1)
+        Height: =25
+        Icon: =Icon.Sort
+        OnSelect: |-
+            =UpdateContext({varSortUser: false})
+        Visible: =false
+        Width: =20
+        X: =166
+        Y: =135
+        ZIndex: =74
+
+    Label4_1 As label:
+        Align: =Align.Center
+        OnSelect: |-
+            =UpdateContext({varinformation: true})
+        Text: ="Tjänstetillägg"
+        Visible: |-
+            =//varutvecklingssamtalpage1 And varshowChanges = false
+            varutvecklingssamtalpage1 Or varutvecklingssamtalpage2
+        X: =381
+        Y: =298
+        ZIndex: =75
+
+    Label4 As label:
+        Align: =Align.Center
+        OnSelect: |-
+            =UpdateContext({varinformation: false})
+        Text: ="Information"
+        Visible: |-
+            =//varutvecklingssamtalpage1 And varshowChanges = false
+            varutvecklingssamtalpage1 Or varutvecklingssamtalpage2
+        X: =190
+        Y: =298
+        ZIndex: =76
+
+    Button4 As button:
+        FontWeight: =FontWeight.Normal
+        Height: =18
+        OnSelect: |-
+            =Filter(SortByColumns(Search(Users, Searchbox_Employeeinfo.Text, "fullname", "crf38_avdelning", "crf38_chefensnamn", "title"), "fullname"), !("#" in 'Fullständigt namn'), !("test" in 'Fullständigt namn'), !("kkkkkkkkkkkkkkkkk" in 'Primär e-post'), !("admin" in 'Fullständigt namn'),!("Integration" in 'Fullständigt namn'),!("system" in 'Fullständigt namn'),!("power" in 'Fullständigt namn'),!("flow" in 'Fullständigt namn'),!("dipart" in 'Fullständigt namn'),!("support" in 'Fullständigt namn'), !("fgdsfds fdsfds" in 'Fullständigt namn'), !("admin@dipartab.onmicrosoft.com" in 'Primär e-post'), !("Bertil Johanson" in 'Fullständigt namn'), !("Fredrik Munkhammar" in 'Fullständigt namn'), !("Kalender Bokning" in 'Fullständigt namn'), !("Karl-Anton Hansback" in 'Fullständigt namn'), !("Peter Lindgren" in 'Fullständigt namn'), !("Samet Akdeve" in 'Fullständigt namn'), !("Sten Löfvenberg" in 'Fullständigt namn'), !("Ulf Bäckström" in 'Fullständigt namn'), !("Vujadin Blagojevic" in 'Fullständigt namn'))
+        Size: =10
+        Text: ="Knapp"
+        Visible: =false
+        Width: =75
+        X: =313
+        ZIndex: =77
+
+    Dropdown1 As dropdown:
+        Height: =22
+        Items: |-
+            =Sort(Distinct(
+            Gallery_Show_Employeeinfo.AllItems.Avdelning, Avdelning),  Ascending)
+        Size: =8
+        Visible: =false
+        Width: =105
+        X: =1226
+        ZIndex: =78
+
+    Dropdown_Filter_Galleries_EmployeeInfo As dropdown:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderThickness: =1
+        ChevronBackground: =RGBA(0, 0, 0, 1)
+        ChevronHoverBackground: =
+        Default: =1
+        FocusedBorderThickness: =1
+        Height: =31
+        HoverBorderColor: =
+        HoverFill: =RGBA(230, 230, 230, 1)
+        Items: |-
+            =Table(
+                {    
+                    Title: "Dokument",
+                    ID: 1
+                },
+                {    
+                    Title: "Utbildningar",
+                    ID: 2
+                },
+                {    
+                    Title: "Switchboard",
+                    ID: 3
+                }
+            )
+        PressedFill: =RGBA(230, 230, 230, 1)
+        SelectionColor: =RGBA(0, 0, 0, 1)
+        SelectionFill: =RGBA(230, 230, 230, 1)
+        Size: =11
+        Visible: =varutvecklingssamtalpage1
+        Width: =179
+        X: =1126
+        Y: |-
+            =With({input: Dropdown_Filter_Galleries_EmployeeInfo.Selected.Title}, If(input in ["Switchboard"], 250, input in ["Utbildningar"], 190, 250))
+            
+            //If(Dropdown_Filter_Galleries_EmployeeInfo.Selected.ID = 2, 210 Or If(Dropdown_Filter_Galleries_EmployeeInfo.Selected.ID = 3, 255), 290)
+        ZIndex: =79
+
+    Group_Icons_Sort_Gallery_Show_Employeeinfo As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =79
+
+        Icon_sort_Jobtitle As icon.ArrowsUpDown:
+            Color: =RGBA(0, 0, 0, 1)
+            Height: =30
+            Icon: =Icon.Sort
+            OnSelect: |-
+                =Set(varsortColumn, "jobtitle");
+                Set(varsortDirection, If(varsortDirection = Ascending, Descending, Ascending))
+            Width: =22
+            X: =796
+            Y: =131
+            ZIndex: =36
+
+        "'Icon Sort Affärsområde' As icon.ArrowsUpDown":
+            Color: =RGBA(0, 0, 0, 1)
+            Height: =30
+            Icon: =Icon.Sort
+            OnSelect: |-
+                =Set(varsortColumn, "crf38_avdelning");
+                Set(varsortDirection, If(varsortDirection = Ascending, Descending, Ascending))
+            Width: =22
+            X: =542
+            Y: =131
+            ZIndex: =37
+
+        "'Icon Sort Namn' As icon.ArrowsUpDown":
+            Color: =RGBA(0, 0, 0, 1)
+            Height: =30
+            Icon: =Icon.Sort
+            OnSelect: |-
+                =Set(varsortColumn, "fullname");
+                Set(varsortDirection, If(varsortDirection = Ascending, Descending, Ascending))
+            Width: =22
+            X: =129
+            Y: =131
+            ZIndex: =38
+
+    Label_Document_Header As label:
+        Align: =Align.Center
+        Height: =25
+        Size: =12
+        Text: =If(Varlanguage = "Swedish", "Filnamn", If(Varlanguage = "English", "Filename"))
+        Visible: =If(Dropdown_Filter_Galleries_EmployeeInfo.Selected.ID = 1, true,false) And varutvecklingssamtalpage1
+        Width: =85
+        X: =790
+        Y: =311
+        ZIndex: =80
+
+    Label_Document_Education_Name_Header As label:
+        Align: =Align.Center
+        Height: =25
+        Size: =12
+        Text: =If(Varlanguage = "Swedish", "Utbildning", If(Varlanguage = "English", "Education"))
+        Visible: =If(Dropdown_Filter_Galleries_EmployeeInfo.Selected.ID = 1, true,false) And varutvecklingssamtalpage1
+        Width: =103
+        X: =1080
+        Y: =311
+        ZIndex: =81
+
+    Label_Education_Name_Header As label:
+        Align: =Align.Center
+        Height: =25
+        Size: =12
+        Text: =If(Varlanguage = "Swedish", "Utbildning", If(Varlanguage = "English", "Education"))
+        Visible: =If(Dropdown_Filter_Galleries_EmployeeInfo.Selected.ID = 2, true,false) And If(Dropdown_Filter_Educations.Selected.ID = 2, true,false) And varutvecklingssamtalpage1
+        Width: =119
+        X: =750
+        Y: =311
+        ZIndex: =82
+
+    Label_Education_Giltighetstid_Header As label:
+        Align: =Align.Center
+        Height: =25
+        Size: =12
+        Text: =If(Varlanguage = "Swedish", "Giltighetstid", If(Varlanguage = "English", "Education"))
+        Visible: =If(Dropdown_Filter_Galleries_EmployeeInfo.Selected.ID = 2, true,false) And If(Dropdown_Filter_Educations.Selected.ID = 2, true,false) And varutvecklingssamtalpage1
+        Width: =119
+        X: =1069
+        Y: =311
+        ZIndex: =83
+
+    Label_Education_Utförda_Header As label:
+        Align: =Align.Center
+        Height: =25
+        Size: =12
+        Text: =If(Varlanguage = "Swedish", "Utbildning", If(Varlanguage = "English", "Education"))
+        Visible: =If(Dropdown_Filter_Galleries_EmployeeInfo.Selected.ID = 2, true,false) And If(Dropdown_Filter_Educations.Selected.ID = 1, true,false) And varutvecklingssamtalpage1
+        Width: =119
+        X: =750
+        Y: =311
+        ZIndex: =84
+
+    Label_Education_Utförda_Header_1 As label:
+        Align: =Align.Center
+        Height: =25
+        Size: =12
+        Text: =If(Varlanguage = "Swedish", "Utförd", If(Varlanguage = "English", "Education"))
+        Visible: =If(Dropdown_Filter_Galleries_EmployeeInfo.Selected.ID = 2, true,false) And If(Dropdown_Filter_Educations.Selected.ID = 1, true,false) And varutvecklingssamtalpage1
+        Width: =119
+        X: =1037
+        Y: =311
+        ZIndex: =85
+
+    Label_Education_Utförda_Header_2 As label:
+        Align: =Align.Center
+        Height: =25
+        Size: =12
+        Text: =If(Varlanguage = "Swedish", "Förfaller", If(Varlanguage = "English", "Education"))
+        Visible: =If(Dropdown_Filter_Galleries_EmployeeInfo.Selected.ID = 2, true,false) And If(Dropdown_Filter_Educations.Selected.ID = 1, true,false) And varutvecklingssamtalpage1
+        Width: =119
+        X: =1147
+        Y: =311
+        ZIndex: =86
+
+    Button7 As button:
+        OnSelect: |-
+            =ClearCollect(Personalkort, ShowColumns(Users, "crf38_tillaggmbledamot", "crf38_skyddsombud", "crf38_kravutbildning_text",
+            "crf38_tillaggplatsansvarig", "crf38_tillaggplatsbas", "crf38_companyazuread", "jobtitle", "fullname",  "internalemailaddress", "crf38_typavanstallning", "mobilephone", "crf38_avdelning", "azureactivedirectoryobjectid", "systemuserid", "crf38_chefensmail", "crf38_tillaggskyddsombud", "crf38_tillaggtext", "crf38_chefensnamn", 
+            "crf38_platsbas", "crf38_userpicture", "crf38_statusaad", "crf38_tillaggvattenbilare", "crf38_personnummer", "crf38_azureadid",
+            "crf38_manager_mailaddress", "crf38_vattenbilare", "crf38_mbledamot", "crf38_Kravutbildningar", "crf38_platsansvarig", "crf38_anstallningsdatum", "title"))
+        Text: ="Button"
+        X: =632
+        ZIndex: =87
+

@@ -1,0 +1,2235 @@
+Education As screen:
+    BackgroundImage: ='building-1080591'
+    Fill: =RGBA(0,0,0,0)
+    ImagePosition: =ImagePosition.Fill
+    OnHidden: |-
+        =UpdateContext({Varusersettings: false})
+    OnVisible: |-
+        =If(IsBlank(varlinkSwitchboard),   UpdateContext({vartest: true}),  UpdateContext({Swicthboardnew: true}));
+        UpdateContext({OnboardingPopVisible: false});Set(onboardscreenlayoutlabels, {
+            Fontsize: 12,
+            Fontweight: Normal
+        });
+        Set(onboardscreenlayoutbuttons, {
+            Fontsize: 10,
+            Fontweight: Normal,
+            Width: 110,
+            Height: 26
+        });
+        
+        Set(Gallerylayoutsettings, {
+            X: 75,
+            Y: 165,
+            Width: 1274,
+            Height: 558
+        })
+
+    Label27_4 As label:
+        Align: =Align.Center
+        Fill: =RGBA(255, 255, 255, 0.5)
+        Font: =First(fontscheme).Helvetica
+        FontWeight: =FontWeight.Lighter
+        Height: =67
+        Size: =30
+        Text: =//"Onboard"
+        Width: =1366
+        ZIndex: =1
+
+    BlurryBackgroun_Education As rectangle:
+        Fill: =RGBA(0, 0, 0, 0.5)
+        Height: =700
+        Width: =1308
+        X: =58
+        Y: =68
+        ZIndex: =3
+
+    Banner_Menu_Education As rectangle:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderStyle: =BorderStyle.None
+        Fill: =RGBA(204, 204, 204, 1)
+        Height: =35
+        Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utbildningar", true)
+        Width: =1274
+        X: =75
+        Y: =130
+        ZIndex: =4
+
+    Education_Showgallery As gallery.galleryVertical:
+        Fill: =RGBA(255, 255, 255, 0.9)
+        Height: =Gallerylayoutsettings.Height
+        Items: |-
+            =Search(educationData, SearchBox_Education.Text, "crf38_utbildningkurs", "crf38_id")
+            //'Utbildning (Vyer)'.'Aktiva Utbildning')
+            //Search(Utbildning; SearchBox_Switchboard_1.Text; "Name_education")
+            //Filter(Switchboard_1, 'Switchboard_1 (Vyer)'.'Aktiva Switchboard')
+        Layout: =Layout.Vertical
+        OnSelect: |+
+            =Set(varitemEducation, ThisItem); UpdateContext({Educationnew: true}); UpdateContext({varoffboardbutton: true});
+            //ClearCollect(colswitchboard, Switchboard_Showgallery.Selected);
+            Set(varEducationParam, "Param_Mode_Selected");
+            UpdateContext({Varusersettings: false});UpdateContext({varInactivateUTB: false})
+            
+        ShowScrollbar: =false
+        TemplateSize: =59
+        Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utbildningar", true)
+        Width: =Gallerylayoutsettings.Width
+        X: =Gallerylayoutsettings.X
+        Y: =Gallerylayoutsettings.Y
+        ZIndex: =5
+
+        Separator_Switchboard_1 As rectangle:
+            Fill: =RGBA(0, 0, 0, 1)
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =1264
+            Y: =58
+            ZIndex: =1
+
+        NewComputer_Education As label:
+            Align: =Align.Center
+            Color: =RGBA(134, 136, 187, 1)
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: =ThisItem.ID
+            Width: =171
+            Y: =5
+            ZIndex: =3
+
+        CreatedBy_Education As label:
+            Align: =Align.Center
+            Color: =RGBA(134, 136, 187, 1)
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: =ThisItem.Status
+            Width: =180
+            X: =1072
+            Y: =9
+            ZIndex: =4
+
+        Created_Education As label:
+            Align: =Align.Center
+            Color: =RGBA(134, 136, 187, 1)
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: =If(Varlanguage = "Swedish", ThisItem.'Giltighetstid (År)' & " år", ThisItem.'Giltighetstid (År)' & " year")
+            Underline: =true
+            Width: =171
+            X: =546
+            Y: =9
+            ZIndex: =6
+
+        Nme_Education As label:
+            Align: =Align.Center
+            Color: =RGBA(134, 136, 187, 1)
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: =ThisItem.'Utbildning/Kurs'
+            Width: =278
+            X: =199
+            Y: =5
+            ZIndex: =7
+
+        Person_Name_Icon_1 As icon.Person:
+            Color: =ColorValue(First(colorscheme).Primary)
+            Height: =39
+            Icon: =Icon.Bookmark
+            OnSelect: =Select(Parent)
+            Width: =19
+            X: =6
+            Y: =5
+            ZIndex: =8
+
+        CreatedBy_Education_1 As label:
+            Align: =Align.Center
+            Color: =RGBA(134, 136, 187, 1)
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: =ThisItem.Beskrivning
+            Width: =274
+            X: =798
+            Y: =9
+            ZIndex: =9
+
+        Checkbox_Remove_Education As checkbox:
+            BorderColor: =
+            CheckboxBorderColor: =
+            CheckmarkFill: =
+            OnCheck: =Collect(colRemoveEducation, ThisItem.Utbildning)
+            OnSelect: =
+            OnUncheck: =Remove(colRemoveEducation, LookUp(colRemoveEducation, Value=Education_Showgallery.Selected.Utbildning))
+            PressedBorderColor: =
+            PressedColor: =
+            PressedFill: =
+            Text: =
+            Width: =43
+            X: =1221
+            ZIndex: =10
+
+    NAV_Education As NAV:
+        Height: =700
+        NavItems: |-
+            =Table(
+                {
+                    Title: "Hem",
+                    Screen: StartScreen,
+                    Icon: Home
+                },
+                {
+                    Title: "Onboard",
+                    Screen: OnboardScreen,
+                    Icon: EmojiSmile
+                },
+                {
+                    Title: "Offboard",
+                    Screen: Offboard,
+                    Icon: LikeDislike
+                },
+                
+                {
+                    Title: "Switchboard",
+                    Screen: Switchboard,
+                    Icon: Icon.Edit
+                },
+                
+                {    
+                    Title: "Admin",
+                    Screen: Admin,
+                    Icon: Icon.ToolsWrench
+                },
+                {    
+                    Title: "Personalkort",
+                    Screen: 'Employee Info',
+                    Icon: Icon.Person
+                },
+                {    
+                    Title: "Utvecklingssamtal",
+                    Screen: Utvecklingssamtal,
+                    Icon: Icon.People
+                },
+                {    
+                    Title: "Utbildningar",
+                    Screen: App.ActiveScreen,
+                    Icon: Icon.Bookmark
+                }
+            )
+        Y: =68
+        ZIndex: =6
+
+    Back_Button_Education As button:
+        BorderThickness: =1
+        Fill: =ColorValue(First(colorscheme).Röd)
+        FocusedBorderThickness: =1
+        FontWeight: =FontWeight.Normal
+        Height: =onboardscreenlayoutbuttons.Height
+        HoverColor: =ColorValue(First(colorscheme).Röd)
+        HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -5%)
+        OnSelect: =Back()
+        RadiusBottomLeft: =2
+        RadiusBottomRight: =2
+        RadiusTopLeft: =2
+        RadiusTopRight: =2
+        Size: =10
+        Text: =If(Varlanguage = "Swedish", "Tillbaka", If(Varlanguage = "English", "Back"))
+        Width: =onboardscreenlayoutbuttons.Width
+        X: =76
+        Y: =83
+        ZIndex: =7
+
+    Button_Education As button:
+        BorderThickness: =1
+        Fill: =ColorValue(First(colorscheme).Röd)
+        FocusedBorderThickness: =1
+        FontWeight: =FontWeight.Normal
+        Height: =26
+        HoverColor: =ColorValue(First(colorscheme).Röd)
+        HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -5%)
+        OnSelect: |-
+            =UpdateContext({Educationnew:true});Set(varitemEducation, Blank())
+        RadiusBottomLeft: =2
+        RadiusBottomRight: =2
+        RadiusTopLeft: =2
+        RadiusTopRight: =2
+        Size: =10
+        Text: =If(Varlanguage = "Swedish", "Ny utbildning", If(Varlanguage = "English", "New education"))
+        Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Utbildningar", true, false)
+        Width: =140
+        X: =1185
+        Y: =83
+        ZIndex: =8
+
+    SearchBox_Education As text:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderThickness: =1
+        Default: =
+        FocusedBorderThickness: =1
+        Height: =26
+        HintText: =If(Varlanguage = "Swedish", "Sök utbildning", If(Varlanguage = "English", "Search by education"))
+        HoverBorderColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =RGBA(204, 204, 204, 1)
+        PaddingLeft: =30
+        PressedBorderColor: =RGBA(0, 0, 0, 1)
+        RadiusBottomLeft: =1
+        RadiusBottomRight: =1
+        RadiusTopLeft: =1
+        RadiusTopRight: =1
+        Size: =10
+        Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utbildningar", true)
+        Width: =280
+        X: =270
+        Y: =83
+        ZIndex: =9
+
+    SearchIconEducation As icon.Search:
+        Color: =RGBA(149, 149, 149, 1)
+        Height: =22
+        Icon: =Icon.Search
+        Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utbildningar", true)
+        Width: =22
+        X: =272
+        Y: =84
+        ZIndex: =11
+
+    BlurryBackgroun_Education_1 As rectangle:
+        Fill: =RGBA(0, 0, 0, 0.5)
+        Height: =700
+        Visible: =Educationnew
+        Width: =1308
+        X: =58
+        Y: =68
+        ZIndex: =18
+
+    Icon_Background_Education As button:
+        BorderThickness: =0
+        Fill: =ColorValue(First(colorscheme).Svart)
+        Height: =28
+        RadiusBottomLeft: =20
+        RadiusBottomRight: =20
+        RadiusTopLeft: =20
+        RadiusTopRight: =20
+        Text: =""
+        Visible: =Swicthboardnew
+        Width: =28
+        X: =1068
+        Y: =96
+        ZIndex: =23
+
+    Iconclosepopup_Education As icon.Cancel:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =24
+        HoverColor: =RGBA(204, 204, 204, 1)
+        Icon: =Icon.Cancel
+        OnSelect: |-
+            =UpdateContext({Swicthboardnew: false}) ; Set(varitemswitchboard, Blank())
+        Visible: =Swicthboardnew
+        Width: =24
+        X: =1070
+        Y: =98
+        ZIndex: =24
+
+    Checkbox_Education_2 As icon.Check:
+        Color: =RGBA(99, 139, 44, 1)
+        Height: =35
+        Icon: =Icon.Check
+        OnSelect: =
+        Visible: =Swicthboardnew
+        Width: =30
+        X: =840
+        Y: =131
+        ZIndex: =25
+
+    Checkbox_Education_1 As icon.Check:
+        Color: =RGBA(99, 139, 44, 1)
+        Height: =35
+        Icon: =Icon.Check
+        OnSelect: =
+        Visible: =Swicthboardnew
+        Width: =30
+        X: =620
+        Y: =129
+        ZIndex: =26
+
+    Checkbox_Education As icon.Check:
+        Color: =RGBA(99, 139, 44, 1)
+        Height: =35
+        Icon: =Icon.Check
+        OnSelect: =
+        Visible: =Swicthboardnew
+        Width: =30
+        X: =411
+        Y: =129
+        ZIndex: =27
+
+    Iconclosepopup_Educations As icon.Cancel:
+        Color: =RGBA(0, 0, 0, 1)
+        Fill: =RGBA(0, 0, 0, 1)
+        Height: =24
+        HoverColor: =RGBA(204, 204, 204, 1)
+        Icon: =Icon.Cancel
+        OnSelect: |-
+            =UpdateContext({onnboardgalleryEdit: false});
+            Set(varOnboardParam, Blank());
+            Set(varitemsonboard, Blank());
+            Set(varlinkOnboard, Blank())
+        Visible: =onnboardgalleryEdit
+        Width: =24
+        X: =1061
+        Y: =236
+        ZIndex: =29
+
+    Radio_Switch_EducationGalleries As radio:
+        BorderColor: =RGBA(0, 0, 0, 0)
+        Color: =RGBA(255, 255, 255, 1)
+        Default: =If(Varlanguage = "Swedish", "Utbildningar", "Educations")
+        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+        FocusedBorderThickness: =0
+        Height: =63
+        HoverColor: =
+        Items: =If(Varlanguage = "Swedish", ["Utbildningar", "Utförda utbildningar", "Power Bi"], ["Educations", "Completed educations", "Power Bi"])
+        Layout: =Layout.Horizontal
+        OnChange: |-
+            =If(Radio_Switch_EducationGalleries.Selected.Value = "Utbildningar", UpdateContext({Educationnew:false}))
+        OnSelect: |-
+            =Radio_Switch_EducationGalleries.Selected.Value
+            
+            //UpdateContext({UtbildningGalleryView:true});; UpdateContext({UtbildningUtfördGalleryView:false})
+        RadioBorderColor: =RGBA(0, 0, 0, 1)
+        RadioSelectionFill: =ColorValue(First(colorscheme).Röd)
+        RadioSize: =35
+        Size: =10
+        Width: =476
+        X: =566
+        Y: =67
+        ZIndex: =30
+
+    Completed_Education_Showgallery As gallery.galleryVertical:
+        Fill: =RGBA(255, 255, 255, 0.9)
+        Height: =Gallerylayoutsettings.Height
+        Items: |-
+            =If(
+                varAccessAdmin = "True",
+                    Search('Utbildning Utförd', SearchBox_Completed_Education.Text, "crf38_anstalld_search", "crf38_id")
+            
+                ,
+                varAccessAOC = "True",
+                Filter(
+                    Search('Utbildning Utförd', SearchBox_Completed_Education.Text, "crf38_anstalld_search", "crf38_id")
+                      
+                    ,
+                    IfError('Office365-användare'.UserProfileV2(Anställd.'Primär e-post').department, "") = IfError('Office365-användare'.UserProfileV2(User().Email).department, "")),
+                Filter(
+                    Search('Utbildning Utförd', SearchBox_Completed_Education.Text, "crf38_anstalld_search", "crf38_id")
+                      
+                    ,
+                    IfError('Office365-användare'.ManagerV2(Anställd.'Primär e-post').displayName, "") =  "Max Rendahl")
+            
+                )
+                
+        Layout: =Layout.Vertical
+        OnSelect: |-
+            =Set(
+                varUserIDEducation,
+                LookUp(
+                    Users,
+                    'Fullständigt namn' = Label_Name_Employee.Text
+                ).'Användare (systemuserid)'
+            );
+            UpdateContext({varShowDocLabel: true});
+            Set(varUserUPN, LookUp(Users, 'Fullständigt namn' = Label_Name_Employee.Text).Användarnamn);
+            Set(varUserFullnameEducation, ThisItem.Anställd_Search);
+            Set(varEducationCompletedID, ThisItem.ID);
+            Set(varEducationName, ThisItem.'Utbildning/Kurs'.crf38_utbildningkurs);
+            Set(
+                varitemEducationCompleted,
+                ThisItem
+            );
+            UpdateContext({EducationCompletednew: true});
+            UpdateContext({varoffboardbutton: true});
+            //ClearCollect(colswitchboard, Switchboard_Showgallery.Selected);
+            Set(
+                varEducationCompletedParam,
+                "Param_Mode_Selected"
+            );
+            UpdateContext({Varusersettings: false});
+            UpdateContext({Educationnew: false})
+        ShowScrollbar: =false
+        TemplateSize: =59
+        Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Completed educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utförda utbildningar", true)
+        Width: =Gallerylayoutsettings.Width
+        X: =75
+        Y: =164
+        ZIndex: =31
+
+        Separator_Switchboard_2 As rectangle:
+            Fill: =RGBA(0, 0, 0, 1)
+            Height: =1
+            OnSelect: =Select(Parent)
+            Width: =1264
+            Y: =58
+            ZIndex: =1
+
+        Label_EducationCompletedID As label:
+            Align: =Align.Center
+            Color: =RGBA(134, 136, 187, 1)
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: =ThisItem.ID
+            Width: =136
+            X: =15
+            Y: =5
+            ZIndex: =3
+
+        Label_Status As label:
+            Align: =Align.Center
+            Color: =RGBA(134, 136, 187, 1)
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: =ThisItem.Status
+            Width: =102
+            X: =1137
+            Y: =4
+            ZIndex: =4
+
+        Label_Validuntil As label:
+            Align: =Align.Center
+            Color: =RGBA(134, 136, 187, 1)
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: =If(Varlanguage = "Swedish", ThisItem.Giltighetstid & " år", ThisItem.Giltighetstid & " year")
+            Underline: =true
+            Width: =91
+            X: =778
+            Y: =4
+            ZIndex: =6
+
+        Label_Name_Employee As label:
+            Align: =Align.Center
+            Color: =RGBA(134, 136, 187, 1)
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: =ThisItem.Anställd_Search
+            Width: =205
+            X: =109
+            Y: =5
+            ZIndex: =7
+
+        Person_Name_Icon_2 As icon.Person:
+            Color: =ColorValue(First(colorscheme).Primary)
+            Height: =39
+            Icon: =Icon.Bookmark
+            OnSelect: =Select(Parent)
+            Width: =19
+            X: =6
+            Y: =5
+            ZIndex: =8
+
+        Label_EducationName As label:
+            Align: =Align.Center
+            Color: =RGBA(134, 136, 187, 1)
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: =ThisItem.'Utbildning/Kurs'.'Utbildning/Kurs'
+            Underline: =true
+            Width: =236
+            X: =298
+            Y: =5
+            ZIndex: =9
+
+        Label_ExicutionDate As label:
+            Align: =Align.Center
+            Color: =RGBA(134, 136, 187, 1)
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: =Text(ThisItem.'Datum utförande', "[$-sv]dd-mmm-yyyy")
+            Underline: =true
+            Width: =236
+            X: =530
+            Y: =4
+            ZIndex: =10
+
+        Label_ExpirationDate As label:
+            Align: =Align.Center
+            Color: =RGBA(134, 136, 187, 1)
+            OnSelect: =Select(Parent)
+            Size: =11
+            Text: =Text(ThisItem.Förfallodatum, "[$-sv]dd-mmm-yyyy")
+            Underline: =true
+            Width: =171
+            X: =904
+            Y: =4
+            ZIndex: =11
+
+        Label_UtbildningUtgått As label:
+            Align: =Align.Center
+            Color: =RGBA(134, 136, 187, 1)
+            OnSelect: =Select(Parent)
+            Size: =12
+            Text: =Text(ThisItem.'Utbildning utgått')
+            Underline: =true
+            Visible: =If(Label_UtbildningUtgått.Text = "Ja", true, false)
+            Width: =171
+            X: =1038
+            Y: =5
+            ZIndex: =12
+
+        ComboBox2_2 As combobox:
+            DefaultSelectedItems: =LookUp(Users, 'Fullständigt namn' = 'lbl UserName'.Text)
+            DisplayFields: =["crf38_chefensnamn"]
+            Height: =22
+            IsSearchable: =false
+            Items: =Users
+            OnSelect: =Select(Parent)
+            SearchFields: =["crf38_chefensnamn"]
+            SearchItems: =[]
+            Size: =11
+            Visible: =false
+            Width: =125
+            X: =507
+            Y: =23
+            ZIndex: =14
+
+        Checkbox_Remove_Education_1 As checkbox:
+            BorderColor: =
+            CheckboxBorderColor: =
+            CheckmarkFill: =
+            OnCheck: =Collect(colRemoveEducationCompleted, ThisItem.'Utbildning Utförd')
+            OnSelect: =
+            OnUncheck: =Remove(colRemoveEducationCompleted, LookUp(colRemoveEducationCompleted, Value=Completed_Education_Showgallery.Selected.'Utbildning Utförd'))
+            PressedBorderColor: =
+            PressedColor: =
+            PressedFill: =
+            Text: =
+            Width: =43
+            X: =1221
+            ZIndex: =15
+
+    SearchBox_Completed_Education As text:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderThickness: =1
+        Default: =
+        FocusedBorderThickness: =1
+        Height: =26
+        HintText: =If(Varlanguage = "Swedish", "Sök anställd", If(Varlanguage = "English", "Search by employee"))
+        HoverBorderColor: =RGBA(0, 0, 0, 1)
+        HoverFill: =RGBA(204, 204, 204, 1)
+        PaddingLeft: =30
+        PressedBorderColor: =RGBA(0, 0, 0, 1)
+        RadiusBottomLeft: =1
+        RadiusBottomRight: =1
+        RadiusTopLeft: =1
+        RadiusTopRight: =1
+        Size: =10
+        Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Completed educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utförda utbildningar", true)
+        Width: =280
+        X: =270
+        Y: =83
+        ZIndex: =32
+
+    SearchIconCompletedEducation As icon.Search:
+        Color: =RGBA(149, 149, 149, 1)
+        Height: =22
+        Icon: =Icon.Search
+        Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Completed educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utförda utbildningar", true)
+        Width: =22
+        X: =272
+        Y: =84
+        ZIndex: =33
+
+    Image_Dipart_Logo As image:
+        Height: =55
+        Image: ='Dipart-logo'
+        OnSelect: =Navigate(StartScreen)
+        Width: =294
+        ZIndex: =34
+
+    Button_New_Completed_Education As button:
+        Fill: =ColorValue(First(colorscheme).Röd)
+        FocusedBorderThickness: =1
+        FontWeight: =FontWeight.Normal
+        Height: =26
+        HoverColor: =ColorValue(First(colorscheme).Röd)
+        HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -5%)
+        OnSelect: |-
+            =Set(
+                varUserIDEducation,
+                Blank()
+            );
+            Set(
+                varUserUPN,
+                Blank()
+            );
+            Set(
+                varEducationCompletedID,
+                Blank()
+            );
+            Set(
+                varEducationName,
+                Blank()
+            );
+            Set(
+                varUserFullnameEducation,
+                Blank()
+            );
+            Set(varEducationCompletedID, Blank());
+            UpdateContext({EducationCompletednew: true});
+            Set(
+                varitemEducationCompleted,
+                Blank()
+            )
+        RadiusBottomLeft: =2
+        RadiusBottomRight: =2
+        RadiusTopLeft: =2
+        RadiusTopRight: =2
+        Size: =10
+        Text: =If(Varlanguage = "Swedish", "Ny utförd utbildning", If(Varlanguage = "English", "New completed education"))
+        Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Utförda utbildningar", true, false)
+        Width: =164
+        X: =1185
+        Y: =83
+        ZIndex: =35
+
+    Component_Header_Utbildning_1 As Component_Header_Utbildning:
+        Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Completed educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utförda utbildningar", true)
+        X: =75
+        Y: =130
+        ZIndex: =36
+
+    CountItems_Offboard_2 As label:
+        Align: =Align.Center
+        Fill: =RGBA(255, 255, 255, 0.7)
+        Height: =30
+        Size: =10
+        Text: |-
+            =If(Varlanguage = "Swedish", "Objekt i listan: " & CountRows(Education_Showgallery.AllItems), If(Varlanguage = "English", "Objects in the list: " & CountRows(Gallery_Offboard.AllItems)))
+        Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utbildningar", true)
+        Width: =130
+        X: =75
+        Y: =738
+        ZIndex: =37
+
+    CountItems_Offboard_1 As label:
+        Align: =Align.Center
+        Fill: =RGBA(255, 255, 255, 0.7)
+        Height: =30
+        Size: =10
+        Text: |-
+            =If(Varlanguage = "Swedish", "Objekt i listan: " & CountRows(Completed_Education_Showgallery.AllItems), If(Varlanguage = "English", "Objects in the list: " & CountRows(Gallery_Offboard.AllItems)))
+        Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Completed educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utförda utbildningar", true)
+        Width: =140
+        X: =75
+        Y: =738
+        ZIndex: =38
+
+    Blurrybackground_Education As rectangle:
+        Fill: =RGBA(0, 0, 0, 0.7)
+        Height: =767
+        OnSelect: |-
+            =UpdateContext({Swicthboardnew: false}) ; Set(varitem, Blank()); UpdateContext({Educationnew: false, varInactivateUTB:false})
+        Visible: =Educationnew Or EducationCompletednew
+        Width: =1366
+        ZIndex: =39
+
+    Gallery_Education_CreateOrEdit As gallery.galleryVertical:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =446
+        Items: =If(IsBlank(varitemEducation), FirstN(educationData, 1), varitemEducation)
+        Layout: =Layout.Vertical
+        OnSelect: |-
+            =Patch(Utbildning, Gallery_Education_CreateOrEdit.Selected, {Status: 'Status (Utbildning)'.Aktiv})
+        TemplateSize: =433
+        Visible: =Educationnew = true And If(Radio_Switch_EducationGalleries.Selected.Value = "Educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utbildningar", true)
+        Width: =1000
+        X: =183
+        Y: =200
+        ZIndex: =40
+
+        Education_Comment_Value As text:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Default: =If(IsBlank(varitemEducation), Blank(), ThisItem.Beskrivning)
+            FocusedBorderThickness: =1
+            Height: =157
+            HoverBorderColor: =RGBA(0, 0, 0, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            Mode: =TextMode.MultiLine
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Reset: =Swicthboardnew = false
+            Size: =9
+            Width: =240
+            X: =688
+            Y: =95
+            ZIndex: =1
+
+        Comments_Education_1 As label:
+            FontWeight: =FontWeight.Semibold
+            Height: =35
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                =If(Varlanguage = "Swedish", "Beskrivning:", If(Varlanguage = "English", "Description:"))
+            X: =538
+            Y: =91
+            ZIndex: =2
+
+        Department_Education As label:
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                =If(Varlanguage = "Swedish", "Giltighetstid (år):", If(Varlanguage = "English", "Period of validity (Years):"))
+            X: =538
+            Y: =33
+            ZIndex: =3
+
+        Name_Education_4 As label:
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                =If(Varlanguage = "Swedish", "Utbildning:", If(Varlanguage = "English", "Education:"))
+            X: =32
+            Y: =33
+            ZIndex: =4
+
+        Button_Education_1 As button:
+            Fill: =ColorValue(First(colorscheme).Röd)
+            FocusedBorderThickness: =1
+            Height: =31
+            HoverColor: =ColorValue(First(colorscheme).Röd)
+            HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -1%)
+            OnSelect: |-
+                =If(
+                    IsBlank(varitemEducation),
+                    Patch(
+                        Utbildning,
+                        Defaults(Utbildning),
+                        {
+                            'Utbildning/Kurs': Education_Value.Text,
+                            'Giltighetstid (År)': Value(Education_Giltighetstid_Value.Text),
+                            Beskrivning: Education_Comment_Value.Text,
+                            Statusorsak: 'Statusorsak (Utbildning)'.Aktiv
+                        }
+                    ),
+                    Patch(
+                        Utbildning,
+                        ThisItem,
+                        {
+                            'Utbildning/Kurs': Education_Value.Text,
+                            'Giltighetstid (År)': Value(Education_Giltighetstid_Value.Text),
+                            Beskrivning: Education_Comment_Value.Text,
+                            Statusorsak: 'Statusorsak (Utbildning)'.Aktiv
+                        }
+                    )
+                );
+                Refresh(Utbildning);
+                ClearCollect(
+                    educationData,
+                    Utbildning
+                );
+                UpdateContext({Educationnew: false})
+                //Notify("Sparat")
+            RadiusBottomLeft: =2
+            RadiusBottomRight: =2
+            RadiusTopLeft: =2
+            RadiusTopRight: =2
+            Size: =9
+            Text: =If(Varlanguage = "Swedish", "Spara", If(Varlanguage = "English", "Save"))
+            Width: =114
+            X: =822
+            Y: =375
+            ZIndex: =5
+
+        Save_Button_Education As button:
+            Fill: =ColorValue(First(colorscheme).Svart)
+            FocusedBorderThickness: =1
+            Height: =31
+            HoverColor: =ColorValue(First(colorscheme).Svart)
+            HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -1%)
+            OnSelect: |-
+                =UpdateContext({Educationnew: false})
+            RadiusBottomLeft: =2
+            RadiusBottomRight: =2
+            RadiusTopLeft: =2
+            RadiusTopRight: =2
+            Size: =10.5
+            Text: =If(Varlanguage = "Swedish", "Stäng", If(Varlanguage = "English", "Close"))
+            Width: =114
+            X: =688
+            Y: =375
+            ZIndex: =6
+
+        Education_Value As text:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Default: =If(IsBlank(varitemEducation), Blank(), ThisItem.'Utbildning/Kurs')
+            FocusedBorderThickness: =1
+            Height: =32
+            HoverBorderColor: =RGBA(0, 0, 0, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Reset: =Swicthboardnew = false
+            Size: =9
+            Width: =240
+            X: =182
+            Y: =33
+            ZIndex: =7
+
+        Education_Giltighetstid_Value As text:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Default: =If(IsBlank(varitemEducation), Blank(), ThisItem.'Giltighetstid (År)')
+            FocusedBorderThickness: =1
+            Format: =TextFormat.Number
+            Height: =32
+            HoverBorderColor: =RGBA(0, 0, 0, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Reset: =Swicthboardnew = false
+            Size: =9
+            Width: =240
+            X: =688
+            Y: =33
+            ZIndex: =8
+
+        "Gallery_Kravutbildningar As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver4.0'":
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Default: =Blank()
+            Height: =216
+            Items: |-
+                =If(IsBlank(varitemEducation), Blank(), Education_Showgallery.Selected.Kravutbildningar)
+                //Education_Showgallery.Selected.Kravutbildningar
+            Layout: =Layout.Vertical
+            OnSelect: =
+            ShowScrollbar: =false
+            TemplatePadding: =0
+            TemplateSize: =40
+            Width: =389
+            X: =32
+            Y: =197
+            ZIndex: =9
+
+            Subtitle2 As label:
+                Height: =25
+                OnSelect: =Select(Parent)
+                PaddingBottom: =0
+                PaddingLeft: =0
+                PaddingRight: =0
+                PaddingTop: =0
+                Size: =9
+                Text: =ThisItem.Yrkesroll
+                VerticalAlign: =VerticalAlign.Top
+                Width: =340
+                X: =15
+                Y: =10
+                ZIndex: =3
+
+            Separator3 As rectangle:
+                Fill: =ColorValue(First(colorscheme).Röd)
+                Height: =1
+                OnSelect: =Select(Parent)
+                Width: =300
+                X: =11
+                Y: =30
+                ZIndex: =5
+
+        Label29 As label:
+            FontWeight: =FontWeight.Semibold
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                =If(Varlanguage = "Swedish", "Önskvärda för:", If(Varlanguage = "English", "Mandatory for roles:"))
+            X: =32
+            Y: =89
+            ZIndex: =10
+
+        ComboBox_kravutbildningar As combobox:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            ChevronBackground: =ColorValue(First(colorscheme).Svart)
+            ChevronHoverBackground: =ColorValue(First(colorscheme).Primary)
+            DefaultSelectedItems: =
+            DisplayFields: =["crf38_yrkesroll"]
+            FocusedBorderThickness: =1
+            Font: =varFont
+            Height: =32
+            HoverFill: =RGBA(230, 230, 230, 1)
+            InputTextPlaceholder: |-
+                =If(Varlanguage = "Swedish", "Sök på användare:", If(Varlanguage = "English", "Search by user:"))
+            IsSearchable: =false
+            Items: =Kravutbildningar
+            OnChange: =Refresh(Utbildning);ClearCollect(educationData, Utbildning)
+            OnSelect: =Select(Parent)
+            PressedColor: =RGBA(0, 0, 0, 1)
+            PressedFill: =RGBA(230, 230, 230, 1)
+            Reset: =onnboardgalleryEdit = false
+            SearchFields: =["crf38_yrkesroll"]
+            SearchItems: =[]
+            SelectionFill: =RGBA(230, 230, 230, 1)
+            SelectMultiple: =false
+            Size: =9
+            Width: =211
+            X: =182
+            Y: =94
+            ZIndex: =11
+
+        Icon4 As icon.Add:
+            Color: =RGBA(54, 176, 75, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 0)
+            Height: =30
+            HoverBorderColor: =
+            Icon: =Icon.Add
+            OnSelect: =Relate(Education_Showgallery.Selected.Kravutbildningar, First(ComboBox_kravutbildningar.SelectedItems));Reset(ComboBox_kravutbildningar);Refresh(Utbildning);ClearCollect(educationData, Utbildning)
+            Width: =30
+            X: =405
+            Y: =96
+            ZIndex: =12
+
+        Icon5 As icon.Cancel:
+            Color: =RGBA(255, 0, 0, 1)
+            Height: =30
+            Icon: =Icon.Trash
+            OnSelect: =Unrelate(Education_Showgallery.Selected.Kravutbildningar, First(ComboBox_kravutbildningar.SelectedItems));Reset(ComboBox_kravutbildningar);Refresh(Utbildning);ClearCollect(educationData, Utbildning)
+            Width: =30
+            X: =446
+            Y: =95
+            ZIndex: =13
+
+        Button_inactivate As button:
+            Fill: =ColorValue(First(colorscheme).Färg2)
+            FocusedBorderThickness: =1
+            Height: =31
+            HoverColor: =ColorValue(First(colorscheme).Röd)
+            HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -1%)
+            OnSelect: |-
+                =UpdateContext({varInactivateUTB: true})
+            RadiusBottomLeft: =2
+            RadiusBottomRight: =2
+            RadiusTopLeft: =2
+            RadiusTopRight: =2
+            Size: =9
+            Text: =If(Varlanguage = "Swedish", "Ändra status", If(Varlanguage = "English", "Change status"))
+            Width: =114
+            X: =556
+            Y: =375
+            ZIndex: =14
+
+        Blurrybackground_Education_1 As rectangle:
+            Fill: =RGBA(0, 0, 0, 0.7)
+            Height: =500
+            OnSelect: |-
+                =UpdateContext({Swicthboardnew: false}) ; Set(varitem, Blank())
+            Visible: =varInactivateUTB
+            Width: =1100
+            X: =-20
+            Y: =-20
+            ZIndex: =15
+
+        Label29_1 As label:
+            FontWeight: =FontWeight.Semibold
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                =If(Varlanguage = "Swedish", "Titel:", If(Varlanguage = "English", "Title:"))
+            X: =32
+            Y: =153
+            ZIndex: =22
+
+        Group_InactivateUTB As group:
+            Height: =5
+            Width: =5
+            X: =40
+            Y: =40
+            ZIndex: =36
+
+            Rectangle13_1 As rectangle:
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =180
+                OnSelect: =Select(Parent)
+                Visible: =varInactivateUTB
+                Width: =332
+                X: =303
+                Y: =107
+                ZIndex: =16
+
+            Rectangle13 As rectangle:
+                Fill: =RGBA(0, 0, 0, 1)
+                Height: =31
+                OnSelect: =Select(Parent)
+                Visible: =varInactivateUTB
+                Width: =332
+                X: =303
+                Y: =107
+                ZIndex: =17
+
+            Label19 As label:
+                Align: =Align.Center
+                Color: =RGBA(255, 255, 255, 1)
+                Height: =31
+                OnSelect: =Select(Parent)
+                Text: =If(Varlanguage = "Swedish", "Ändra status", If(Varlanguage = "English", "Change status"))
+                Visible: =varInactivateUTB
+                Width: =332
+                X: =303
+                Y: =107
+                ZIndex: =18
+
+            Button_Education_5 As button:
+                Fill: =ColorValue(First(colorscheme).Röd)
+                FocusedBorderThickness: =1
+                Height: =31
+                HoverColor: =ColorValue(First(colorscheme).Röd)
+                HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -1%)
+                OnSelect: |-
+                    =Patch(Utbildning, Gallery_Education_CreateOrEdit.Selected, {Status: 'Status (Utbildning)'.Aktiv})
+                RadiusBottomLeft: =2
+                RadiusBottomRight: =2
+                RadiusTopLeft: =2
+                RadiusTopRight: =2
+                Size: =9
+                Text: =If(Varlanguage = "Swedish", "Inaktivera", If(Varlanguage = "English", "Inactivate"))
+                Visible: =varInactivateUTB
+                Width: =114
+                X: =328
+                Y: =231
+                ZIndex: =19
+
+            Button_Education_4 As button:
+                Fill: =RGBA(50,205,50,1)
+                FocusedBorderThickness: =1
+                Height: =31
+                HoverColor: =ColorValue(First(colorscheme).Röd)
+                HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -1%)
+                OnSelect: |-
+                    =Patch(Utbildning, Gallery_Education_CreateOrEdit.Selected, {Status: 'Status (Utbildning)'.Inaktiv})
+                RadiusBottomLeft: =2
+                RadiusBottomRight: =2
+                RadiusTopLeft: =2
+                RadiusTopRight: =2
+                Size: =9
+                Text: =If(Varlanguage = "Swedish", "Aktivera", If(Varlanguage = "English", "Activate"))
+                Visible: =varInactivateUTB
+                Width: =114
+                X: =497
+                Y: =231
+                ZIndex: =20
+
+            Department_Education_1 As label:
+                Align: =Align.Center
+                FontWeight: =FontWeight.Semibold
+                Height: =54
+                OnSelect: =Select(Parent)
+                Size: =10
+                Text: =If(Varlanguage = "Swedish", "Är du säker att du vill ändra status för utbildningen?", If(Varlanguage = "English", "Are you sure that you want to inactivate education?"))
+                Visible: =varInactivateUTB
+                Width: =248
+                X: =346
+                Y: =156
+                ZIndex: =21
+
+    GroupTimelineEducation As group:
+        Height: =5
+        Width: =5
+        X: =-132
+        Y: =-160
+        ZIndex: =43
+
+        Circle_Education As circle:
+            BorderColor: =ColorValue(First(colorscheme).Färg1)
+            BorderThickness: =2
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =29
+            Visible: =Swicthboardnew
+            Width: =28
+            X: =407
+            Y: =136
+            ZIndex: =14
+
+        Started_Education As label:
+            Align: =Center
+            Color: =ColorValue(First(colorscheme).Färg2)
+            FontWeight: =FontWeight.Semibold
+            Height: =66
+            Size: =11
+            Text: =If(Varlanguage = "Swedish", "Switchboard startat", If(Varlanguage = "English", "Switchboard started"))
+            Visible: =Swicthboardnew
+            Width: =135
+            X: =362
+            Y: =168
+            ZIndex: =15
+
+        Line_Education As rectangle:
+            Fill: =ColorValue(First(colorscheme).Färg1)
+            Height: =5
+            Visible: =Swicthboardnew
+            Width: =157
+            X: =443
+            Y: =148
+            ZIndex: =16
+
+        Circle2_Education As circle:
+            BorderColor: =ColorValue(First(colorscheme).Färg1)
+            BorderThickness: =2
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =29
+            Visible: =Swicthboardnew
+            Width: =28
+            X: =616
+            Y: =137
+            ZIndex: =17
+
+        Approved_Education As label:
+            Align: =Center
+            Color: =ColorValue(First(colorscheme).Färg2)
+            FontWeight: =FontWeight.Semibold
+            Height: =55
+            Size: =11
+            Text: |-
+                =If(Varlanguage = "Swedish", "Godkänd:", If(Varlanguage = "English", "Approved"))
+            Visible: =Swicthboardnew
+            Width: =129
+            X: =566
+            Y: =167
+            ZIndex: =19
+
+        Line2_Education As rectangle:
+            Fill: =ColorValue(First(colorscheme).Färg1)
+            Height: =5
+            Visible: =Swicthboardnew
+            Width: =157
+            X: =665
+            Y: =148
+            ZIndex: =20
+
+        Circle3_Education As circle:
+            BorderColor: =ColorValue(First(colorscheme).Färg1)
+            BorderThickness: =2
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =29
+            Visible: =Swicthboardnew
+            Width: =28
+            X: =836
+            Y: =139
+            ZIndex: =21
+
+        Succeeded_Education As label:
+            Align: =Center
+            Color: =ColorValue(First(colorscheme).Färg2)
+            FontWeight: =FontWeight.Semibold
+            Height: =62
+            Size: =11
+            Text: =If(Varlanguage = "Swedish", "Switchboard klar", If(Varlanguage = "English", "Switchboard succeeded"))
+            Visible: =Swicthboardnew
+            Width: =121
+            X: =793
+            Y: =172
+            ZIndex: =22
+
+    Gallery_Completed_Education_CreateOrEdit As gallery.galleryVertical:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =446
+        Items: =If(IsBlank(varitemEducationCompleted), FirstN(educationDataCompleted, 1), varitemEducationCompleted)
+        Layout: =Layout.Vertical
+        ShowScrollbar: =false
+        TemplateSize: =439
+        Visible: =EducationCompletednew = true And If(Radio_Switch_EducationGalleries.Selected.Value = "Completed educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utförda utbildningar", true)
+        Width: =1000
+        X: =183
+        Y: =200
+        ZIndex: =47
+
+        Comments_CompletedEducation_Value As text:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            Default: =If(IsBlank(varitemEducationCompleted), Blank(), ThisItem.Kommentar)
+            FocusedBorderThickness: =1
+            Height: =127
+            HoverBorderColor: =RGBA(0, 0, 0, 1)
+            HoverFill: =RGBA(230, 230, 230, 1)
+            Mode: =TextMode.MultiLine
+            OnSelect: =Select(Parent)
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Reset: =Swicthboardnew = false
+            Size: =9
+            Width: =310
+            X: =626
+            Y: =204
+            ZIndex: =1
+
+        Label_EducationCompleted_Comments As label:
+            FontWeight: =FontWeight.Semibold
+            Height: =35
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                =If(Varlanguage = "Swedish", "Kommentar:", If(Varlanguage = "English", "Comment:"))
+            Width: =140
+            X: =486
+            Y: =204
+            ZIndex: =2
+
+        Label_CompletedEducation_Utbildning As label:
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                =If(Varlanguage = "Swedish", "* Utbildning:", If(Varlanguage = "English", "* Education:"))
+            Width: =140
+            X: =486
+            Y: =30
+            ZIndex: =4
+
+        Label_CompletedEducation_Anställd As label:
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                =If(Varlanguage = "Swedish", "* Anställd:", If(Varlanguage = "English", "* Employee:"))
+            Width: =140
+            X: =33
+            Y: =30
+            ZIndex: =12
+
+        Button_Education_2 As button:
+            DisplayMode: |-
+                =If(IsBlank(ComboBox_Employee.Selected.'Fullständigt namn') Or IsBlank(ComboBox_Educations.Selected.'Utbildning/Kurs'), DisplayMode.View, DisplayMode.Edit)
+                
+                //If(Label_Combox_Employee_Username.Text = Blank() Or Label_Combox_Educations_Name.Text = Blank(), DisplayMode.View, DisplayMode.Edit)
+            Fill: =ColorValue(First(colorscheme).Röd)
+            FocusedBorderThickness: =1
+            Height: =31
+            HoverColor: =ColorValue(First(colorscheme).Röd)
+            HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -1%)
+            OnSelect: |-
+                =If(
+                    IsBlank(varitemEducationCompleted),
+                    Patch(
+                        'Utbildning Utförd',
+                        Defaults('Utbildning Utförd'),
+                        {
+                            Anställd: LookUp(
+                                Users,
+                                'Fullständigt namn' = ComboBox_Employee.Selected.'Fullständigt namn'
+                            ),
+                            'Datum utförande': DatePicker_Education_Completed_Value.SelectedDate,
+                            'Utbildning/Kurs': LookUp(
+                                Utbildning,
+                                'Utbildning/Kurs' = ComboBox_Educations.Selected.'Utbildning/Kurs'
+                            ),
+                            Kommentar: Comments_CompletedEducation_Value.Text
+                        }
+                    ),
+                    Patch(
+                        'Utbildning Utförd',
+                        ThisItem,
+                        {
+                            Anställd: LookUp(
+                                Users,
+                                'Fullständigt namn' = ComboBox_Employee.Selected.'Fullständigt namn'
+                            ),
+                            'Datum utförande': DatePicker_Education_Completed_Value.SelectedDate,
+                            'Utbildning/Kurs': LookUp(
+                                Utbildning,
+                                'Utbildning/Kurs' = ComboBox_Educations.Selected.'Utbildning/Kurs'
+                            ),
+                            Kommentar: Comments_CompletedEducation_Value.Text
+                        }
+                    )
+                );Refresh('Utbildning Utförd');ClearCollect(educationDataCompleted, 'Utbildning Utförd');UpdateContext({EducationCompletednew: false});Set(varitemEducationCompleted, Blank())
+                
+                //Notify("Toppen")
+            RadiusBottomLeft: =2
+            RadiusBottomRight: =2
+            RadiusTopLeft: =2
+            RadiusTopRight: =2
+            Size: =9
+            Text: =If(Varlanguage = "Swedish", "Spara", If(Varlanguage = "English", "Save"))
+            Width: =114
+            X: =822
+            Y: =369
+            ZIndex: =13
+
+        Save_Button_Education_1 As button:
+            Fill: =ColorValue(First(colorscheme).Svart)
+            FocusedBorderThickness: =1
+            Height: =31
+            HoverColor: =ColorValue(First(colorscheme).Svart)
+            HoverFill: =ColorFade(ColorValue(First(colorscheme).Färg3), -1%)
+            OnSelect: |-
+                =Set(
+                    varUserIDEducation,
+                    Blank());
+                Set(varUserUPN, Blank());
+                Set(varUserFullnameEducation, Blank());
+                Set(varEducationCompletedID, Blank());
+                Set(varEducationCompletedID, Blank());
+                Set(varEducationName, Blank());UpdateContext({EducationCompletednew: false});Set(varitemEducationCompleted, Blank());UpdateContext({varShowDocLabel: false})
+            RadiusBottomLeft: =2
+            RadiusBottomRight: =2
+            RadiusTopLeft: =2
+            RadiusTopRight: =2
+            Size: =9
+            Text: =If(Varlanguage = "Swedish", "Stäng", If(Varlanguage = "English", "Close"))
+            Width: =114
+            X: =688
+            Y: =369
+            ZIndex: =14
+
+        Label_varUserID As label:
+            OnSelect: =Select(Parent)
+            Text: =varUserID
+            Visible: =false
+            X: =980
+            Y: =308
+            ZIndex: =22
+
+        Label_varEducationCompletedID As label:
+            Align: =Align.Center
+            OnSelect: =Select(Parent)
+            Text: =varEducationCompletedID
+            Visible: =false
+            X: =450
+            Y: =5
+            ZIndex: =23
+
+        Label_CompletedEducation_Dokument As label:
+            FontWeight: =FontWeight.Semibold
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                =If(Varlanguage = "Swedish", "Dokument:", If(Varlanguage = "English", "Documents:"))
+            Width: =140
+            X: =33
+            Y: =198
+            ZIndex: =26
+
+        Label_CompletedEducation_DatumUtförande As label:
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                =If(Varlanguage = "Swedish", "Datum utförande:", If(Varlanguage = "English", "Completed on:"))
+            Width: =140
+            X: =33
+            Y: =88
+            ZIndex: =28
+
+        Label_CompletedDate_1 As label:
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                =If(Varlanguage = "Swedish", "Giltighetstid:", If(Varlanguage = "English", "Valid period:"))
+            Width: =140
+            X: =486
+            Y: =88
+            ZIndex: =29
+
+        Label_CompletedEducation_Giltighetstid_Value As label:
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: =If(IsBlank(varitemEducationCompleted), Blank(), ThisItem.Giltighetstid)
+            Width: =260
+            X: =626
+            Y: =88
+            ZIndex: =30
+
+        Label_CompletedEducation_Förfallo As label:
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                =If(Varlanguage = "Swedish", "Förfallodatum:", If(Varlanguage = "English", "Expiration date:"))
+            Width: =140
+            X: =33
+            Y: =148
+            ZIndex: =31
+
+        ComboBox_Employee As combobox:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            ChevronBackground: =ColorValue(First(colorscheme).Svart)
+            ChevronHoverBackground: =ColorValue(First(colorscheme).Primary)
+            Default: =If(IsBlank(varitemEducationCompleted), Blank(), ThisItem.Anställd)
+            DefaultSelectedItems: =If(IsBlank(varitemEducationCompleted), Blank(), ThisItem.Anställd)
+            DisplayFields: =["fullname"]
+            FocusedBorderThickness: =1
+            Font: =varFont
+            Height: =30
+            HoverFill: =RGBA(230, 230, 230, 1)
+            InputTextPlaceholder: |-
+                =If(Varlanguage = "Swedish", "Sök på användare:", If(Varlanguage = "English", "Search by user:"))
+            Items: =Choices('Utbildning Utförd'.Anställd)
+            OnChange: =Set(varUserUPN, ComboBox_Employee.Selected.Användarnamn);Set(varUserFullnameEducation, ComboBox_Employee.Selected.'Fullständigt namn'); Set(varUserIDEducation, ComboBox_Employee.Selected.'Användare (systemuserid)')
+            OnSelect: =Select(Parent)
+            PressedColor: =RGBA(0, 0, 0, 1)
+            PressedFill: =RGBA(230, 230, 230, 1)
+            Reset: =EducationCompletednew = false
+            SearchFields: =["fullname"]
+            SearchItems: =Search(Choices('Utbildning Utförd'.Anställd),ComboBox_Employee.SearchText,"fullname")
+            SelectionFill: =RGBA(230, 230, 230, 1)
+            SelectMultiple: =false
+            Size: =9
+            Width: =200
+            X: =173
+            Y: =30
+            ZIndex: =32
+
+        ComboBox_Educations As combobox:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            ChevronBackground: =ColorValue(First(colorscheme).Svart)
+            ChevronHoverBackground: =ColorValue(First(colorscheme).Primary)
+            Default: =If(IsBlank(varitemEducationCompleted), Blank(), ThisItem.'Utbildning/Kurs')
+            DefaultSelectedItems: =If(IsBlank(varitemEducationCompleted), Blank(), ThisItem.'Utbildning/Kurs')
+            DisplayFields: =["crf38_utbildningkurs"]
+            FocusedBorderThickness: =1
+            Font: =varFont
+            Height: =30
+            HoverFill: =RGBA(230, 230, 230, 1)
+            InputTextPlaceholder: |-
+                =If(Varlanguage = "Swedish", "Sök utbildning:", If(Varlanguage = "English", "Search education:"))
+            Items: =Choices([@'Utbildning Utförd'].'Utbildning/Kurs')
+            OnChange: =Set(varEducationName, ComboBox_Educations.Selected.'Utbildning/Kurs')
+            OnSelect: =Select(Parent)
+            PressedColor: =RGBA(0, 0, 0, 1)
+            PressedFill: =RGBA(230, 230, 230, 1)
+            Reset: =EducationCompletednew = false
+            SearchFields: =["crf38_utbildningkurs"]
+            SearchItems: =Search(Choices([@'Utbildning Utförd'].'Utbildning/Kurs'),ComboBox_Educations.SearchText,"crf38_utbildningkurs")
+            SelectionFill: =RGBA(230, 230, 230, 1)
+            SelectMultiple: =false
+            Size: =9
+            Width: =260
+            X: =626
+            Y: =30
+            ZIndex: =33
+
+        DatePicker_Education_Completed_Value As datepicker:
+            BorderColor: =ColorValue(First(colorscheme).Svart)
+            BorderThickness: =1
+            DefaultDate: |-
+                =If(IsBlank(varitemEducationCompleted), Today(),
+                ThisItem.'Datum utförande')
+            FocusedBorderThickness: =1
+            Font: =varFont
+            Format: ="dd/mmm/yyyy"
+            Height: =30
+            IconBackground: =ColorValue(First(colorscheme).Svart)
+            OnSelect: =Select(Parent)
+            Size: =11
+            Width: =200
+            X: =173
+            Y: =88
+            ZIndex: =34
+
+        DatePicker_Education_Completed_förfallo_Value As datepicker:
+            BorderColor: =ColorValue(First(colorscheme).Svart)
+            BorderThickness: =1
+            DefaultDate: |-
+                =If(
+                    IsBlank(varitemEducationCompleted),
+                    Today(),
+                    ThisItem.Förfallodatum
+                )
+            DisplayMode: =DisplayMode.View
+            FocusedBorderThickness: =1
+            Font: =varFont
+            Format: ="dd/mmm/yyyy"
+            Height: =30
+            IconBackground: =ColorValue(First(colorscheme).Svart)
+            OnSelect: =Select(Parent)
+            Size: =11
+            Width: =200
+            X: =173
+            Y: =150
+            ZIndex: =35
+
+        Label_CompletedDate_2 As label:
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: |-
+                =If(Varlanguage = "Swedish", "Utbildning utgått:", If(Varlanguage = "English", "Education expired:"))
+            Width: =140
+            X: =486
+            Y: =146
+            ZIndex: =36
+
+        Label_CompletedEducation_Giltighetstid_Value_1 As label:
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: =If(IsBlank(varitemEducationCompleted), Blank(), ThisItem.'Utbildning utgått')
+            Width: =260
+            X: =626
+            Y: =146
+            ZIndex: =37
+
+        Label_AddFileMessage As label:
+            Align: =Align.Center
+            Color: =RGBA(128, 128, 128, 1)
+            Italic: =true
+            Size: =11
+            Text: ="Välj anställd och utbildning för att kunna spara dokument"
+            Visible: =varShowDocLabel And IsBlank(ComboBox_Employee.Selected.'Fullständigt namn') Or IsBlank(ComboBox_Educations.Selected.'Utbildning/Kurs')
+            Width: =351
+            X: =49
+            Y: =305
+            ZIndex: =38
+
+    Gallery_Employee_SharePointDocuments_1 As gallery.galleryVertical:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        BorderThickness: =1
+        Height: =174
+        Items: |-
+            =If(IsBlank(varitemEducationCompleted), Blank(), SortByColumns(Filter(Employees, UtbildningUtfID = Completed_Education_Showgallery.Selected.Label_EducationCompletedID.Text), "Created", Descending))
+            //SortByColumns(Filter(Employees, UtbildningUtfID = Completed_Education_Showgallery.Selected.Label_EducationCompletedID.Text), "Created", Descending)
+        Layout: =Layout.Vertical
+        OnSelect: =Launch(ThisItem.'Link to item')
+        TemplateSize: =42
+        Visible: =EducationCompletednew = true And If(Radio_Switch_EducationGalleries.Selected.Value = "Completed educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utförda utbildningar", true)
+        Width: =381
+        X: =223
+        Y: =447
+        ZIndex: =48
+
+        Label6_2 As label:
+            Height: =26
+            OnSelect: =Select(Parent)
+            Size: =10
+            Text: =ThisItem.Name
+            Width: =215
+            X: =59
+            Y: =10
+            ZIndex: =1
+
+        Image2 As image:
+            Height: =30
+            Image: |-
+                =If(
+                    EndsWith(
+                        ThisItem.'File name with extension',
+                        "png"
+                    ),
+                    ThisItem.Miniatyr.Large,
+                    If(
+                        EndsWith(
+                            ThisItem.'File name with extension',
+                            "pdf"
+                        ),
+                        'PDF icon',
+                    If(
+                        EndsWith(
+                            ThisItem.'File name with extension',
+                            "docx"
+                        ),
+                        WordIcon,
+                    If(
+                        EndsWith(
+                            ThisItem.'File name with extension',
+                            "doc"
+                        ),WordIcon,
+                    If(
+                        EndsWith(
+                            ThisItem.'File name with extension',
+                            "jpg"
+                        ),
+                        ThisItem.Miniatyr.Large,
+                    If(
+                        EndsWith(
+                            ThisItem.'File name with extension',
+                            "jpeg"
+                        ),
+                        ThisItem.Miniatyr.Large
+                    )
+                )))))
+            OnSelect: =Select(Parent)
+            Width: =30
+            X: =11
+            Y: =6
+            ZIndex: =3
+
+    AttachmentFilesControl_Education As attachments:
+        AddAttachmentText: =If(Varlanguage = "Swedish", "Klicka här för att bifoga fil", If(Varlanguage = "English", "Click here to add attachment"))
+        BorderColor: =
+        BorderStyle: =BorderStyle.None
+        BorderThickness: =0
+        DisplayMode: =If(IsBlank(ComboBox_Employee.Selected.'Fullständigt namn') Or IsBlank(ComboBox_Educations.Selected.'Utbildning/Kurs'), DisplayMode.View, DisplayMode.Edit)
+        DropTargetBorderThickness: =0
+        Height: =78
+        IsInDataCard: =true
+        Items: =
+        MaxAttachments: =1
+        MaxAttachmentsText: =
+        NoAttachmentsText: =
+        OnAddFile: |-
+            =Set(
+                VarFile,
+                JSON(
+                    Image_Attachment_Education.Image,
+                    JSONFormat.IncludeBinaryData
+                )
+            );
+            Set(
+                VarBase64,
+                Mid(
+                    VarFile,
+                    Find(
+                        ",",
+                        VarFile
+                    ) + 1,
+                    Len(VarFile) - Find(
+                        ",",
+                        VarFile
+                    ) - 1
+                )
+            );
+            ClearCollect(
+                attachmentsList_Education,
+                {
+                    name: AttachmentFilesControl_Education.Attachments,
+                    media: VarFile,
+                    Base64: VarBase64
+                }
+            );
+            Set(
+                varfile2,
+                Concat(
+                    AttachmentFilesControl_Education.Attachments.Name,
+                    Name & ""
+                )
+            );ForAll(attachmentsList_Education, 'DipartHR-AddfiletoSharePoint(Educations)'.Run(varUserIDEducation, varUserFullnameEducation, varfile2, VarBase64, varEducationCompletedID, varUserUPN, varEducationName));Reset(AttachmentFilesControl_Education);Refresh(Employees)
+        PaddingBottom: =5
+        PaddingLeft: =If(Self.DisplayMode = DisplayMode.Edit, 5, 0)
+        PaddingRight: =5
+        PaddingTop: =5
+        Size: =9
+        Tooltip: =
+        Visible: =If(IsBlank(ComboBox_Employee.Selected.'Fullständigt namn') Or IsBlank(ComboBox_Educations.Selected.'Utbildning/Kurs'), false, true)
+        Width: =188
+        X: =416
+        Y: =540
+        ZIndex: =49
+
+    Image_Attachment_Education As image:
+        Image: =Last(AttachmentFilesControl_Education.Attachments).Value
+        Visible: =false
+        X: =40
+        Y: =40
+        ZIndex: =50
+
+    Header_Education As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =51
+
+        Header_Status_1 As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            Size: =11
+            Text: =If(Varlanguage = "Swedish", "Status", If(Varlanguage = "English", "Status"))
+            Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utbildningar", true)
+            Width: =160
+            X: =1189
+            Y: =133
+            ZIndex: =2
+
+        Header_CreatedBy_1 As label:
+            Align: =Align.Center
+            Height: =32
+            Size: =11
+            Text: =If(Varlanguage = "Swedish", "Status", If(Varlanguage = "English", "Status"))
+            Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utbildningar", true)
+            Width: =180
+            X: =1151
+            Y: =130
+            ZIndex: =10
+
+        Header_Computer_1 As label:
+            Height: =32
+            Size: =12
+            Text: =If(Varlanguage = "Swedish", "Utbildnings ID", If(Varlanguage = "English", "Education ID"))
+            Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utbildningar", true)
+            Width: =160
+            X: =77
+            Y: =130
+            ZIndex: =12
+
+        Header_Created_1 As label:
+            Align: =Align.Center
+            Height: =32
+            Size: =12
+            Text: =If(Varlanguage = "Swedish", "Giltighetstid", If(Varlanguage = "English", "Period of validity"))
+            Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utbildningar", true)
+            Width: =160
+            X: =630
+            Y: =130
+            ZIndex: =13
+
+        Header_Education_1 As label:
+            Align: =Align.Center
+            Height: =32
+            Size: =12
+            Text: =If(Varlanguage = "Swedish", "Utbildning", If(Varlanguage = "English", "Education"))
+            Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utbildningar", true)
+            Width: =160
+            X: =337
+            Y: =130
+            ZIndex: =28
+
+    Header_Completed_Educations As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =59
+
+        Header_CreatedBy_2 As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            Size: =11
+            Text: =If(Varlanguage = "Swedish", "Förfallodatum", If(Varlanguage = "English", "Due date"))
+            Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Completed educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utförda utbildningar", true)
+            Width: =180
+            X: =979
+            Y: =130
+            ZIndex: =41
+
+        Header_Computer_2 As label:
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            Size: =11
+            Text: =If(Varlanguage = "Swedish", "ID", If(Varlanguage = "English", "ID"))
+            Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Completed educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utförda utbildningar", true)
+            Width: =160
+            X: =76
+            Y: =130
+            ZIndex: =42
+
+        Header_Created_2 As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            Size: =12
+            Text: =If(Varlanguage = "Swedish", "Giltighetstid", If(Varlanguage = "English", "Period of validity"))
+            Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Completed educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utförda utbildningar", true)
+            Width: =160
+            X: =828
+            Y: =130
+            ZIndex: =43
+
+        Header_Education_3 As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            Size: =12
+            Text: =If(Varlanguage = "Swedish", "Utbildning", If(Varlanguage = "English", "Education"))
+            Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Completed educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utförda utbildningar", true)
+            Width: =160
+            X: =415
+            Y: =130
+            ZIndex: =44
+
+        Header_Education_Employee As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            Size: =12
+            Text: =If(Varlanguage = "Swedish", "Anställd", If(Varlanguage = "English", "Employee"))
+            Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Completed educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utförda utbildningar", true)
+            Width: =160
+            X: =208
+            Y: =130
+            ZIndex: =45
+
+        Header_Completed_Education_DatumUtförande As label:
+            Align: =Align.Center
+            FontWeight: =FontWeight.Semibold
+            Height: =32
+            Size: =12
+            Text: =If(Varlanguage = "Swedish", "Datum uförande", If(Varlanguage = "English", "Date of execution"))
+            Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Completed educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utförda utbildningar", true)
+            Width: =160
+            X: =647
+            Y: =130
+            ZIndex: =46
+
+    GroupMeSwitch_1 As group:
+        Height: =5
+        Width: =5
+        X: =1
+        Y: =20
+        ZIndex: =62
+
+        IconOpenMenu_11 As icon.ChevronDown:
+            AccessibleLabel: ="PersonalSettings"
+            Color: =RGBA(0, 0, 0, 1)
+            DisplayMode: =DisplayMode.Disabled
+            Height: =25
+            Icon: =Icon.Settings
+            OnSelect: |-
+                =If(Varusersettings = true, UpdateContext({Varusersettings: false}), UpdateContext({Varusersettings: true}))
+            Width: =25
+            X: =1323
+            Y: =18
+            ZIndex: =57
+
+        IconCloseMenu_11 As icon.ChevronUp:
+            Color: =RGBA(255, 255, 255, 1)
+            Height: =35
+            Icon: =Icon.ChevronUp
+            OnSelect: |-
+                =UpdateContext({Varusersettings: false})
+            Visible: =false//Varusersettings
+            Width: =51
+            X: =1206
+            Y: =8
+            ZIndex: =58
+
+        Rectangle3_11 As rectangle:
+            BorderColor: =RGBA(0, 13, 75, 1)
+            Fill: |-
+                =RGBA(0,0,0,0.8
+                )
+            Height: =245
+            Visible: =Varusersettings
+            Width: =165
+            X: =1201
+            Y: =68
+            ZIndex: =59
+
+        Language_Title_11 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =28
+            Size: =10
+            Text: =If(Varlanguage = "Swedish", "Språk", If(Varlanguage = "English", "Language"))
+            Visible: =Varusersettings
+            Width: =93
+            X: =1228
+            Y: =234
+            ZIndex: =60
+
+        "'Choose language_24' As dropdown":
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            ChevronBackground: =Gray
+            ChevronHoverBackground: =RGBA(179, 179, 179, 1)
+            Default: ="Swedish"
+            DisabledColor: =RGBA(0, 0, 0, 1)
+            FocusedBorderThickness: =1
+            Height: =22
+            HoverFill: =RGBA(204, 204, 204, 1)
+            Items: =["English", "Swedish"]
+            OnChange: =Set(Varlanguage, 'Choose language_24'.Selected.Value)
+            OnSelect: =Set(Varlanguage, 'Choose language_24'.Selected.Value)
+            PressedFill: =RGBA(179, 179, 179, 1)
+            SelectionFill: =RGBA(204, 204, 204, 1)
+            Size: =8
+            Visible: =Varusersettings
+            Width: =97
+            X: =1230
+            Y: =262
+            ZIndex: =61
+
+        Theme_11 As label:
+            Color: =RGBA(255, 255, 255, 1)
+            FontWeight: =FontWeight.Semibold
+            Height: =28
+            Size: =10
+            Text: =If(Varlanguage = "Swedish", "Tema", If(Varlanguage = "English", "Theme"))
+            Visible: =Varusersettings
+            Width: =93
+            X: =1228
+            Y: =164
+            ZIndex: =62
+
+        "'Choose language_23' As dropdown":
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderThickness: =1
+            ChevronBackground: =Gray
+            ChevronHoverBackground: =RGBA(204, 204, 204, 1)
+            FocusedBorderThickness: =1
+            Height: =22
+            HoverFill: =RGBA(204, 204, 204, 1)
+            Items: =["Theme 1", "Theme 2"]
+            OnChange: =
+            OnSelect: =
+            PressedFill: =RGBA(204, 204, 204, 1)
+            SelectionFill: =RGBA(204, 204, 204, 1)
+            Size: =8
+            Visible: =Varusersettings
+            Width: =97
+            X: =1230
+            Y: =194
+            ZIndex: =63
+
+        "'SwedishFlag.Image_11' As image":
+            Height: =23
+            Image: ='Swedish flag'
+            Visible: =If(Varlanguage = "Swedish", true, false) And Varusersettings
+            Width: =19
+            X: =1331
+            Y: =264
+            ZIndex: =64
+
+        "'EnglishFlag.Image_11' As image":
+            Height: =20
+            Image: ='English flag'
+            Visible: =If(Varlanguage = "English", true, false) And Varusersettings
+            Width: =17
+            X: =1331
+            Y: =264
+            ZIndex: =65
+
+        UserImage_11 As image:
+            Height: =40
+            Image: =User().Image
+            RadiusBottomLeft: =70
+            RadiusBottomRight: =70
+            RadiusTopLeft: =70
+            RadiusTopRight: =70
+            Visible: =Varusersettings
+            Width: =40
+            X: =1266
+            Y: =83
+            ZIndex: =66
+
+        "'User.Name_11' As label":
+            Align: =Align.Center
+            Color: =RGBA(255, 255, 255, 1)
+            Size: =11
+            Text: =User().FullName
+            Visible: =Varusersettings
+            Width: =160
+            X: =1206
+            Y: =124
+            ZIndex: =67
+
+    Group1 As group:
+        Height: =5
+        Width: =5
+        X: =40
+        Y: =40
+        ZIndex: =62
+
+        Circle_Close_CreateOrEdtiGallery As circle:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Fill: =RGBA(0, 0, 0, 1)
+            Height: =28
+            OnSelect: |-
+                =UpdateContext({Educationnew: false, varInactivateUTB:false})
+            Visible: =Educationnew = true And If(Radio_Switch_EducationGalleries.Selected.Value = "Educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utbildningar", true)
+            Width: =28
+            X: =1171
+            Y: =186
+            ZIndex: =53
+
+        Icon_Close_CreateOrEditGallery As icon.CancelBadge:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 1)
+            DisabledColor: =RGBA(0, 0, 0, 1)
+            Height: =24
+            Icon: =Icon.Cancel
+            OnSelect: |-
+                =UpdateContext({Educationnew: false, varInactivateUTB:false})
+            Visible: =Educationnew = true And If(Radio_Switch_EducationGalleries.Selected.Value = "Educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utbildningar", true)
+            Width: =24
+            X: =1173
+            Y: =188
+            ZIndex: =54
+
+    Group1_2 As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =66
+
+        Circle_Close_CreateOrEdtiGallery_2 As circle:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Fill: =RGBA(0, 0, 0, 1)
+            Height: =28
+            OnSelect: |-
+                =Set(
+                    varUserIDEducation,
+                    Blank());
+                Set(varUserUPN, Blank());
+                Set(varUserFullnameEducation, Blank());
+                Set(varEducationCompletedID, Blank());
+                Set(varEducationCompletedID, Blank());
+                Set(varEducationName, Blank());UpdateContext({EducationCompletednew: false});Set(varitemEducationCompleted, Blank());UpdateContext({varShowDocLabel: false});Reset(ComboBox_Employee); Reset(ComboBox_Educations)
+            Visible: =EducationCompletednew = true And If(Radio_Switch_EducationGalleries.Selected.Value = "Completed educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utförda utbildningar", true)
+            Width: =28
+            X: =1173
+            Y: =186
+            ZIndex: =55
+
+        Icon_Close_CreateOrEditGallery_2 As icon.CancelBadge:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 1)
+            DisabledColor: =RGBA(0, 0, 0, 1)
+            Height: =24
+            Icon: =Icon.Cancel
+            OnSelect: |-
+                =Set(
+                    varUserIDEducation,
+                    Blank());
+                Set(varUserUPN, Blank());
+                Set(varUserFullnameEducation, Blank());
+                Set(varEducationCompletedID, Blank());
+                Set(varEducationCompletedID, Blank());
+                Set(varEducationName, Blank());UpdateContext({EducationCompletednew: false});Set(varitemEducationCompleted, Blank());UpdateContext({varShowDocLabel: false})
+            Visible: =EducationCompletednew = true And If(Radio_Switch_EducationGalleries.Selected.Value = "Completed educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utförda utbildningar", true)
+            Width: =24
+            X: =1175
+            Y: =188
+            ZIndex: =56
+
+    Group1_1 As group:
+        Height: =5
+        Width: =5
+        X: =20
+        Y: =20
+        ZIndex: =67
+
+        Circle_Close_CreateOrEdtiGallery_1 As circle:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Fill: =RGBA(0, 0, 0, 1)
+            Height: =28
+            OnSelect: |-
+                =UpdateContext({varInactivateUTB: false})
+            Visible: =varInactivateUTB
+            Width: =28
+            X: =804
+            Y: =303
+            ZIndex: =51
+
+        Icon_Close_CreateOrEditGallery_1 As icon.CancelBadge:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            Color: =RGBA(255, 255, 255, 1)
+            DisabledBorderColor: =RGBA(0, 0, 0, 1)
+            DisabledColor: =RGBA(0, 0, 0, 1)
+            Height: =24
+            Icon: =Icon.Cancel
+            OnSelect: |-
+                =UpdateContext({varInactivateUTB: false})
+            Visible: =varInactivateUTB
+            Width: =24
+            X: =806
+            Y: =305
+            ZIndex: =52
+
+    Header_Status_3 As label:
+        Align: =Align.Center
+        FontWeight: =FontWeight.Semibold
+        Height: =33
+        Size: =11
+        Text: =If(Varlanguage = "Swedish", "Status", If(Varlanguage = "English", "Status"))
+        Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Completed educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utförda utbildningar", true)
+        Width: =123
+        X: =1203
+        Y: =130
+        ZIndex: =68
+
+    Header_Created_3 As label:
+        Align: =Align.Center
+        Height: =32
+        Size: =12
+        Text: =If(Varlanguage = "Swedish", "Beskrivning", If(Varlanguage = "English", "Description"))
+        Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utbildningar", true)
+        Width: =160
+        X: =935
+        Y: =130
+        ZIndex: =69
+
+    Header_CreatedBy_3 As label:
+        Align: =Align.Center
+        FontWeight: =FontWeight.Semibold
+        Height: =32
+        Size: =11
+        Text: =If(Varlanguage = "Swedish", "Utgått", If(Varlanguage = "English", "Expired"))
+        Visible: =If(Radio_Switch_EducationGalleries.Selected.Value = "Completed educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utförda utbildningar", true)
+        Width: =180
+        X: =1102
+        Y: =130
+        ZIndex: =70
+
+    Icon3 As icon.Reload:
+        BorderColor: =RGBA(0, 0, 0, 1)
+        Color: =RGBA(0, 0, 0, 1)
+        Height: =20
+        Icon: =Icon.Reload
+        OnSelect: =Refresh(Employees)
+        Visible: =If(IsBlank(ComboBox_Employee.Selected.'Fullständigt namn') Or IsBlank(ComboBox_Educations.Selected.'Utbildning/Kurs'), false, true)
+        Width: =20
+        X: =575
+        Y: =455
+        ZIndex: =74
+
+    Icon_Remove_Education_Complete As icon.Trash:
+        Color: =ColorValue(First(colorscheme).Röd)
+        Height: =36
+        Icon: =Icon.Trash
+        OnSelect: |-
+            =RemoveIf('Utbildning Utförd', 'Utbildning Utförd' in colRemoveEducationCompleted.Value);Refresh('Utbildning Utförd');
+            ClearCollect(
+                educationDataCompleted,
+                'Utbildning Utförd'
+            )
+            //ForAll(Utbildning(Filter(Education_Showgallery.AllItems, Checkbox_Remove_Education.Value = true), "Value", "Utbildning"), Remove(Utbildning, LookUp(Utbildning, Value = Utbildning)))
+        Visible: =If(IsEmpty(colRemoveEducationCompleted), false, true) And If(Radio_Switch_EducationGalleries.Selected.Value = "Completed educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utförda utbildningar", true)
+        Width: =38
+        X: =1121
+        Y: =78
+        ZIndex: =75
+
+    Icon_Remove_Education As icon.Trash:
+        Color: =ColorValue(First(colorscheme).Röd)
+        Height: =36
+        Icon: =Icon.Trash
+        OnSelect: |-
+            =RemoveIf(Utbildning, Utbildning in colRemoveEducation.Value);Refresh(Utbildning);
+            ClearCollect(
+                educationData,
+                Utbildning
+            )
+            //ForAll(Utbildning(Filter(Education_Showgallery.AllItems, Checkbox_Remove_Education.Value = true), "Value", "Utbildning"), Remove(Utbildning, LookUp(Utbildning, Value = Utbildning)))
+        Visible: =If(IsEmpty(colRemoveEducation), false, true) And If(Radio_Switch_EducationGalleries.Selected.Value = "Educations" Or Radio_Switch_EducationGalleries.Selected.Value = "Utbildningar", true)
+        Width: =38
+        X: =1121
+        Y: =78
+        ZIndex: =76
+

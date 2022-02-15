@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "e139ce11-f037-4bef-8bb5-e307c8dfc435",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "Sendorderingemailtobestallning.se",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

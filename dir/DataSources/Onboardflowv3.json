@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "244e3f7b-745c-4c1b-bcae-c7d8f513d552",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "Onboardflowv3",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]

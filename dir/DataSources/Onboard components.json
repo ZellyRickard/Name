@@ -1,0 +1,173 @@
+[
+  {
+    "CdsFCBContext": "{\"FileType\":true,\"ImageExternalStorage\":true}",
+    "EntitySetName": "cr3a5_onboardcomponentses",
+    "IsHidden": false,
+    "IsSampleData": false,
+    "IsWritable": true,
+    "LogicalName": "cr3a5_onboardcomponents",
+    "MaxGetRowsCount": 1500,
+    "Name": "Onboard components",
+    "NativeCDSDataSourceInfoNameMapping": {
+      "_ownerid_value": "Ägare",
+      "cr3a5_componenttype": "Component Type",
+      "cr3a5_name": "Name",
+      "cr3a5_onboardcomponents_AsyncOperations": "Systemuppgifter",
+      "cr3a5_onboardcomponents_BulkDeleteFailures": "Fel i massradering",
+      "cr3a5_onboardcomponents_DuplicateBaseRecord": "Dubblettposter (cr3a5_onboardcomponents_DuplicateBaseRecord)",
+      "cr3a5_onboardcomponents_DuplicateMatchingRecord": "Dubblettposter (cr3a5_onboardcomponents_DuplicateMatchingRecord)",
+      "cr3a5_onboardcomponents_MailboxTrackingFolders": "Automatiskt spårade mappar i postlåda",
+      "cr3a5_onboardcomponents_PrincipalObjectAttributeAccesses": "Fältdelning",
+      "cr3a5_onboardcomponents_ProcessSession": "Bearbetningssessioner",
+      "cr3a5_onboardcomponents_SyncErrors": "Synkroniseringsfel",
+      "cr3a5_onboardcomponentsid": "Onboard components",
+      "createdby": "Skapad av",
+      "createdon": "Skapad den",
+      "createdonbehalfby": "Skapat av (ombud)",
+      "crf38_mailadress": "Mailadress",
+      "crf38_mailadresskommentar": "Mailadress kommentar",
+      "crf38_utbildningsbevis": "Utbildningsbevis",
+      "importsequencenumber": "Importsekvensnummer",
+      "modifiedby": "Ändrad av",
+      "modifiedon": "Ändrad den",
+      "modifiedonbehalfby": "Ändrat av (ombud)",
+      "overriddencreatedon": "Posten skapades den",
+      "owningbusinessunit": "Ägande affärsenhet",
+      "owningteam": "Ägande team",
+      "owninguser": "Ägande användare",
+      "statecode": "Status",
+      "statuscode": "Statusorsak",
+      "timezoneruleversionnumber": "Versionsnummer för tidszonsregel",
+      "utcconversiontimezonecode": "Tidszonskod för UTC-konvertering",
+      "versionnumber": "Versionsnummer"
+    },
+    "PreferredName": "Onboard components",
+    "Type": "NativeCDSDataSourceInfo"
+  },
+  {
+    "DisplayName": "Onboard components (Vyer)",
+    "Name": "_cr3a5_onboardcomponents_views",
+    "RelatedEntityName": "Onboard components",
+    "TrimmedViewName": true,
+    "Type": "ViewInfo",
+    "ViewInfoNameMapping": {
+      "1a50342b-c0fe-40c1-b9c0-81a0505efd05": "Inaktiva Onboard components",
+      "47fa26ac-5124-4588-808b-8f56d441760c": "Avancerad sökvy för Onboard components",
+      "c301d766-7143-4862-a2dd-9abf4a3d3f29": "Aktiva Onboard components",
+      "c99c4046-c4ff-4588-8b3b-6a8829bebfdb": "Uppslagsvy för Onboard components",
+      "d54b7de9-fea8-4c02-b99c-444650a0279a": "Associerad vy för Onboard components"
+    }
+  },
+  {
+    "DisplayName": "Component type",
+    "Name": "cr3a5_componenttype",
+    "OptionSetInfoNameMapping": {
+      "651160001": "TimeLine View",
+      "651160002": "Förväntan",
+      "651160003": "Dator",
+      "651160004": "Distributionsgrupper/Teams",
+      "651160005": "TimeLine View Offboard",
+      "651160006": "Typ av anställning",
+      "651160007": "PC-Grupper",
+      "651160008": "AAD-PowerApp-PC",
+      "651160009": "AAD-PowerApp-AOC",
+      "651160010": "AAD-PowerApp-HR",
+      "971880000": "Component type",
+      "971880001": "Affärsområde",
+      "971880004": "Befattning",
+      "971880005": "Status"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": true,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "cr3a5_componenttype",
+        "OptionSetReferenceEntityName": "Onboard components"
+      }
+    },
+    "OptionSetTypeKey": "PicklistType",
+    "RelatedColumnInvariantName": "cr3a5_componenttype",
+    "RelatedEntityName": "Onboard components",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Status (Onboard components)",
+    "Name": "cr3a5_onboardcomponents_statecode",
+    "OptionSetInfoNameMapping": {
+      "0": "Aktiv",
+      "1": "Inaktiv"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statecode",
+        "OptionSetReferenceEntityName": "Onboard components"
+      }
+    },
+    "OptionSetTypeKey": "StateType",
+    "RelatedColumnInvariantName": "statecode",
+    "RelatedEntityName": "Onboard components",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Statusorsak (Onboard components)",
+    "Name": "cr3a5_onboardcomponents_statuscode",
+    "OptionSetInfoNameMapping": {
+      "1": "Aktiv",
+      "2": "Inaktiv"
+    },
+    "OptionSetIsBooleanValued": false,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "statuscode",
+        "OptionSetReferenceEntityName": "Onboard components"
+      }
+    },
+    "OptionSetTypeKey": "StatusType",
+    "RelatedColumnInvariantName": "statuscode",
+    "RelatedEntityName": "Onboard components",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Mailadress (Onboard components)",
+    "Name": "crf38_cr3a5_onboardcomponents_mailadress",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_mailadress",
+        "OptionSetReferenceEntityName": "Onboard components"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_mailadress",
+    "RelatedEntityName": "Onboard components",
+    "Type": "OptionSetInfo"
+  },
+  {
+    "DisplayName": "Utbildningsbevis (Onboard components)",
+    "Name": "crf38_cr3a5_onboardcomponents_utbildningsbevis",
+    "OptionSetInfoNameMapping": {
+      "0": "Nej",
+      "1": "Ja"
+    },
+    "OptionSetIsBooleanValued": true,
+    "OptionSetIsGlobal": false,
+    "OptionSetReference": {
+      "OptionSetReferenceItem0": {
+        "OptionSetReferenceColumnName": "crf38_utbildningsbevis",
+        "OptionSetReferenceEntityName": "Onboard components"
+      }
+    },
+    "OptionSetTypeKey": "BooleanType",
+    "RelatedColumnInvariantName": "crf38_utbildningsbevis",
+    "RelatedEntityName": "Onboard components",
+    "Type": "OptionSetInfo"
+  }
+]

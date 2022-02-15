@@ -1,0 +1,9 @@
+[
+  {
+    "AddinConnectorId": "d167ac78-e5f3-49c1-95e7-dcd407b8efb2",
+    "AddinId": "6d1f157d-95bf-406d-b65d-cfd3240f724e",
+    "Name": "DipartHR-AddfiletoSharePoint(Educations)",
+    "ServiceKind": "AddinWadl",
+    "Type": "ServiceInfo"
+  }
+]
